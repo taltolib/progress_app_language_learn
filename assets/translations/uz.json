@@ -1,0 +1,9 @@
+{
+  "auth": {
+    "select_language": "Tilni tanlang",
+    "continue": "Davom etish",
+    "uzbek": "O‘zbekcha",
+    "russian": "Ruscha",
+    "english": "Inglizcha"
+  }
+}

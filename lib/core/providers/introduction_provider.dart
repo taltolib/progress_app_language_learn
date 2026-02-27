@@ -16,7 +16,7 @@ class IntroductionProvider extends ChangeNotifier {
 
   void next(BuildContext context) {
     if (isLastPage) {
-      context.go('/language');
+      context.go('/translation');
     } else {
       controller.nextPage(
         duration: const Duration(milliseconds: 400),

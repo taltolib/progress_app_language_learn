@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:progress/features/Introduction/pages/discover_words_page.dart';
 import 'package:progress/features/Introduction/pages/language_progress_page.dart';
 import 'package:progress/features/Introduction/pages/practice_intro_page.dart';

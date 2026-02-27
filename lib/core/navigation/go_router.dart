@@ -1,19 +1,22 @@
 import 'package:go_router/go_router.dart';
-import 'package:progress/features/language/language_selection_page.dart';
+import 'package:progress/features/language/learning_language_page.dart';
+import 'package:progress/features/translation/language_selection_page.dart';
+import 'package:progress/shared/widget/main_scaffold.dart';
 import '../../features/Introduction/introduction_page.dart';
 import '../../features/greetings/animation_welcome.dart';
 import 'package:flutter/material.dart';
-
 import '../../shared/widget/hole_clipper.dart';
 
 final GoRouter router = GoRouter(
   routes: [
+
     GoRoute(
       path: '/',
       pageBuilder: (context, state) {
         return const MaterialPage(child: AnimationWelcome());
       },
     ),
+
     GoRoute(
       path: '/introduction',
       pageBuilder: (context, state) {
@@ -41,6 +44,23 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-    GoRoute(path: '/language',pageBuilder: (context, state) => MaterialPage(child: const LanguageSelectionPage(),)),
+
+    GoRoute(
+      path: '/translation',
+      pageBuilder: (context, state) =>
+      const MaterialPage(child: LanguageSelectionPage()),
+    ),
+
+    GoRoute(
+      path: '/language',
+      pageBuilder: (context, state) =>
+          MaterialPage(child: LearningLanguagePage()),
+    ),
+
+    GoRoute(
+      path: '/main',
+      pageBuilder: (context, state) =>
+          MaterialPage(child: MainScaffold()),
+    ),
   ],
 );

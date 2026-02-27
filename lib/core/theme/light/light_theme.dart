@@ -15,30 +15,20 @@ class LightTheme {
       error: AppColors.heartRed,
     ),
 
-    dividerColor: AppColors.borderLight,
-
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(
-        color: AppColors.textPrimaryLight,
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-      bodyMedium: TextStyle(
-        color: AppColors.textSecondaryLight,
-        fontSize: 14,
-      ),
-    ),
+    dividerColor: AppColors.dividerLight,
 
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.backgroundLight,
+      backgroundColor: AppColors.appBarLight,
       elevation: 0,
-      centerTitle: true,
+      centerTitle: false,
       titleTextStyle: TextStyle(
         color: AppColors.textPrimaryLight,
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
       ),
-      iconTheme: IconThemeData(color: AppColors.textPrimaryLight),
+      iconTheme: IconThemeData(
+        color: AppColors.textPrimaryLight,
+      ),
     ),
   );
 }

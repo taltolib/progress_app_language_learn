@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 
+// ignore: must_be_immutable
 class LanguageList extends StatelessWidget {
   List<Widget> list = [];
   List<String> title = [];
@@ -28,6 +29,7 @@ class LanguageList extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Theme.of(context).dividerColor.withOpacity(0.50),
                     blurRadius: 0,
                   ),

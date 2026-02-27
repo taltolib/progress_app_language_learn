@@ -1,0 +1,9 @@
+{
+  "auth": {
+    "select_language": "Select language",
+    "continue": "Continue",
+    "uzbek": "Uzbek",
+    "russian": "Russian",
+    "english": "English"
+  }
+}

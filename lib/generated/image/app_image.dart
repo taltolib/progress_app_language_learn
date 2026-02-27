@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,7 +16,9 @@ Widget _svg(String path, double? width, double? height, Color? color) {
 
 class AppImage {
 
+  // ignore: library_private_types_in_public_api
   final _Widgets widgets = _Widgets();
+  // ignore: library_private_types_in_public_api
   final _Logo logo = _Logo();
 
 
