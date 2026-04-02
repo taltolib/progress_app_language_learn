@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:progress/shared/widget/custom_home_app_bar.dart';
-import 'package:progress/shared/widget/glass_navigation_bar.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/language_search_field.dart';
 import 'package:progress/shared/widget/work_card.dart';
 
@@ -17,24 +17,14 @@ class _SearchPageState extends State<SearchPage> {
   int currentIndex = 1;
 
   final List<Map<String, String>> words = [
-    {
-      "word": "bread",
-      "pronunciation": "bred",
-      "ru": "хлеб",
-      "uz": "non",
-    },
+    {"word": "bread", "pronunciation": "bred", "ru": "хлеб", "uz": "non"},
     {
       "word": "butter",
       "pronunciation": "ˈbʌtər",
       "ru": "масло",
       "uz": "sariyog'",
     },
-    {
-      "word": "build",
-      "pronunciation": "bɪld",
-      "ru": "строить",
-      "uz": "qurmoq",
-    },
+    {"word": "build", "pronunciation": "bɪld", "ru": "строить", "uz": "qurmoq"},
   ];
 
   List<Map<String, String>> filteredWords = [];
@@ -57,8 +47,7 @@ class _SearchPageState extends State<SearchPage> {
 
     setState(() {
       filteredWords = words
-          .where((word) =>
-          word["word"]!.toLowerCase().startsWith(query))
+          .where((word) => word["word"]!.toLowerCase().startsWith(query))
           .toList();
     });
   }
@@ -70,41 +59,39 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            LanguageSearchField(controller: _controller),
-            SizedBox(height: 20),
-            if (_controller.text.isEmpty)
-              Expanded(
-                child: Center(
-                  child: Text(
-                    "Начните вводить слово",
-                    style: TextStyle(
-                      color: Colors.grey.shade500,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              )
-            else Expanded(
-                child: ListView.builder(
-                  itemCount: filteredWords.length,
-                  itemBuilder: (context, index) {
-                    final word = filteredWords[index];
-                    return WordCard(
-                      word: word["word"]!,
-                      pronunciation: word["pronunciation"]!,
-                      ru: word["ru"]!,
-                      uz: word["uz"]!,
-                      isExact: isExactMatch(word["word"]!),
-                    );
-                  },
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          LanguageSearchField(controller: _controller , hintText: LocaleKeys.writeWord.tr()),
+          SizedBox(height: 20),
+          if (_controller.text.isEmpty)
+            Expanded(
+              child: Center(
+                child: Text(
+                  LocaleKeys.writeWord.tr(),
+                  style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
                 ),
               ),
-          ],
-        ),
+            )
+          else
+            Expanded(
+              child: ListView.builder(
+                itemCount: filteredWords.length,
+                itemBuilder: (context, index) {
+                  final word = filteredWords[index];
+                  return WordCard(
+                    word: word["word"]!,
+                    pronunciation: word["pronunciation"]!,
+                    ru: word["ru"]!,
+                    uz: word["uz"]!,
+                    isExact: isExactMatch(word["word"]!),
+                  );
+                },
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

@@ -45,7 +45,7 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.brandGreen, // 🟢 ВСЕГДА зелёный
+      backgroundColor: AppColors.green,
       body: SafeArea(
         child: Center(
           child: FadeTransition(
@@ -55,7 +55,7 @@ class _AnimationWelcomeState extends State<AnimationWelcome>
               style: const TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
-                color: AppColors.brandOnGreen, // ⚪ ВСЕГДА белый
+                color: AppColors.whiteForLight,
               ),
             ),
           ),

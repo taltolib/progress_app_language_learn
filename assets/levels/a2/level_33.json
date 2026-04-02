@@ -1,0 +1,226 @@
+{
+  "level": 33,
+  "difficulty": "A2",
+  "tasks": [
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "дом",
+        "еда",
+        "книга",
+        "Мы живем в большом городе"
+      ],
+      "correctIndex": 3,
+      "id": 1
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "дом",
+        "кошка",
+        "Мы живем в большом городе",
+        "стол"
+      ],
+      "correctIndex": 2,
+      "id": 2
+    },
+    {
+      "question": "He is cooking dinner",
+      "answers": [
+        "дом",
+        "окно",
+        "собака",
+        "Он готовит ужин"
+      ],
+      "correctIndex": 3,
+      "id": 3
+    },
+    {
+      "question": "She is reading a book",
+      "answers": [
+        "стол",
+        "машина",
+        "кошка",
+        "Она читает книгу"
+      ],
+      "correctIndex": 3,
+      "id": 4
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "Они играют в футбол",
+        "стол",
+        "дом",
+        "кошка"
+      ],
+      "correctIndex": 0,
+      "id": 5
+    },
+    {
+      "question": "I like learning English",
+      "answers": [
+        "дом",
+        "река",
+        "кошка",
+        "Мне нравится учить английский"
+      ],
+      "correctIndex": 3,
+      "id": 6
+    },
+    {
+      "question": "She is reading a book",
+      "answers": [
+        "Она читает книгу",
+        "река",
+        "дом",
+        "окно"
+      ],
+      "correctIndex": 0,
+      "id": 7
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "Я иду в магазин",
+        "дом",
+        "кошка",
+        "машина"
+      ],
+      "correctIndex": 0,
+      "id": 8
+    },
+    {
+      "question": "He is cooking dinner",
+      "answers": [
+        "лес",
+        "кошка",
+        "Он готовит ужин",
+        "книга"
+      ],
+      "correctIndex": 2,
+      "id": 9
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "Они играют в футбол",
+        "кошка",
+        "стол",
+        "река"
+      ],
+      "correctIndex": 0,
+      "id": 10
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "книга",
+        "дом",
+        "Он пьет воду",
+        "окно"
+      ],
+      "correctIndex": 2,
+      "id": 11
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "Мы живем в большом городе",
+        "машина",
+        "книга",
+        "еда"
+      ],
+      "correctIndex": 0,
+      "id": 12
+    },
+    {
+      "question": "We are watching a movie",
+      "answers": [
+        "Мы смотрим фильм",
+        "лес",
+        "машина",
+        "окно"
+      ],
+      "correctIndex": 0,
+      "id": 13
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "машина",
+        "дом",
+        "Она работает в больнице",
+        "лес"
+      ],
+      "correctIndex": 2,
+      "id": 14
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "книга",
+        "Мы живем в большом городе",
+        "еда",
+        "окно"
+      ],
+      "correctIndex": 1,
+      "id": 15
+    },
+    {
+      "question": "She is reading a book",
+      "answers": [
+        "собака",
+        "книга",
+        "стол",
+        "Она читает книгу"
+      ],
+      "correctIndex": 3,
+      "id": 16
+    },
+    {
+      "question": "We are watching a movie",
+      "answers": [
+        "окно",
+        "река",
+        "Мы смотрим фильм",
+        "собака"
+      ],
+      "correctIndex": 2,
+      "id": 17
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "еда",
+        "Я иду в магазин",
+        "кошка",
+        "машина"
+      ],
+      "correctIndex": 1,
+      "id": 18
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "Мы живем в большом городе",
+        "дом",
+        "собака",
+        "река"
+      ],
+      "correctIndex": 0,
+      "id": 19
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "еда",
+        "машина",
+        "лес",
+        "Мы живем в большом городе"
+      ],
+      "correctIndex": 3,
+      "id": 20
+    }
+  ]
+}

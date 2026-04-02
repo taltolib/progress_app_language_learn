@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
 
 class SettingsTile extends StatelessWidget {
   final String title;
@@ -30,10 +31,7 @@ class SettingsTile extends StatelessWidget {
             Expanded(
               child: Text(
                 title,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: textPrimary,
-                ),
+                style: AppFonts.mulish.s16w500(color: textPrimary),
               ),
             ),
             if (trailing != null) trailing!,

@@ -1,5 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 
 class NotificationBanner extends StatelessWidget {
   final VoidCallback onAllow;
@@ -37,7 +40,7 @@ class NotificationBanner extends StatelessWidget {
                   bottom: 14,
                 ),
                 decoration: BoxDecoration(
-                  color: AppColors.goldColors,
+                  color: AppColors.gold,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -47,22 +50,15 @@ class NotificationBanner extends StatelessWidget {
                       flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children:  [
                           Text(
-                            "Прокачаем уровень 🚀",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
+                            LocaleKeys.notificationBannerTitle,
+                            style: AppFonts.mulish.s18w700(color: AppColors.whiteForLight),
                           ),
                           SizedBox(height: 4),
                           Text(
-                            "Включи напоминания",
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black87,
-                            ),
+                            LocaleKeys.notificationBannerTitle,
+                            style: AppFonts.mulish.s12w500(color: AppColors.whiteForLight),
                           ),
                         ],
                       ),
@@ -81,7 +77,7 @@ class NotificationBanner extends StatelessWidget {
                           elevation: 0,
                         ),
                         onPressed: onAllow,
-                        child: const Text("Разрешить"),
+                        child: Text(LocaleKeys.allow.tr(),style: AppFonts.mulish.s12w500(color: AppColors.whiteForLight),),
                       ),
                     ),
                   ],

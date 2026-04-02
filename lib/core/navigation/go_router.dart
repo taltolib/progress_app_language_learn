@@ -1,7 +1,12 @@
 import 'package:go_router/go_router.dart';
-import 'package:progress/features/language/learning_language_page.dart';
-import 'package:progress/features/translation/language_selection_page.dart';
+import 'package:progress/core/providers/otp_provider.dart';
+import 'package:progress/features/create/create_profile_page.dart';
+import 'package:progress/features/login/login_page.dart';
+import 'package:progress/features/otp/otp_page.dart';
+import 'package:progress/features/register/register_page.dart';
 import 'package:progress/shared/widget/main_scaffold.dart';
+import 'package:progress/shared/widget/task_page.dart';
+import 'package:provider/provider.dart';
 import '../../features/Introduction/introduction_page.dart';
 import '../../features/greetings/animation_welcome.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +14,6 @@ import '../../shared/widget/hole_clipper.dart';
 
 final GoRouter router = GoRouter(
   routes: [
-
     GoRoute(
       path: '/',
       pageBuilder: (context, state) {
@@ -46,21 +50,39 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: '/translation',
-      pageBuilder: (context, state) =>
-      const MaterialPage(child: LanguageSelectionPage()),
+      path: '/login',
+      pageBuilder: (context, state) => const MaterialPage(child: LoginPage()),
     ),
-
     GoRoute(
-      path: '/language',
-      pageBuilder: (context, state) =>
-          MaterialPage(child: LearningLanguagePage()),
+      path: '/otp',
+      builder: (context, state) {
+        final phone = state.extra as String;
+        return ChangeNotifierProvider(
+          create: (_) => OtpProvider(),
+          child: OtpPage(phone: phone),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/register',
+      pageBuilder: (context, state) => MaterialPage(child: RegisterPage()),
+    ),
+    GoRoute(
+      path: '/create_profile',
+      pageBuilder: (context, state) => MaterialPage(child: CreateProfilePage()),
     ),
 
     GoRoute(
       path: '/main',
-      pageBuilder: (context, state) =>
-          MaterialPage(child: MainScaffold()),
+      pageBuilder: (context, state) => MaterialPage(child: MainScaffold()),
+    ),
+
+    GoRoute(
+      path: '/level/:id',
+      pageBuilder: (context, state) {
+        final levelId = int.parse(state.pathParameters['id']!);
+        return MaterialPage(child: TaskPage(id: levelId));
+      },
     ),
   ],
 );

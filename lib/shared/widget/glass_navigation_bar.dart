@@ -1,5 +1,8 @@
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import '../../core/theme/colors/app_colors.dart';
 
 class GlassNavigationBar extends StatefulWidget {
@@ -25,10 +28,10 @@ class _GlassNavigationBarState extends State<GlassNavigationBar> {
   ];
 
   final List<String> labels = [
-    "Home",
-    "Search",
-    "Favorite",
-    "Profile",
+    LocaleKeys.homePage,
+    LocaleKeys.searchPage,
+    LocaleKeys.favoritePage,
+    LocaleKeys.profilePage,
   ];
 
   @override
@@ -48,20 +51,18 @@ class _GlassNavigationBarState extends State<GlassNavigationBar> {
               child: Container(
                 height: 70,
                 decoration: BoxDecoration(
-                  color: isDark
-                      ? AppColors.surfaceDark.withOpacity(0.85)
-                      : Colors.white.withOpacity(0.95),
+                  // ignore: deprecated_member_use
+                  color: Theme.of(context).extension<AppThemeColors>()!.backgroundWhiteOrDark.withOpacity(0.40),
                   borderRadius: BorderRadius.circular(30),
                   border: Border.all(
-                    color: isDark
-                        ? AppColors.borderDark
-                        : AppColors.borderLight,
+                    color: Theme.of(context).extension<AppThemeColors>()!.backgroundAcceptsWhiteOrDark,
                   ),
                   boxShadow: isDark
                       ? []
                       : [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
+                      // ignore: deprecated_member_use
+                      color: Colors.black.withOpacity(0.08),
                       blurRadius: 15,
                       offset: const Offset(0, 5),
                     ),
@@ -69,7 +70,6 @@ class _GlassNavigationBarState extends State<GlassNavigationBar> {
                 ),
                 child: Stack(
                   children: [
-                    /// Активный индикатор
                     AnimatedPositioned(
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeOutCubic,
@@ -82,7 +82,8 @@ class _GlassNavigationBarState extends State<GlassNavigationBar> {
                           width: itemWidth * 0.7,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            color: AppColors.brandGreen.withOpacity(
+                            // ignore: deprecated_member_use
+                            color: AppColors.green.withOpacity(
                               isDark ? 0.20 : 0.10,
                             ),
                           ),
@@ -124,22 +125,17 @@ class _GlassNavigationBarState extends State<GlassNavigationBar> {
               icons[index],
               size: 22,
               color: isActive
-                  ? AppColors.brandGreen
-                  : isDark
-                  ? AppColors.textSecondaryDark
-                  : AppColors.textSecondaryLight,
+                  ? AppColors.green :Theme.of(context).extension<AppThemeColors>()!.textGrey,
             ),
             const SizedBox(height: 4),
             Text(
-              labels[index],
+              labels[index].tr(),
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-                color: isActive
-                    ? AppColors.brandGreen
-                    : isDark
-                    ? AppColors.textSecondaryDark
-                    : AppColors.textSecondaryLight,
+                color: isActive ? AppColors.green
+                    : Theme.of(context).extension<AppThemeColors>()!.textGrey,
+
               ),
             ),
           ],

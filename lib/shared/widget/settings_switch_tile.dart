@@ -1,4 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:provider/provider.dart';
 import 'package:progress/core/providers/theme_provider.dart';
 
@@ -8,6 +12,9 @@ class SettingsSwitchTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
+    final colors = Theme.of(context).extension<AppThemeColors>()!;
+
+
     final isDark = themeProvider.isDarkMode;
 
     return Padding(
@@ -17,10 +24,10 @@ class SettingsSwitchTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Expanded(
+           Expanded(
             child: Text(
-              "Темная тема",
-              style: TextStyle(fontSize: 16),
+              LocaleKeys.darkTheme.tr(),
+              style: AppFonts.mulish.s16w500(color:colors.text ),
             ),
           ),
           GestureDetector(

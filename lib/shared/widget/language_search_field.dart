@@ -1,51 +1,52 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/colors/app_colors.dart';
+import 'package:progress/core/theme/colors/app_colors.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
 
 class LanguageSearchField extends StatelessWidget {
+  final String hintText;
   final TextEditingController controller;
 
-  const LanguageSearchField({super.key, required this.controller});
+  const LanguageSearchField({super.key, required this.controller, required this.hintText});
 
   @override
+
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppThemeColors>()!;
 
     return TextFormField(
       controller: controller,
-      cursorColor: AppColors.brandGreen,
+      cursorColor: theme.colorScheme.primary,
+
       style: TextStyle(
-        color: isDark
-            ? AppColors.textPrimaryDark
-            : AppColors.textPrimaryLight,
+        color: colors.textBlack,
       ),
+
       decoration: InputDecoration(
-        hintText: "Find language to learn...",
+        hintText: hintText,
+
         hintStyle: TextStyle(
-          color: isDark
-              ? AppColors.textSecondaryDark
-              : AppColors.textSecondaryLight,
+          color: colors.textGrey,
         ),
+
         prefixIcon: Icon(
           Icons.search,
-          color: isDark
-              ? AppColors.textSecondaryDark
-              : AppColors.textSecondaryLight,
+          color: colors.textGrey,
         ),
+
         filled: true,
-        fillColor: isDark
-            ? AppColors.surfaceDark
-            : AppColors.surfaceLight,
+        fillColor: colors.backgroundWhiteOrDark,
+
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: isDark
-                ? AppColors.borderDark
-                : AppColors.borderLight,
+            color: colors.borderBlack,
           ),
           borderRadius: BorderRadius.circular(14),
         ),
+
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: AppColors.brandGreen,
+          borderSide: BorderSide(
+            color:AppColors.green,
           ),
           borderRadius: BorderRadius.circular(14),
         ),

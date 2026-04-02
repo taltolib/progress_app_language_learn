@@ -1,10 +1,11 @@
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
 import 'package:progress/shared/widget/country_list_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:progress/core/providers/selected_language_provider.dart';
 import 'package:progress/core/providers/translation_provider.dart';
-import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/shared/widget/custom_show_dialog.dart';
 import 'package:progress/shared/widget/language_search_field.dart';
 
@@ -29,19 +30,13 @@ class WordCard extends StatelessWidget {
     final translator = context.watch<TranslationProvider>();
     final selected = context.watch<SelectedLanguageProvider>();
 
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final theme = Theme.of(context);
+    final colors = theme.extension<AppThemeColors>()!;
 
-    final surfaceColor =
-    isDark ? AppColors.surfaceDark : AppColors.surfaceLight;
-
-    final borderBaseColor =
-    isDark ? AppColors.borderDark : AppColors.borderLight;
-
-    final primaryTextColor =
-    isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight;
-
-    final secondaryGrey =
-    isDark ? AppColors.textSecondaryDark : Colors.grey.shade600;
+    final surfaceColor = theme.colorScheme.surface;
+    final borderBaseColor = colors.borderBlack;
+    final primaryTextColor = colors.textBlack;
+    final secondaryGrey = colors.textGrey;
 
     final controller = TextEditingController();
 
@@ -82,41 +77,35 @@ class WordCard extends StatelessWidget {
                   children: [
                     Text(
                       word,
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                      style: AppFonts.mulish.s30w700(
                         color: primaryTextColor,
                       ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       "[ $pronunciation ]",
-                      style: TextStyle(
+                      style: AppFonts.mulish.s18w400(
                         color: secondaryGrey,
-                        fontSize: 18,
                       ),
                     ),
                     const SizedBox(height: 10),
-                   Row(
-                     children: [
-                       Text(
-                         'Рус ',
-                         style: TextStyle(
-                           color: secondaryGrey,
-                           fontWeight: FontWeight.w600,
-                           fontSize: 20
-                         ),
-                       ),
-                       const SizedBox(width: 15),
-                       Text(
-                         ru,
-                         style: TextStyle(
-                           fontSize: 22,
-                           color: primaryTextColor,
-                         ),
-                       ),
-                     ],
-                   ),
+                    Row(
+                      children: [
+                        Text(
+                          'Рус ',
+                          style: AppFonts.mulish.s20w700(
+                            color: secondaryGrey,
+                          ),
+                        ),
+                        const SizedBox(width: 15),
+                        Text(
+                          ru,
+                          style: AppFonts.mulish.s22w600(
+                            color: primaryTextColor,
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(height: 15),
                     AnimatedSwitcher(
                       duration: const Duration(milliseconds: 300),
@@ -151,7 +140,7 @@ class WordCard extends StatelessWidget {
           0.9,
           SizedBox(
             height: 60,
-            child: LanguageSearchField(controller: controller),
+            child: LanguageSearchField(controller: controller , hintText: "Начните вводить слово"),
           ),
           CountryListWidget(word: word),
           null,
@@ -163,8 +152,7 @@ class WordCard extends StatelessWidget {
           const SizedBox(width: 6),
           Text(
             "Добавить язык",
-            style: TextStyle(
-              fontSize: 16,
+            style: AppFonts.mulish.s16w400(
               color: color,
             ),
           ),
@@ -179,25 +167,22 @@ class WordCard extends StatelessWidget {
       String text,
       Color surfaceColor,
       ) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = Theme.of(context).extension<AppThemeColors>()!;
+    Theme.of(context);
 
-    final borderBaseColor =
-    isDark ? AppColors.borderDark : AppColors.borderLight;
+    final borderBaseColor = colors.borderBlack;
+    final textColor = colors.textBlack;
 
-    final textColor =
-    isDark ? Colors.white : Colors.black;
-
-    final closeColor =
-    isDark ? Colors.grey.shade400 : Colors.grey.shade800;
+    final closeColor = colors.textGrey;
 
     return Container(
       height: 50,
-      key: const ValueKey("translation"),
+      key: const ValueKey("login"),
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: surfaceColor,
-        border: Border.all(color:borderBaseColor,width: 0.5 ),
+        border: Border.all(color: borderBaseColor, width: 0.5),
         boxShadow: [
           BoxShadow(
             color: borderBaseColor.withOpacity(0.50),
@@ -222,9 +207,7 @@ class WordCard extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+              style: AppFonts.mulish.s16w600(
                 color: textColor,
               ),
             ),

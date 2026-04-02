@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
-import '../colors/app_colors.dart';
+import 'package:progress/core/theme/colors/app_colors.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
 
 class LightTheme {
   static ThemeData theme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
 
-    scaffoldBackgroundColor: AppColors.backgroundLight,
+    scaffoldBackgroundColor: AppColors.backgroundWhite,
 
     colorScheme: const ColorScheme.light(
-      background: AppColors.backgroundLight,
-      surface: AppColors.surfaceLight,
-      onSurface: AppColors.textPrimaryLight,
+      surface: AppColors.backgroundAcceptsWhite,
+      onSurface: AppColors.textBlack,
       error: AppColors.heartRed,
     ),
 
-    dividerColor: AppColors.dividerLight,
+    dividerColor: AppColors.dividerWhite,
 
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.appBarLight,
-      elevation: 0,
-      centerTitle: false,
-      titleTextStyle: TextStyle(
-        color: AppColors.textPrimaryLight,
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
+    extensions: const [
+      AppThemeColors(
+        backgroundWhiteOrDark: AppColors.backgroundWhite,
+        backgroundAcceptsWhiteOrDark: AppColors.backgroundAcceptsWhite,
+        whiteForLight: AppColors.whiteForLight,
+        dividerWhite: AppColors.dividerWhite,
+        textGrey: AppColors.textGrey,
+        textBlack: AppColors.textBlack,
+        borderBlack: AppColors.borderGrey,
+        text: AppColors.textBlack,
+        shadow: AppColors.borderGrey,
       ),
-      iconTheme: IconThemeData(
-        color: AppColors.textPrimaryLight,
-      ),
-    ),
+    ],
   );
 }

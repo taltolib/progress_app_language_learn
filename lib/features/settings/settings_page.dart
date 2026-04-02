@@ -1,5 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/custom_show_dialog.dart';
 import 'package:progress/shared/widget/language_bottom_sheet.dart';
 import 'package:progress/shared/widget/line.dart';
@@ -8,7 +11,7 @@ import 'package:progress/shared/widget/settings_switch_tile.dart';
 import 'package:progress/shared/widget/settings_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:progress/core/providers/theme_provider.dart';
-import 'package:progress/core/providers/language_provider.dart';
+import 'package:progress/core/providers/language_selection_provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -16,18 +19,13 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
-    final languageProvider = context.watch<LanguageProvider>();
-
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-
-    final backgroundColor = theme.scaffoldBackgroundColor;
-    final cardColor = theme.cardColor;
-    final textPrimary = colorScheme.onSurface;
-    final textSecondary = colorScheme.onSurface.withOpacity(0.6);
+    final languageProvider = context.watch<LanguageSelectionProvider>();
+    final colors = Theme.of(context).extension<AppThemeColors>()!;
+    final cardColor = colors.backgroundAcceptsWhiteOrDark;
+    final text = colors.text;
 
     return Container(
-      color: backgroundColor,
+      color: colors.backgroundWhiteOrDark,
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [
@@ -35,14 +33,14 @@ class SettingsPage extends StatelessWidget {
             cardColor: cardColor,
             children: [
               SettingsTile(
-                title: "Получить премиум",
-                textPrimary: textPrimary,
+                title: LocaleKeys.premium.tr(),
+                textPrimary: text,
                 showArrow: true,
               ),
               Line(),
               SettingsTile(
-                title: "Активировать код",
-                textPrimary: textPrimary,
+                title: LocaleKeys.activateCode.tr(),
+                textPrimary: text,
                 showArrow: true,
               ),
             ],
@@ -53,11 +51,8 @@ class SettingsPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              "Настройки",
-              style: TextStyle(
-                color: textSecondary,
-                fontSize: 18,
-              ),
+              LocaleKeys.settings.tr(),
+              style: AppFonts.mulish.s18w500(color: text),
             ),
           ),
           const SizedBox(height: 10),
@@ -65,14 +60,11 @@ class SettingsPage extends StatelessWidget {
             cardColor: cardColor,
             children: [
               SettingsTile(
-                title: "Тема",
-                textPrimary: textPrimary,
+                title: LocaleKeys.theme.tr(),
+                textPrimary: text,
                 trailing: Text(
-                  themeProvider.isDarkMode ? "Темная" : "Светлая",
-                  style: TextStyle(
-                    color: textSecondary,
-                    fontSize: 15,
-                  ),
+                  themeProvider.isDarkMode ? LocaleKeys.darkTheme.tr() : LocaleKeys.lightTheme.tr(),
+                  style: AppFonts.mulish.s15w500(color: text),
                 ),
                 showArrow: true,
                 onTap: () {
@@ -90,20 +82,15 @@ class SettingsPage extends StatelessWidget {
                     const SizedBox(),
                   );
                 },
-                title: "Язык приложения",
-                textPrimary: textPrimary,
+                title: LocaleKeys.appLanguage.tr(),
+                textPrimary: text,
                 trailing: Text(
-                  languageProvider.selectedLanguage,
-                  style: TextStyle(
-                    color: textSecondary,
-                    fontSize: 15,
-                  ),
+                  languageProvider.selectedLanguageName,
+                  style: AppFonts.mulish.s15w500(color: text),
                 ),
                 showArrow: true,
               ),
-
               Line(),
-
 
               const SettingsSwitchTile(),
             ],
@@ -115,13 +102,10 @@ class SettingsPage extends StatelessWidget {
           Section(
             cardColor: cardColor,
             children: [
-              SettingsTile(
-                title: "Выйти",
-                textPrimary: textPrimary,
-              ),
+              SettingsTile(title: LocaleKeys.logout.tr(), textPrimary: text),
               Line(),
               SettingsTile(
-                title: "Удалить аккаунт",
+                title: LocaleKeys.deleteAccount.tr(),
                 textPrimary: Colors.red,
               ),
             ],

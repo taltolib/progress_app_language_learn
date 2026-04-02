@@ -1,0 +1,226 @@
+{
+  "level": 24,
+  "difficulty": "A1",
+  "tasks": [
+    {
+      "question": "sun",
+      "answers": [
+        "река",
+        "дом",
+        "книга",
+        "солнце"
+      ],
+      "correctIndex": 3,
+      "id": 1
+    },
+    {
+      "question": "water",
+      "answers": [
+        "стол",
+        "река",
+        "окно",
+        "вода"
+      ],
+      "correctIndex": 3,
+      "id": 2
+    },
+    {
+      "question": "water",
+      "answers": [
+        "река",
+        "книга",
+        "вода",
+        "собака"
+      ],
+      "correctIndex": 2,
+      "id": 3
+    },
+    {
+      "question": "food",
+      "answers": [
+        "река",
+        "еда",
+        "машина",
+        "стол"
+      ],
+      "correctIndex": 1,
+      "id": 4
+    },
+    {
+      "question": "house",
+      "answers": [
+        "стол",
+        "дом",
+        "книга",
+        "еда"
+      ],
+      "correctIndex": 1,
+      "id": 5
+    },
+    {
+      "question": "cat",
+      "answers": [
+        "лес",
+        "кошка",
+        "дом",
+        "окно"
+      ],
+      "correctIndex": 1,
+      "id": 6
+    },
+    {
+      "question": "dog",
+      "answers": [
+        "собака",
+        "окно",
+        "дом",
+        "машина"
+      ],
+      "correctIndex": 0,
+      "id": 7
+    },
+    {
+      "question": "city",
+      "answers": [
+        "кошка",
+        "окно",
+        "собака",
+        "город"
+      ],
+      "correctIndex": 3,
+      "id": 8
+    },
+    {
+      "question": "phone",
+      "answers": [
+        "собака",
+        "стол",
+        "окно",
+        "телефон"
+      ],
+      "correctIndex": 3,
+      "id": 9
+    },
+    {
+      "question": "apple",
+      "answers": [
+        "окно",
+        "яблоко",
+        "собака",
+        "кошка"
+      ],
+      "correctIndex": 1,
+      "id": 10
+    },
+    {
+      "question": "city",
+      "answers": [
+        "город",
+        "книга",
+        "машина",
+        "река"
+      ],
+      "correctIndex": 0,
+      "id": 11
+    },
+    {
+      "question": "city",
+      "answers": [
+        "лес",
+        "город",
+        "книга",
+        "машина"
+      ],
+      "correctIndex": 1,
+      "id": 12
+    },
+    {
+      "question": "teacher",
+      "answers": [
+        "река",
+        "книга",
+        "собака",
+        "учитель"
+      ],
+      "correctIndex": 3,
+      "id": 13
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "лес",
+        "окно",
+        "стол",
+        "стул"
+      ],
+      "correctIndex": 3,
+      "id": 14
+    },
+    {
+      "question": "bread",
+      "answers": [
+        "машина",
+        "стол",
+        "река",
+        "хлеб"
+      ],
+      "correctIndex": 3,
+      "id": 15
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "книга",
+        "стул",
+        "лес",
+        "собака"
+      ],
+      "correctIndex": 1,
+      "id": 16
+    },
+    {
+      "question": "sun",
+      "answers": [
+        "дом",
+        "солнце",
+        "река",
+        "машина"
+      ],
+      "correctIndex": 1,
+      "id": 17
+    },
+    {
+      "question": "pen",
+      "answers": [
+        "река",
+        "кошка",
+        "ручка",
+        "книга"
+      ],
+      "correctIndex": 2,
+      "id": 18
+    },
+    {
+      "question": "milk",
+      "answers": [
+        "молоко",
+        "лес",
+        "собака",
+        "еда"
+      ],
+      "correctIndex": 0,
+      "id": 19
+    },
+    {
+      "question": "table",
+      "answers": [
+        "собака",
+        "стол",
+        "машина",
+        "еда"
+      ],
+      "correctIndex": 1,
+      "id": 20
+    }
+  ]
+}

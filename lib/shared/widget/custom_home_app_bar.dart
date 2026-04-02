@@ -1,5 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
+ import 'package:progress/generated/tr/locale_keys.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
   final IconData icon;
@@ -7,16 +11,6 @@ class CustomHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final secondaryTextColor = isDark
-        ? AppColors.textPrimaryDark
-        : AppColors.textPrimaryLight;
-
-    final iconColor = isDark
-        ? AppColors.textSecondaryDark
-        : AppColors.textSecondaryLight;
-
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(
@@ -31,20 +25,17 @@ class CustomHomeAppBar extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "С возвращением, Жафар 👋",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.brandGreen,
+                Text(
+                  LocaleKeys.homeWelcome.tr(),
+                  style: AppFonts.mulish.s20w700(
+                    color: AppColors.green,
                   ),
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Начнем новый урок?",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: secondaryTextColor,
+                  LocaleKeys.homeStartLesson.tr(),
+                  style: AppFonts.mulish.s18w400(
+                    color: Theme.of(context).extension<AppThemeColors>()!.textBlack,
                   ),
                 ),
               ],

@@ -1,65 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:progress/core/theme/colors/app_colors.dart';
 
 class DuolingoButtonPainter extends CustomPainter {
-  final bool isActive;
-  final bool isCompleted;
-  final Color themeColor;
-  final Brightness brightness;
+  final Color topColor;
+  final Color baseColor;
+  final Color? borderColor; // Опциональный цвет бортика
 
   const DuolingoButtonPainter({
-    required this.isActive,
-    required this.isCompleted,
-    required this.themeColor,
-    required this.brightness,
+    required this.topColor,
+    required this.baseColor,
+    this.borderColor,
   });
 
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height / 2 - 8);
+    // 1. Настройка пропорций для эффекта "лежачей" кнопки
+    const double depth = 10.0; 
+    const double perspectiveRatio = 0.85; 
+    
+    final double buttonWidth = size.width * 0.85;
+    final double buttonHeight = buttonWidth * perspectiveRatio;
 
-    Color topColor;
-    Color baseColor;
+    final Paint basePaint = Paint()
+      ..color = baseColor
+      ..isAntiAlias = true;
 
-    if (isCompleted) {
-      topColor = AppColors.goldColors;
-      baseColor = AppColors.darkGold;
-    }
+    final Paint topPaint = Paint()
+      ..color = topColor
+      ..isAntiAlias = true;
 
-    else if (isActive) {
-      topColor = AppColors.brandGreen;
-      baseColor = AppColors.brandGreenPressed;
-    }
+    // Настройка кисти для бортика
+    final Paint borderPaint = Paint()
+      ..color = borderColor ?? Colors.white.withOpacity(0.20) // По умолчанию полупрозрачный белый
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.0
+      ..isAntiAlias = true;
 
-    else {
-      topColor = themeColor;
+    // Центрируем
+    final Offset center = Offset(size.width / 2, size.height / 2);
 
-      if (brightness == Brightness.light) {
-        baseColor = AppColors.borderLight;
-      } else {
-        baseColor = AppColors.borderDark;
-      }
-    }
-
-    final base = RRect.fromRectAndRadius(
-      Rect.fromCenter(
-        center: Offset(size.width / 2.0, size.height - 56),
-        width: 102,
-        height: 70,
-      ),
-      const Radius.circular(100),
+    // 2. Рисуем нижнюю часть (Тень/База)
+    final Rect bottomRect = Rect.fromCenter(
+      center: Offset(center.dx, center.dy + (depth / 2)),
+      width: buttonWidth,
+      height: buttonHeight,
     );
+    canvas.drawOval(bottomRect, basePaint);
 
-    final basePaint = Paint()..color = baseColor;
-    canvas.drawRRect(base, basePaint);
-
-    final circleRect =
-    Rect.fromCenter(center: center, width: 100, height: 80);
-
-    final circlePaint = Paint()..color = topColor;
-    canvas.drawOval(circleRect, circlePaint);
+    // 3. Рисуем верхнюю часть (Сама кнопка)
+    final Rect topRect = Rect.fromCenter(
+      center: Offset(center.dx, center.dy - (depth / 2)),
+      width: buttonWidth,
+      height: buttonHeight,
+    );
+    
+    // Сначала заливка
+    canvas.drawOval(topRect, topPaint);
+    
+    // Затем рисуем бортик поверх заливки
+    canvas.drawOval(topRect, borderPaint);
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant DuolingoButtonPainter oldDelegate) {
+    return oldDelegate.topColor != topColor || 
+           oldDelegate.baseColor != baseColor ||
+           oldDelegate.borderColor != borderColor;
+  }
 }

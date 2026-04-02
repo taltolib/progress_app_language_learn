@@ -18,6 +18,7 @@ class _AppState extends State<App> {
     return MaterialApp.router(
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
+      // themeMode: ThemeMode.dark,
       themeMode: context.watch<ThemeProvider>().themeMode,
       routerConfig: router,
       debugShowCheckedModeBanner: false,

@@ -20,12 +20,12 @@ import '../../core/theme/colors/app_colors.dart';
         child: Container(
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
-            color: AppColors.brandGreen,
+            color: AppColors.green,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Icon(
             icon,
-            color: AppColors.brandOnGreen,
+            color: AppColors.whiteForLight,
             size: 30,
           ),
         ),

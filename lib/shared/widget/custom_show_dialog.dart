@@ -10,6 +10,7 @@ Future<void> customShowBottomSheetDialog(
       double? selectionSheetPaddingHeader,
       double? selectionSheetPaddingBody,
       double? selectionSheetPaddingBottom,
+      Radius? heightRadius ,
     }) async {
   showModalBottomSheet(
     isScrollControlled: true,
@@ -20,7 +21,7 @@ Future<void> customShowBottomSheetDialog(
         initialChildSize: heightSizeDialog ?? 0.7,
         minChildSize: heightSizeDialog ?? 0.7,
         builder: (BuildContext context, ScrollController _) {
-          return AppSelectionSheet(header: header, body: body, bottom: bottom);
+          return AppSelectionSheet(header: header, body: body, bottom: bottom,heightRadius: heightRadius ,);
 
         },
       );

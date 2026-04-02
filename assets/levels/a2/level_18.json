@@ -1,0 +1,226 @@
+{
+  "level": 18,
+  "difficulty": "A2",
+  "tasks": [
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "Мы живем в большом городе",
+        "окно",
+        "книга",
+        "река"
+      ],
+      "correctIndex": 0,
+      "id": 1
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "Я иду в магазин",
+        "лес",
+        "собака",
+        "стол"
+      ],
+      "correctIndex": 0,
+      "id": 2
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "Они играют в футбол",
+        "кошка",
+        "стол",
+        "река"
+      ],
+      "correctIndex": 0,
+      "id": 3
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "окно",
+        "машина",
+        "стол",
+        "Они учатся вместе"
+      ],
+      "correctIndex": 3,
+      "id": 4
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "еда",
+        "дом",
+        "Они играют в футбол",
+        "книга"
+      ],
+      "correctIndex": 2,
+      "id": 5
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "Он пьет воду",
+        "машина",
+        "еда",
+        "окно"
+      ],
+      "correctIndex": 0,
+      "id": 6
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "река",
+        "собака",
+        "Он пьет воду",
+        "лес"
+      ],
+      "correctIndex": 2,
+      "id": 7
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "машина",
+        "лес",
+        "книга",
+        "Она работает в больнице"
+      ],
+      "correctIndex": 3,
+      "id": 8
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "собака",
+        "лес",
+        "дом",
+        "Она работает в больнице"
+      ],
+      "correctIndex": 3,
+      "id": 9
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "дом",
+        "машина",
+        "Они играют в футбол",
+        "еда"
+      ],
+      "correctIndex": 2,
+      "id": 10
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "Она работает в больнице",
+        "лес",
+        "машина",
+        "собака"
+      ],
+      "correctIndex": 0,
+      "id": 11
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "река",
+        "собака",
+        "Мы живем в большом городе",
+        "машина"
+      ],
+      "correctIndex": 2,
+      "id": 12
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "Мы живем в большом городе",
+        "река",
+        "лес",
+        "стол"
+      ],
+      "correctIndex": 0,
+      "id": 13
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "лес",
+        "стол",
+        "Мы живем в большом городе",
+        "окно"
+      ],
+      "correctIndex": 2,
+      "id": 14
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "еда",
+        "собака",
+        "Они играют в футбол",
+        "книга"
+      ],
+      "correctIndex": 2,
+      "id": 15
+    },
+    {
+      "question": "We are watching a movie",
+      "answers": [
+        "машина",
+        "стол",
+        "кошка",
+        "Мы смотрим фильм"
+      ],
+      "correctIndex": 3,
+      "id": 16
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "окно",
+        "Мы живем в большом городе",
+        "еда",
+        "собака"
+      ],
+      "correctIndex": 1,
+      "id": 17
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "окно",
+        "собака",
+        "еда",
+        "Она работает в больнице"
+      ],
+      "correctIndex": 3,
+      "id": 18
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "кошка",
+        "стол",
+        "машина",
+        "Они учатся вместе"
+      ],
+      "correctIndex": 3,
+      "id": 19
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "машина",
+        "книга",
+        "дом",
+        "Она работает в больнице"
+      ],
+      "correctIndex": 3,
+      "id": 20
+    }
+  ]
+}

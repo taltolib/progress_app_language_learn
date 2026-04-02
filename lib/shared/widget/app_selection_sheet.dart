@@ -4,12 +4,14 @@ class AppSelectionSheet extends StatelessWidget {
   final Widget? header;
   final Widget body;
   final Widget? bottom;
+  final Radius? heightRadius;
+
 
   const AppSelectionSheet({
     super.key,
     this.header,
     required this.body,
-    this.bottom,
+    this.bottom, this.heightRadius,
   });
 
   @override
@@ -21,8 +23,8 @@ class AppSelectionSheet extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: background,
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(28),
+          borderRadius:  BorderRadius.vertical(
+            top:heightRadius ?? Radius.circular(28),
           ),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16),

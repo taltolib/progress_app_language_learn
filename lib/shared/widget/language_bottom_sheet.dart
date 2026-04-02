@@ -1,5 +1,8 @@
 import 'package:country_flags/country_flags.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/generated/fonts/app_fonts.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/language_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:progress/core/providers/language_selection_provider.dart';
@@ -12,7 +15,6 @@ class LanguageBottomSheet extends StatelessWidget {
     final languageProvider =
     context.watch<LanguageSelectionProvider>();
 
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     final textPrimary =
         Theme.of(context).colorScheme.onSurface;
@@ -55,12 +57,8 @@ class LanguageBottomSheet extends StatelessWidget {
           MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Выберите язык",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: textPrimary,
-              ),
+              LocaleKeys.choiceLSetting.tr(),
+              style:  AppFonts.mulish.s18w600(color: textPrimary)
             ),
             GestureDetector(
               onTap: () => Navigator.pop(context),
