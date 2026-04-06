@@ -5,8 +5,10 @@ import 'package:progress/core/theme/colors/theme_custom.dart';
 class LanguageSearchField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
+  final void Function(String)? onChanged;
 
-  const LanguageSearchField({super.key, required this.controller, required this.hintText});
+
+  const LanguageSearchField({super.key, required this.controller, required this.hintText, this.onChanged});
 
   @override
 
@@ -17,11 +19,10 @@ class LanguageSearchField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       cursorColor: theme.colorScheme.primary,
-
       style: TextStyle(
         color: colors.textBlack,
       ),
-
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hintText,
 

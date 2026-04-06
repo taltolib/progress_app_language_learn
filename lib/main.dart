@@ -4,16 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:progress/core/firebase/firebase_options.dart';
 import 'package:progress/core/providers/auth_provider.dart';
+import 'package:progress/core/providers/cards_provider.dart';
 import 'package:progress/core/providers/create_profile_provider.dart';
 import 'package:progress/core/providers/game_provider.dart';
 import 'package:progress/core/providers/language_selection_provider.dart';
 import 'package:progress/core/providers/login_provider.dart';
 import 'package:progress/core/providers/navigation_provider.dart';
+import 'package:progress/core/providers/search_provider.dart';
 import 'package:progress/core/providers/selected_language_provider.dart';
 import 'package:progress/core/providers/task_image_provider.dart';
 import 'package:progress/core/providers/theme_provider.dart';
 import 'package:progress/core/providers/translation_provider.dart';
 import 'package:progress/core/providers/service_provider.dart';
+import 'package:progress/core/providers/word_detail_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'core/providers/introduction_provider.dart';
@@ -48,6 +51,9 @@ void main() async {
           ChangeNotifierProvider(create: (_) => LoginProvider()),
           ChangeNotifierProvider(create: (_) => AuthProvider()),
           ChangeNotifierProvider(create: (_) => CreateProfileProvider()),
+          ChangeNotifierProvider(create: (_) => CardsProvider()),
+          ChangeNotifierProvider(create: (_) => SearchProvider()),
+          ChangeNotifierProvider(create: (_) => WordDetailProvider()),
         ],
         child: const App(),
       ),

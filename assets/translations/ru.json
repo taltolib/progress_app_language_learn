@@ -80,5 +80,46 @@
   "streak_body_5": "Не пропускай дни, чтобы сохранить свой прогресс!",
   "heart_dialog_title": "Моё сердечко скоро снова будет полным",
   "heart_dialog_wait": "Подожди немного...",
-  "heart_dialog_info": "Каждые 20 минут +2 любви для тебя"
+  "heart_dialog_info": "Каждые 20 минут +2 любви для тебя",
+  "words": {
+    "he_is_cooking_dinner": "Он готовит ужин",
+    "he_is_drinking_water": "Он пьет воду",
+    "i_am_going_to_the_store": "Я иду в магазин",
+    "i_like_learning_english": "Мне нравится учить английский",
+    "she_is_reading_a_book": "Она читает книгу",
+    "she_works_in_a_hospital": "Она работает в больнице",
+    "they_are_playing_football": "Они играют в футбол",
+    "they_are_studying_together": "Они учатся вместе",
+    "we_are_watching_a_movie": "Мы смотрим фильм",
+    "we_live_in_a_big_city": "Мы живем в большом городе",
+    "apple": "яблоко",
+    "book": "книга",
+    "bread": "хлеб",
+    "car": "машина",
+    "cat": "кошка",
+    "chair": "стул",
+    "city": "город",
+    "dog": "собака",
+    "food": "еда",
+    "house": "дом",
+    "milk": "молоко",
+    "moon": "луна",
+    "pen": "ручка",
+    "phone": "телефон",
+    "school": "школа",
+    "student": "студент",
+    "sun": "солнце",
+    "table": "стол",
+    "teacher": "учитель",
+    "water": "вода"
+  },
+  "error": {
+    "name_null": "Введите ваше имя",
+    "name_length_small": "Имя слишком короткое",
+    "password_min_8": "Пароль минимум 8 символов",
+    "password_must_one_digit": "Пароль должен содержать хотя бы одну цифру",
+    "password_not_match": "Пароли не совпадают",
+    "error_safe": "Ошибка сохранения. Попробуйте снова"
+  }
 }
+

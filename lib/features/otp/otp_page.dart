@@ -4,6 +4,7 @@ import 'package:progress/core/providers/auth_provider.dart';
 import 'package:progress/core/providers/otp_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/domain/enums/auth_status.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
 import 'package:progress/shared/widget/%20top_snackbar.dart';
 import 'package:progress/shared/widget/push_button.dart';

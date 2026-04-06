@@ -83,6 +83,7 @@ class PushButton extends StatelessWidget {
                         language,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: colorText,
+                          overflow: TextOverflow.ellipsis,
                           fontSize: fontSize,
                           fontWeight: FontWeight.w700,
                         ),

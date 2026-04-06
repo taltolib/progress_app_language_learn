@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-enum AuthStatus { initial, loading, codeSent, verified, error }
+import 'package:progress/domain/enums/auth_status.dart';
 
 class AuthProvider extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Контроллер для RegisterPage
   final TextEditingController phoneController = TextEditingController();
 
   AuthStatus _status = AuthStatus.initial;
@@ -18,7 +16,7 @@ class AuthProvider extends ChangeNotifier {
 
   User? get currentUser => _auth.currentUser;
 
-  // Отправка SMS
+
   Future<void> sendOtp(String phoneNumber) async {
     _status = AuthStatus.loading;
     _errorMessage = null;
@@ -28,7 +26,7 @@ class AuthProvider extends ChangeNotifier {
 
     await _auth.verifyPhoneNumber(
       phoneNumber: '+998$cleanPhone',
-      timeout: const Duration(milliseconds: 1000),
+      timeout: const Duration(milliseconds: 800),
       verificationCompleted: (PhoneAuthCredential credential) async {
         await _signInWithCredential(credential);
       },
@@ -47,7 +45,6 @@ class AuthProvider extends ChangeNotifier {
       },
     );
   }
-  // Верификация OTP кода — всегда идёт на CreateProfile (регистрация)
   Future<bool> verifyOtp(String smsCode) async {
     if (_verificationId == null) return false;
 

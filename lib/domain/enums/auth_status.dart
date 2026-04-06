@@ -1,0 +1,1 @@
+enum AuthStatus { initial, loading, codeSent, verified, error }

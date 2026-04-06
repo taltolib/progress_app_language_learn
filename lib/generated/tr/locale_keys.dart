@@ -10,11 +10,11 @@ abstract class LocaleKeys {
   static const String discoverTitle = 'discover.title';
   static const String discoverSubtitle = 'discover.subtitle';
   static const String discoverBody = 'discover.body';
-  
+
   static const String progressTitle = 'progress.title';
   static const String progressSubtitle = 'progress.subtitle';
   static const String progressBody = 'progress.body';
-  
+
   static const String practiceTitle = 'practice.title';
   static const String practiceSubtitle = 'practice.subtitle';
   static const String practiceBody = 'practice.body';
@@ -88,7 +88,7 @@ abstract class LocaleKeys {
   static const String streakSubtitle3 = 'streak_subtitle_3';
   static const String streakSubtitle4 = 'streak_subtitle_4';
   static const String streakSubtitle5 = 'streak_subtitle_5';
-  
+
   static const String streakBody1 = 'streak_body_1';
   static const String streakBody2 = 'streak_body_2';
   static const String streakBody3 = 'streak_body_3';
@@ -98,4 +98,8 @@ abstract class LocaleKeys {
   static const String heartDialogTitle = 'heart_dialog_title';
   static const String heartDialogWait = 'heart_dialog_wait';
   static const String heartDialogInfo = 'heart_dialog_info';
+
+  // Game answer words — ключ для перевода слов из уровней
+  // Использование: LocaleKeys.word('еда').tr()  →  "food" / "ovqat" / "еда"
+  static String word(String russianWord) => 'words.$russianWord';
 }

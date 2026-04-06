@@ -12,12 +12,11 @@ class CreateProfileProvider extends ChangeNotifier {
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
   bool _isLoading = false;
+  String? _errorMessage;
 
   bool get obscurePassword => _obscurePassword;
   bool get obscureConfirm => _obscureConfirm;
   bool get isLoading => _isLoading;
-
-  String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
   void togglePassword() {
@@ -35,8 +34,7 @@ class CreateProfileProvider extends ChangeNotifier {
     return sha256.convert(bytes).toString();
   }
 
-  // Валидация — возвращает null если всё ок, иначе текст ошибки
-  String? validate() {
+   String? validate() {
     final name = nameController.text.trim();
     final password = passwordController.text.trim();
     final confirm = confirmPasswordController.text.trim();

@@ -15,13 +15,6 @@ import '../../shared/widget/hole_clipper.dart';
 final GoRouter router = GoRouter(
   routes: [
     GoRoute(
-      path: '/',
-      pageBuilder: (context, state) {
-        return const MaterialPage(child: AnimationWelcome());
-      },
-    ),
-
-    GoRoute(
       path: '/introduction',
       pageBuilder: (context, state) {
         return CustomTransitionPage(
@@ -48,10 +41,13 @@ final GoRouter router = GoRouter(
         );
       },
     ),
-
     GoRoute(
       path: '/login',
       pageBuilder: (context, state) => const MaterialPage(child: LoginPage()),
+    ),
+    GoRoute(
+      path: '/register',
+      pageBuilder: (context, state) => MaterialPage(child: RegisterPage()),
     ),
     GoRoute(
       path: '/otp',
@@ -64,19 +60,19 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: '/register',
-      pageBuilder: (context, state) => MaterialPage(child: RegisterPage()),
-    ),
-    GoRoute(
       path: '/create_profile',
       pageBuilder: (context, state) => MaterialPage(child: CreateProfilePage()),
     ),
-
+    GoRoute(
+      path: '/',
+      pageBuilder: (context, state) {
+        return const MaterialPage(child: AnimationWelcome());
+      },
+    ),
     GoRoute(
       path: '/main',
       pageBuilder: (context, state) => MaterialPage(child: MainScaffold()),
     ),
-
     GoRoute(
       path: '/level/:id',
       pageBuilder: (context, state) {

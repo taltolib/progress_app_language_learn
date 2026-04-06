@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/core/providers/search_provider.dart';
 import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/language_search_field.dart';
 import 'package:progress/shared/widget/work_card.dart';
+import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -16,54 +18,16 @@ class _SearchPageState extends State<SearchPage> {
 
   int currentIndex = 1;
 
-  final List<Map<String, String>> words = [
-    {"word": "bread", "pronunciation": "bred", "ru": "хлеб", "uz": "non"},
-    {
-      "word": "butter",
-      "pronunciation": "ˈbʌtər",
-      "ru": "масло",
-      "uz": "sariyog'",
-    },
-    {"word": "build", "pronunciation": "bɪld", "ru": "строить", "uz": "qurmoq"},
-  ];
-
-  List<Map<String, String>> filteredWords = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.addListener(_filterWords);
-  }
-
-  void _filterWords() {
-    final query = _controller.text.toLowerCase();
-
-    if (query.isEmpty) {
-      setState(() {
-        filteredWords = [];
-      });
-      return;
-    }
-
-    setState(() {
-      filteredWords = words
-          .where((word) => word["word"]!.toLowerCase().startsWith(query))
-          .toList();
-    });
-  }
-
-  bool isExactMatch(String word) {
-    return word.toLowerCase() == _controller.text.toLowerCase();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<SearchProvider>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           const SizedBox(height: 20),
-          LanguageSearchField(controller: _controller , hintText: LocaleKeys.writeWord.tr()),
+          LanguageSearchField(controller: _controller , hintText: LocaleKeys.writeWord.tr(),onChanged: provider.search,),
           SizedBox(height: 20),
           if (_controller.text.isEmpty)
             Expanded(
@@ -77,15 +41,14 @@ class _SearchPageState extends State<SearchPage> {
           else
             Expanded(
               child: ListView.builder(
-                itemCount: filteredWords.length,
+                itemCount: provider.results.length,
                 itemBuilder: (context, index) {
-                  final word = filteredWords[index];
+                  final l = provider.results[index];
                   return WordCard(
-                    word: word["word"]!,
-                    pronunciation: word["pronunciation"]!,
-                    ru: word["ru"]!,
-                    uz: word["uz"]!,
-                    isExact: isExactMatch(word["word"]!),
+                    en: l.word,
+                    pronunciation: l.pronunciation ?? 'null',
+                    ru: l.wordRu ?? 'null',
+                    uz: l.wordUz ?? 'null',
                   );
                 },
               ),

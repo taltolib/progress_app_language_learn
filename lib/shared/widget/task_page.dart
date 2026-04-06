@@ -141,10 +141,8 @@ class _TaskPageState extends State<TaskPage> {
                           flex: 6,
                           child: GridView.builder(
                             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 0,
-                              mainAxisSpacing: 2,
-                              childAspectRatio: 1.7,
+                              crossAxisCount: 2, crossAxisSpacing: 0,
+                              mainAxisSpacing: 2, childAspectRatio: 1.7,
                             ),
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: task.answers.length,
@@ -152,7 +150,7 @@ class _TaskPageState extends State<TaskPage> {
                               return Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 12),
                                 child: PushButton(
-                                  language: task.answers[answerIndex],
+                                  language: LocaleKeys.word(task.answers[answerIndex]).tr(),
                                   flagAsset: Container(),
                                   border: Border.all(
                                     color: game.selectedIndex == answerIndex
