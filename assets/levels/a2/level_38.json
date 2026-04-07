@@ -5,10 +5,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "собака",
-        "река",
-        "книга",
-        "Он готовит ужин"
+        "dog",
+        "river",
+        "book",
+        "He is cooking dinner"
       ],
       "correctIndex": 3,
       "id": 1
@@ -16,10 +16,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "Он пьет воду",
-        "окно",
-        "дом",
-        "еда"
+        "He is drinking water",
+        "window",
+        "house",
+        "food"
       ],
       "correctIndex": 0,
       "id": 2
@@ -27,10 +27,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "книга",
-        "стол",
-        "окно",
-        "Они учатся вместе"
+        "book",
+        "table",
+        "window",
+        "They are studying together"
       ],
       "correctIndex": 3,
       "id": 3
@@ -38,10 +38,10 @@
     {
       "question": "They are playing football",
       "answers": [
-        "собака",
-        "еда",
-        "стол",
-        "Они играют в футбол"
+        "dog",
+        "food",
+        "table",
+        "They are playing football"
       ],
       "correctIndex": 3,
       "id": 4
@@ -49,10 +49,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "кошка",
-        "собака",
-        "окно",
-        "Он готовит ужин"
+        "cat",
+        "dog",
+        "window",
+        "He is cooking dinner"
       ],
       "correctIndex": 3,
       "id": 5
@@ -60,10 +60,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "еда",
-        "собака",
-        "Мы смотрим фильм",
-        "лес"
+        "food",
+        "dog",
+        "We are watching a movie",
+        "forest"
       ],
       "correctIndex": 2,
       "id": 6
@@ -71,10 +71,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "река",
-        "Они учатся вместе",
-        "собака",
-        "стол"
+        "river",
+        "They are studying together",
+        "dog",
+        "table"
       ],
       "correctIndex": 1,
       "id": 7
@@ -82,10 +82,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "Он готовит ужин",
-        "машина",
-        "стол",
-        "кошка"
+        "He is cooking dinner",
+        "car",
+        "table",
+        "cat"
       ],
       "correctIndex": 0,
       "id": 8
@@ -93,10 +93,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "собака",
-        "Они учатся вместе",
-        "книга",
-        "окно"
+        "dog",
+        "They are studying together",
+        "book",
+        "window"
       ],
       "correctIndex": 1,
       "id": 9
@@ -104,10 +104,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "Они учатся вместе",
-        "кошка",
-        "книга",
-        "река"
+        "They are studying together",
+        "cat",
+        "book",
+        "river"
       ],
       "correctIndex": 0,
       "id": 10
@@ -115,10 +115,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "собака",
-        "река",
-        "еда",
-        "Я иду в магазин"
+        "dog",
+        "river",
+        "food",
+        "I am going to the store"
       ],
       "correctIndex": 3,
       "id": 11
@@ -126,10 +126,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "Мы живем в большом городе",
-        "кошка",
-        "собака",
-        "окно"
+        "We live in a big city",
+        "cat",
+        "dog",
+        "window"
       ],
       "correctIndex": 0,
       "id": 12
@@ -137,10 +137,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "книга",
-        "окно",
-        "Он пьет воду",
-        "кошка"
+        "book",
+        "window",
+        "He is drinking water",
+        "cat"
       ],
       "correctIndex": 2,
       "id": 13
@@ -148,10 +148,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "Он готовит ужин",
-        "кошка",
-        "река",
-        "еда"
+        "He is cooking dinner",
+        "cat",
+        "river",
+        "food"
       ],
       "correctIndex": 0,
       "id": 14
@@ -159,10 +159,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "Он пьет воду",
-        "река",
-        "стол",
-        "машина"
+        "He is drinking water",
+        "river",
+        "table",
+        "car"
       ],
       "correctIndex": 0,
       "id": 15
@@ -170,10 +170,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "Она читает книгу",
-        "лес",
-        "окно",
-        "книга"
+        "She is reading a book",
+        "forest",
+        "window",
+        "book"
       ],
       "correctIndex": 0,
       "id": 16
@@ -181,10 +181,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "Она читает книгу",
-        "еда",
-        "лес",
-        "дом"
+        "She is reading a book",
+        "food",
+        "forest",
+        "house"
       ],
       "correctIndex": 0,
       "id": 17
@@ -192,10 +192,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "дом",
-        "Мы живем в большом городе",
-        "книга",
-        "кошка"
+        "house",
+        "We live in a big city",
+        "book",
+        "cat"
       ],
       "correctIndex": 1,
       "id": 18
@@ -203,10 +203,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "Он пьет воду",
-        "машина",
-        "кошка",
-        "еда"
+        "He is drinking water",
+        "car",
+        "cat",
+        "food"
       ],
       "correctIndex": 0,
       "id": 19
@@ -214,10 +214,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "машина",
-        "кошка",
-        "Они учатся вместе",
-        "окно"
+        "car",
+        "cat",
+        "They are studying together",
+        "window"
       ],
       "correctIndex": 2,
       "id": 20

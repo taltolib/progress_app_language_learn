@@ -31,12 +31,11 @@ class GameProvider extends ChangeNotifier {
   bool _isDisposed = false;
   bool isLevelFinished = false;
 
-  // Heart Refill Timer
   Timer? _heartTimer;
   String _refillCountdown = "20:00";
   String get refillCountdown => _refillCountdown;
 
-  // Streak related
+
   List<StreakDayStatus> weekProgress = List.filled(7, StreakDayStatus.pending);
   String randomStreakSubtitleKey = "streak_subtitle_1";
   String randomStreakBodyKey = "streak_body_1";

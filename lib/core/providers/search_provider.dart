@@ -8,6 +8,7 @@ class SearchProvider extends ChangeNotifier {
   List<SearchResult> results = [];
   bool isLoading = false;
   String lastQuery = '';
+  String? errorMessage;
 
   Future<void> search(String query) async {
     if (query == lastQuery) return;
@@ -15,14 +16,20 @@ class SearchProvider extends ChangeNotifier {
 
     if (query.trim().isEmpty) {
       results = [];
+      errorMessage = null;
       notifyListeners();
       return;
     }
 
     isLoading = true;
+    errorMessage = null;
     notifyListeners();
-
-    results = await _db.searchWord(query);
+    try {
+      results = await _db.searchWord(query);
+    } catch (error) {
+      results = [];
+      errorMessage = error.toString();
+    }
 
     isLoading = false;
     notifyListeners();
@@ -31,6 +38,7 @@ class SearchProvider extends ChangeNotifier {
   void clear() {
     results = [];
     lastQuery = '';
+    errorMessage = null;
     notifyListeners();
   }
 }

@@ -20,7 +20,7 @@ class LanguageBottomSheet extends StatelessWidget {
         Theme.of(context).colorScheme.onSurface;
 
     final selectedColor =
-        Theme.of(context).colorScheme.surfaceVariant;
+        Theme.of(context).colorScheme.surfaceContainerHighest;
 
     final flags = [
       CountryFlag.fromCountryCode(

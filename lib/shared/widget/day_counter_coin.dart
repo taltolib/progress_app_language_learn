@@ -30,11 +30,14 @@ class DayCounterCoin extends StatelessWidget {
         gradient: RadialGradient(
           colors: isActive
               ? [
+            // ignore: deprecated_member_use
             baseColor.withOpacity(0.9),
             baseColor,
+            // ignore: deprecated_member_use
             baseColor.withOpacity(0.7),
           ]
               : [
+            // ignore: deprecated_member_use
             baseColor.withOpacity(0.6),
             baseColor,
           ],

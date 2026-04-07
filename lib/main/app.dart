@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:progress/core/providers/auth_provider.dart' as custom_auth;
 import 'package:progress/core/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 import '../core/navigation/go_router.dart';
@@ -20,7 +21,7 @@ class _AppState extends State<App> {
       darkTheme: AppTheme.dark,
       // themeMode: ThemeMode.dark,
       themeMode: context.watch<ThemeProvider>().themeMode,
-      routerConfig: router,
+      routerConfig: buildRouter(context.read<custom_auth.AuthProvider>()),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

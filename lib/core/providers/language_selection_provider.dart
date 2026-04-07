@@ -7,6 +7,15 @@ class LanguageSelectionProvider extends ChangeNotifier {
 
   static const _key = 'selectedLanguageIndex';
 
+  bool _isSelect = false;
+
+  bool  get isSelect => _isSelect;
+
+  void toggleSelect() {
+    _isSelect = !_isSelect;
+    notifyListeners();
+  }
+
   int _selectedIndex = 0;
 
   int get selectedIndex => _selectedIndex;

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,6 +14,8 @@ class CreateProfileProvider extends ChangeNotifier {
   bool _obscureConfirm = true;
   bool _isLoading = false;
   String? _errorMessage;
+  String? _userName;
+  String? get userName => _userName;
 
   bool get obscurePassword => _obscurePassword;
   bool get obscureConfirm => _obscureConfirm;

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DuolingoButtonPainter extends CustomPainter {
   final Color topColor;
   final Color baseColor;
-  final Color? borderColor; // Опциональный цвет бортика
+  final Color? borderColor;
 
   const DuolingoButtonPainter({
     required this.topColor,
@@ -13,7 +13,7 @@ class DuolingoButtonPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // 1. Настройка пропорций для эффекта "лежачей" кнопки
+
     const double depth = 10.0; 
     const double perspectiveRatio = 0.85; 
     
@@ -28,17 +28,17 @@ class DuolingoButtonPainter extends CustomPainter {
       ..color = topColor
       ..isAntiAlias = true;
 
-    // Настройка кисти для бортика
+
     final Paint borderPaint = Paint()
-      ..color = borderColor ?? Colors.white.withOpacity(0.20) // По умолчанию полупрозрачный белый
+      // ignore: deprecated_member_use
+      ..color = borderColor ?? Colors.white.withOpacity(0.20)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.0
       ..isAntiAlias = true;
 
-    // Центрируем
     final Offset center = Offset(size.width / 2, size.height / 2);
 
-    // 2. Рисуем нижнюю часть (Тень/База)
+
     final Rect bottomRect = Rect.fromCenter(
       center: Offset(center.dx, center.dy + (depth / 2)),
       width: buttonWidth,
@@ -46,17 +46,16 @@ class DuolingoButtonPainter extends CustomPainter {
     );
     canvas.drawOval(bottomRect, basePaint);
 
-    // 3. Рисуем верхнюю часть (Сама кнопка)
     final Rect topRect = Rect.fromCenter(
       center: Offset(center.dx, center.dy - (depth / 2)),
       width: buttonWidth,
       height: buttonHeight,
     );
     
-    // Сначала заливка
+
     canvas.drawOval(topRect, topPaint);
     
-    // Затем рисуем бортик поверх заливки
+
     canvas.drawOval(topRect, borderPaint);
   }
 

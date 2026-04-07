@@ -1,9 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:progress/core/providers/cards_provider.dart';
-import 'package:progress/core/providers/search_provider.dart';
-import 'package:progress/core/providers/word_detail_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
@@ -87,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           color: colors.backgroundWhiteOrDark,
           borderRadius: BorderRadius.circular(16),
+          // ignore: deprecated_member_use
           boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8)],
         ),
         child: Column(

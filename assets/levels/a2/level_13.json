@@ -5,10 +5,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "машина",
-        "кошка",
-        "собака",
-        "Они учатся вместе"
+        "car",
+        "cat",
+        "dog",
+        "They are studying together"
       ],
       "correctIndex": 3,
       "id": 1
@@ -16,10 +16,10 @@
     {
       "question": "I like learning English",
       "answers": [
-        "стол",
-        "дом",
-        "Мне нравится учить английский",
-        "машина"
+        "table",
+        "house",
+        "I like learning English",
+        "car"
       ],
       "correctIndex": 2,
       "id": 2
@@ -27,10 +27,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "Они учатся вместе",
-        "книга",
-        "лес",
-        "машина"
+        "They are studying together",
+        "book",
+        "forest",
+        "car"
       ],
       "correctIndex": 0,
       "id": 3
@@ -38,10 +38,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "река",
-        "стол",
-        "Она читает книгу",
-        "книга"
+        "river",
+        "table",
+        "She is reading a book",
+        "book"
       ],
       "correctIndex": 2,
       "id": 4
@@ -49,10 +49,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "Она читает книгу",
-        "стол",
-        "книга",
-        "лес"
+        "She is reading a book",
+        "table",
+        "book",
+        "forest"
       ],
       "correctIndex": 0,
       "id": 5
@@ -60,10 +60,10 @@
     {
       "question": "I like learning English",
       "answers": [
-        "кошка",
-        "стол",
-        "машина",
-        "Мне нравится учить английский"
+        "cat",
+        "table",
+        "car",
+        "I like learning English"
       ],
       "correctIndex": 3,
       "id": 6
@@ -71,10 +71,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "река",
-        "собака",
-        "лес",
-        "Мы смотрим фильм"
+        "river",
+        "dog",
+        "forest",
+        "We are watching a movie"
       ],
       "correctIndex": 3,
       "id": 7
@@ -82,10 +82,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "еда",
-        "книга",
-        "кошка",
-        "Он пьет воду"
+        "food",
+        "book",
+        "cat",
+        "He is drinking water"
       ],
       "correctIndex": 3,
       "id": 8
@@ -93,10 +93,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "Мы живем в большом городе",
-        "книга",
-        "дом",
-        "машина"
+        "We live in a big city",
+        "book",
+        "house",
+        "car"
       ],
       "correctIndex": 0,
       "id": 9
@@ -104,10 +104,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "машина",
-        "Мы смотрим фильм",
-        "лес",
-        "стол"
+        "car",
+        "We are watching a movie",
+        "forest",
+        "table"
       ],
       "correctIndex": 1,
       "id": 10
@@ -115,10 +115,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "Она читает книгу",
-        "дом",
-        "река",
-        "кошка"
+        "She is reading a book",
+        "house",
+        "river",
+        "cat"
       ],
       "correctIndex": 0,
       "id": 11
@@ -126,10 +126,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "стол",
-        "окно",
-        "Она читает книгу",
-        "еда"
+        "table",
+        "window",
+        "She is reading a book",
+        "food"
       ],
       "correctIndex": 2,
       "id": 12
@@ -137,10 +137,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "Мы смотрим фильм",
-        "лес",
-        "книга",
-        "кошка"
+        "We are watching a movie",
+        "forest",
+        "book",
+        "cat"
       ],
       "correctIndex": 0,
       "id": 13
@@ -148,10 +148,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "дом",
-        "Мы смотрим фильм",
-        "лес",
-        "машина"
+        "house",
+        "We are watching a movie",
+        "forest",
+        "car"
       ],
       "correctIndex": 1,
       "id": 14
@@ -159,10 +159,10 @@
     {
       "question": "They are playing football",
       "answers": [
-        "еда",
-        "лес",
-        "собака",
-        "Они играют в футбол"
+        "food",
+        "forest",
+        "dog",
+        "They are playing football"
       ],
       "correctIndex": 3,
       "id": 15
@@ -170,10 +170,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "кошка",
-        "лес",
-        "Она читает книгу",
-        "стол"
+        "cat",
+        "forest",
+        "She is reading a book",
+        "table"
       ],
       "correctIndex": 2,
       "id": 16
@@ -181,10 +181,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "Мы живем в большом городе",
-        "еда",
-        "окно",
-        "дом"
+        "We live in a big city",
+        "food",
+        "window",
+        "house"
       ],
       "correctIndex": 0,
       "id": 17
@@ -192,10 +192,10 @@
     {
       "question": "She works in a hospital",
       "answers": [
-        "Она работает в больнице",
-        "стол",
-        "окно",
-        "книга"
+        "She works in a hospital",
+        "table",
+        "window",
+        "book"
       ],
       "correctIndex": 0,
       "id": 18
@@ -203,10 +203,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "книга",
-        "окно",
-        "Он пьет воду",
-        "дом"
+        "book",
+        "window",
+        "He is drinking water",
+        "house"
       ],
       "correctIndex": 2,
       "id": 19
@@ -214,10 +214,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "Он готовит ужин",
-        "река",
-        "дом",
-        "книга"
+        "He is cooking dinner",
+        "river",
+        "house",
+        "book"
       ],
       "correctIndex": 0,
       "id": 20

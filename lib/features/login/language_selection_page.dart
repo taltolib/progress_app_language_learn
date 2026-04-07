@@ -19,14 +19,7 @@ class LanguageSelectionPage extends StatefulWidget {
 
 class _LanguageSelectionPageState extends State<LanguageSelectionPage> {
   final List<Widget> flags = [
-    CountryFlag.fromCountryCode(
-      'UZ',
-      theme: const ImageTheme(width: 30, height: 30,shape: Circle()),
-    ),
-    CountryFlag.fromCountryCode(
-      'RU',
-      theme: const ImageTheme(width: 30, height: 30,shape: Circle()),
-    ),
+
     CountryFlag.fromCountryCode(
       'US',
       theme: const ImageTheme(width: 30, height: 30, shape: Circle()),

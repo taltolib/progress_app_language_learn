@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/providers/search_provider.dart';
+import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/language_search_field.dart';
 import 'package:progress/shared/widget/work_card.dart';
@@ -19,6 +20,7 @@ class _SearchPageState extends State<SearchPage> {
   int currentIndex = 1;
 
 
+
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<SearchProvider>();
@@ -27,8 +29,15 @@ class _SearchPageState extends State<SearchPage> {
       child: Column(
         children: [
           const SizedBox(height: 20),
-          LanguageSearchField(controller: _controller , hintText: LocaleKeys.writeWord.tr(),onChanged: provider.search,),
-          SizedBox(height: 20),
+          LanguageSearchField(
+            controller: _controller,
+            hintText: LocaleKeys.searchResult.tr(),
+            onChanged: (value) {
+              setState(() {});
+              provider.search(value);
+            },
+          ),
+          const SizedBox(height: 20),
           if (_controller.text.isEmpty)
             Expanded(
               child: Center(
@@ -40,15 +49,24 @@ class _SearchPageState extends State<SearchPage> {
             )
           else
             Expanded(
-              child: ListView.builder(
+              child: provider.isLoading
+                  ?  Center(child: CircularProgressIndicator(color: AppColors.green,))
+                  : provider.results.isEmpty
+                  ? Center(
+                child: Text(
+                  LocaleKeys.dataNotFound.tr(),
+                  style: TextStyle(color: Colors.grey.shade500),
+                ),
+              )
+                  : ListView.builder(
                 itemCount: provider.results.length,
                 itemBuilder: (context, index) {
                   final l = provider.results[index];
                   return WordCard(
                     en: l.word,
-                    pronunciation: l.pronunciation ?? 'null',
-                    ru: l.wordRu ?? 'null',
-                    uz: l.wordUz ?? 'null',
+                    pronunciation: l.pronunciation ?? '',
+                    ru: l.wordRu ?? '',
+                    uz: l.wordUz ?? '',
                   );
                 },
               ),

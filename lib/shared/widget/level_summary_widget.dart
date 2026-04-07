@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/providers/game_provider.dart';
-import 'package:progress/core/providers/service_provider.dart';
+import 'package:progress/core/providers/loading_level_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
@@ -27,7 +27,7 @@ class _LevelSummaryWidgetState extends State<LevelSummaryWidget> {
   void initState() {
     super.initState();
     game = context.read<GameProvider>();
-    service = context.read<ServiceProvider>();
+    service = context.read<LoadingLevelProvider>();
   }
 
   @override

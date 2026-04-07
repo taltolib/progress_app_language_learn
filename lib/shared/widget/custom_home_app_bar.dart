@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
@@ -11,6 +12,8 @@ class CustomHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<AppThemeColors>()!;
+    String? name = FirebaseAuth.instance.currentUser?.displayName;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(
@@ -26,7 +29,7 @@ class CustomHomeAppBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  LocaleKeys.homeWelcome.tr(),
+                  LocaleKeys.homeWelcome.tr(args: [name ?? '']),
                   style: AppFonts.mulish.s20w700(
                     color: AppColors.green,
                   ),
@@ -35,14 +38,14 @@ class CustomHomeAppBar extends StatelessWidget {
                 Text(
                   LocaleKeys.homeStartLesson.tr(),
                   style: AppFonts.mulish.s18w400(
-                    color: Theme.of(context).extension<AppThemeColors>()!.textBlack,
+                    color: colors.text,
                   ),
                 ),
               ],
             ),
             Icon(
              icon,
-              color: Theme.of(context).shadowColor,
+              color: colors.text ,
               size: 26,
             ),
           ],

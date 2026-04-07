@@ -5,10 +5,10 @@
     {
       "question": "city",
       "answers": [
-        "город",
-        "дом",
-        "книга",
-        "кошка"
+        "city",
+        "house",
+        "book",
+        "cat"
       ],
       "correctIndex": 0,
       "id": 1
@@ -16,10 +16,10 @@
     {
       "question": "chair",
       "answers": [
-        "книга",
-        "стул",
-        "еда",
-        "лес"
+        "book",
+        "chair",
+        "food",
+        "forest"
       ],
       "correctIndex": 1,
       "id": 2
@@ -27,10 +27,10 @@
     {
       "question": "student",
       "answers": [
-        "книга",
-        "река",
-        "стол",
-        "студент"
+        "book",
+        "river",
+        "table",
+        "student"
       ],
       "correctIndex": 3,
       "id": 3
@@ -38,10 +38,10 @@
     {
       "question": "house",
       "answers": [
-        "собака",
-        "лес",
-        "дом",
-        "окно"
+        "dog",
+        "forest",
+        "house",
+        "window"
       ],
       "correctIndex": 2,
       "id": 4
@@ -49,10 +49,10 @@
     {
       "question": "apple",
       "answers": [
-        "машина",
-        "река",
-        "дом",
-        "яблоко"
+        "car",
+        "river",
+        "house",
+        "apple"
       ],
       "correctIndex": 3,
       "id": 5
@@ -60,10 +60,10 @@
     {
       "question": "book",
       "answers": [
-        "еда",
-        "книга",
-        "собака",
-        "стол"
+        "food",
+        "book",
+        "dog",
+        "table"
       ],
       "correctIndex": 1,
       "id": 6
@@ -71,10 +71,10 @@
     {
       "question": "food",
       "answers": [
-        "дом",
-        "лес",
-        "еда",
-        "окно"
+        "house",
+        "forest",
+        "food",
+        "window"
       ],
       "correctIndex": 2,
       "id": 7
@@ -82,10 +82,10 @@
     {
       "question": "sun",
       "answers": [
-        "книга",
-        "солнце",
-        "стол",
-        "машина"
+        "book",
+        "sun",
+        "table",
+        "car"
       ],
       "correctIndex": 1,
       "id": 8
@@ -93,10 +93,10 @@
     {
       "question": "moon",
       "answers": [
-        "окно",
-        "собака",
-        "луна",
-        "река"
+        "window",
+        "dog",
+        "moon",
+        "river"
       ],
       "correctIndex": 2,
       "id": 9
@@ -104,10 +104,10 @@
     {
       "question": "school",
       "answers": [
-        "школа",
-        "машина",
-        "река",
-        "окно"
+        "school",
+        "car",
+        "river",
+        "window"
       ],
       "correctIndex": 0,
       "id": 10
@@ -115,10 +115,10 @@
     {
       "question": "school",
       "answers": [
-        "школа",
-        "стол",
-        "окно",
-        "собака"
+        "school",
+        "table",
+        "window",
+        "dog"
       ],
       "correctIndex": 0,
       "id": 11
@@ -126,10 +126,10 @@
     {
       "question": "school",
       "answers": [
-        "стол",
-        "окно",
-        "школа",
-        "дом"
+        "table",
+        "window",
+        "school",
+        "house"
       ],
       "correctIndex": 2,
       "id": 12
@@ -137,10 +137,10 @@
     {
       "question": "student",
       "answers": [
-        "дом",
-        "студент",
-        "стол",
-        "кошка"
+        "house",
+        "student",
+        "table",
+        "cat"
       ],
       "correctIndex": 1,
       "id": 13
@@ -148,10 +148,10 @@
     {
       "question": "milk",
       "answers": [
-        "река",
-        "молоко",
-        "еда",
-        "машина"
+        "river",
+        "milk",
+        "food",
+        "car"
       ],
       "correctIndex": 1,
       "id": 14
@@ -159,10 +159,10 @@
     {
       "question": "teacher",
       "answers": [
-        "машина",
-        "еда",
-        "учитель",
-        "окно"
+        "car",
+        "food",
+        "teacher",
+        "window"
       ],
       "correctIndex": 2,
       "id": 15
@@ -170,10 +170,10 @@
     {
       "question": "city",
       "answers": [
-        "машина",
-        "собака",
-        "город",
-        "река"
+        "car",
+        "dog",
+        "city",
+        "river"
       ],
       "correctIndex": 2,
       "id": 16
@@ -181,10 +181,10 @@
     {
       "question": "school",
       "answers": [
-        "школа",
-        "книга",
-        "окно",
-        "лес"
+        "school",
+        "book",
+        "window",
+        "forest"
       ],
       "correctIndex": 0,
       "id": 17
@@ -192,10 +192,10 @@
     {
       "question": "student",
       "answers": [
-        "стол",
-        "река",
-        "кошка",
-        "студент"
+        "table",
+        "river",
+        "cat",
+        "student"
       ],
       "correctIndex": 3,
       "id": 18
@@ -203,10 +203,10 @@
     {
       "question": "school",
       "answers": [
-        "школа",
-        "дом",
-        "река",
-        "машина"
+        "school",
+        "house",
+        "river",
+        "car"
       ],
       "correctIndex": 0,
       "id": 19
@@ -214,10 +214,10 @@
     {
       "question": "water",
       "answers": [
-        "книга",
-        "собака",
-        "вода",
-        "еда"
+        "book",
+        "dog",
+        "water",
+        "food"
       ],
       "correctIndex": 2,
       "id": 20

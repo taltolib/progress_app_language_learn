@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:progress/core/hive/app_prefs.dart';
 
 class IntroductionProvider extends ChangeNotifier {
   final PageController controller = PageController();
@@ -14,9 +15,10 @@ class IntroductionProvider extends ChangeNotifier {
 
   bool get isLastPage => _currentPage == 2;
 
-  void next(BuildContext context) {
+  Future<void> next(BuildContext context) async {
     if (isLastPage) {
-      context.go('/login');
+      await AppPrefs.markIntroSeen();
+      if (context.mounted) context.go('/login');
     } else {
       controller.nextPage(
         duration: const Duration(milliseconds: 400),

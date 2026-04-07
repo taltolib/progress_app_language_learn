@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Хэшируем пароль перед сравнением (пароли не хранят в открытом виде)
+
   String _hashPassword(String password) {
     final bytes = utf8.encode(password);
     return sha256.convert(bytes).toString();

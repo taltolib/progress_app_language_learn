@@ -55,7 +55,6 @@ class LoginPage extends StatelessWidget {
               ),
             ),
 
-            // ── Карточка ──────────────────────────────────────────
             Transform.translate(
               offset: const Offset(0, -40),
               child: Padding(
@@ -76,7 +75,6 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      // ── Номер телефона ─────────────────────────
                       Row(
                         children: [
                           Container(
@@ -183,7 +181,6 @@ class LoginPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // ── Ссылка на регистрацию ─────────────────
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

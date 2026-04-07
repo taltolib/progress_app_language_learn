@@ -31,8 +31,7 @@ class _GamePageState extends State<GamePage> {
         final levelId = index + 1;
         final alignmentX = snakeX(levelId - 1);
         
-        // Определяем состояние уровня на основе логики провайдера
-        // Уровни закрыты, если ID больше, чем game.nextLevel
+
         final bool isLocked = levelId > game.nextLevel;
         final int score = game.levelResults[levelId] ?? 0;
         final bool isCompleted = score >= 70;

@@ -5,10 +5,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "Мы смотрим фильм",
-        "машина",
-        "стол",
-        "дом"
+        "We are watching a movie",
+        "car",
+        "table",
+        "house"
       ],
       "correctIndex": 0,
       "id": 1
@@ -16,10 +16,10 @@
     {
       "question": "They are playing football",
       "answers": [
-        "машина",
-        "Они играют в футбол",
-        "дом",
-        "река"
+        "car",
+        "They are playing football",
+        "house",
+        "river"
       ],
       "correctIndex": 1,
       "id": 2
@@ -27,10 +27,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "еда",
-        "кошка",
-        "Она читает книгу",
-        "машина"
+        "food",
+        "cat",
+        "She is reading a book",
+        "car"
       ],
       "correctIndex": 2,
       "id": 3
@@ -38,10 +38,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "еда",
-        "окно",
-        "река",
-        "Мы живем в большом городе"
+        "food",
+        "window",
+        "river",
+        "We live in a big city"
       ],
       "correctIndex": 3,
       "id": 4
@@ -49,10 +49,10 @@
     {
       "question": "I like learning English",
       "answers": [
-        "книга",
-        "окно",
-        "кошка",
-        "Мне нравится учить английский"
+        "book",
+        "window",
+        "cat",
+        "I like learning English"
       ],
       "correctIndex": 3,
       "id": 5
@@ -60,10 +60,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "кошка",
-        "Я иду в магазин",
-        "собака",
-        "еда"
+        "cat",
+        "I am going to the store",
+        "dog",
+        "food"
       ],
       "correctIndex": 1,
       "id": 6
@@ -71,10 +71,10 @@
     {
       "question": "She works in a hospital",
       "answers": [
-        "еда",
-        "река",
-        "Она работает в больнице",
-        "лес"
+        "food",
+        "river",
+        "She works in a hospital",
+        "forest"
       ],
       "correctIndex": 2,
       "id": 7
@@ -82,10 +82,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "книга",
-        "стол",
-        "машина",
-        "Я иду в магазин"
+        "book",
+        "table",
+        "car",
+        "I am going to the store"
       ],
       "correctIndex": 3,
       "id": 8
@@ -93,10 +93,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "Он пьет воду",
-        "собака",
-        "дом",
-        "стол"
+        "He is drinking water",
+        "dog",
+        "house",
+        "table"
       ],
       "correctIndex": 0,
       "id": 9
@@ -104,10 +104,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "окно",
-        "лес",
-        "Мы живем в большом городе",
-        "собака"
+        "window",
+        "forest",
+        "We live in a big city",
+        "dog"
       ],
       "correctIndex": 2,
       "id": 10
@@ -115,10 +115,10 @@
     {
       "question": "She works in a hospital",
       "answers": [
-        "Она работает в больнице",
-        "машина",
-        "лес",
-        "стол"
+        "She works in a hospital",
+        "car",
+        "forest",
+        "table"
       ],
       "correctIndex": 0,
       "id": 11
@@ -126,10 +126,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "Они учатся вместе",
-        "окно",
-        "собака",
-        "книга"
+        "They are studying together",
+        "window",
+        "dog",
+        "book"
       ],
       "correctIndex": 0,
       "id": 12
@@ -137,10 +137,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "еда",
-        "река",
-        "Мы смотрим фильм",
-        "окно"
+        "food",
+        "river",
+        "We are watching a movie",
+        "window"
       ],
       "correctIndex": 2,
       "id": 13
@@ -148,10 +148,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "лес",
-        "собака",
-        "машина",
-        "Она читает книгу"
+        "forest",
+        "dog",
+        "car",
+        "She is reading a book"
       ],
       "correctIndex": 3,
       "id": 14
@@ -159,10 +159,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "еда",
-        "собака",
-        "Они учатся вместе",
-        "лес"
+        "food",
+        "dog",
+        "They are studying together",
+        "forest"
       ],
       "correctIndex": 2,
       "id": 15
@@ -170,10 +170,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "стол",
-        "окно",
-        "дом",
-        "Она читает книгу"
+        "table",
+        "window",
+        "house",
+        "She is reading a book"
       ],
       "correctIndex": 3,
       "id": 16
@@ -181,10 +181,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "кошка",
-        "лес",
-        "Он пьет воду",
-        "книга"
+        "cat",
+        "forest",
+        "He is drinking water",
+        "book"
       ],
       "correctIndex": 2,
       "id": 17
@@ -192,10 +192,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "Я иду в магазин",
-        "дом",
-        "окно",
-        "книга"
+        "I am going to the store",
+        "house",
+        "window",
+        "book"
       ],
       "correctIndex": 0,
       "id": 18
@@ -203,10 +203,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "дом",
-        "окно",
-        "река",
-        "Он готовит ужин"
+        "house",
+        "window",
+        "river",
+        "He is cooking dinner"
       ],
       "correctIndex": 3,
       "id": 19
@@ -214,10 +214,10 @@
     {
       "question": "She works in a hospital",
       "answers": [
-        "дом",
-        "собака",
-        "Она работает в больнице",
-        "кошка"
+        "house",
+        "dog",
+        "She works in a hospital",
+        "cat"
       ],
       "correctIndex": 2,
       "id": 20

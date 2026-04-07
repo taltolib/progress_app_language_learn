@@ -45,6 +45,7 @@ class IntroTemplate extends StatelessWidget {
             Text(
               body.tr(),
               textAlign: TextAlign.center,
+              // ignore: deprecated_member_use
               style:  AppFonts.mulish.s15w600(color: colors.text.withOpacity(0.9)),
             ),
           ],

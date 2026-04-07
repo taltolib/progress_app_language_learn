@@ -147,11 +147,12 @@ class _TaskPageState extends State<TaskPage> {
                             physics: const NeverScrollableScrollPhysics(),
                             itemCount: task.answers.length,
                             itemBuilder: (context, answerIndex) {
+                              final String answerKey = task.answers[answerIndex];
                               return Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 12),
                                 child: PushButton(
-                                  language: LocaleKeys.word(task.answers[answerIndex]).tr(),
-                                  flagAsset: Container(),
+                                  language: LocaleKeys.word(answerKey).tr(),
+                                  flagAsset: const SizedBox.shrink(),
                                   border: Border.all(
                                     color: game.selectedIndex == answerIndex
                                         ? AppColors.blue.withOpacity(0.50)

@@ -28,7 +28,9 @@ class OtpProvider extends ChangeNotifier {
 
   @override
   void dispose() {
+    // ignore: curly_braces_in_flow_control_structures
     for (final c in controllers) c.dispose();
+    // ignore: curly_braces_in_flow_control_structures
     for (final f in focusNodes) f.dispose();
     super.dispose();
   }

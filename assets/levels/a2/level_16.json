@@ -5,10 +5,10 @@
     {
       "question": "They are studying together",
       "answers": [
-        "кошка",
-        "лес",
-        "книга",
-        "Они учатся вместе"
+        "cat",
+        "forest",
+        "book",
+        "They are studying together"
       ],
       "correctIndex": 3,
       "id": 1
@@ -16,10 +16,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "Он готовит ужин",
-        "кошка",
-        "еда",
-        "машина"
+        "He is cooking dinner",
+        "cat",
+        "food",
+        "car"
       ],
       "correctIndex": 0,
       "id": 2
@@ -27,10 +27,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "Он готовит ужин",
-        "дом",
-        "собака",
-        "кошка"
+        "He is cooking dinner",
+        "house",
+        "dog",
+        "cat"
       ],
       "correctIndex": 0,
       "id": 3
@@ -38,10 +38,10 @@
     {
       "question": "She works in a hospital",
       "answers": [
-        "окно",
-        "собака",
-        "кошка",
-        "Она работает в больнице"
+        "window",
+        "dog",
+        "cat",
+        "She works in a hospital"
       ],
       "correctIndex": 3,
       "id": 4
@@ -49,10 +49,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "Я иду в магазин",
-        "окно",
-        "река",
-        "дом"
+        "I am going to the store",
+        "window",
+        "river",
+        "house"
       ],
       "correctIndex": 0,
       "id": 5
@@ -60,10 +60,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "кошка",
-        "Мы живем в большом городе",
-        "лес",
-        "еда"
+        "cat",
+        "We live in a big city",
+        "forest",
+        "food"
       ],
       "correctIndex": 1,
       "id": 6
@@ -71,10 +71,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "собака",
-        "Мы смотрим фильм",
-        "река",
-        "еда"
+        "dog",
+        "We are watching a movie",
+        "river",
+        "food"
       ],
       "correctIndex": 1,
       "id": 7
@@ -82,10 +82,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "кошка",
-        "Она читает книгу",
-        "книга",
-        "стол"
+        "cat",
+        "She is reading a book",
+        "book",
+        "table"
       ],
       "correctIndex": 1,
       "id": 8
@@ -93,10 +93,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "дом",
-        "Она читает книгу",
-        "книга",
-        "кошка"
+        "house",
+        "She is reading a book",
+        "book",
+        "cat"
       ],
       "correctIndex": 1,
       "id": 9
@@ -104,10 +104,10 @@
     {
       "question": "She is reading a book",
       "answers": [
-        "кошка",
-        "машина",
-        "дом",
-        "Она читает книгу"
+        "cat",
+        "car",
+        "house",
+        "She is reading a book"
       ],
       "correctIndex": 3,
       "id": 10
@@ -115,10 +115,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "еда",
-        "лес",
-        "машина",
-        "Мы живем в большом городе"
+        "food",
+        "forest",
+        "car",
+        "We live in a big city"
       ],
       "correctIndex": 3,
       "id": 11
@@ -126,10 +126,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "Он пьет воду",
-        "книга",
-        "собака",
-        "дом"
+        "He is drinking water",
+        "book",
+        "dog",
+        "house"
       ],
       "correctIndex": 0,
       "id": 12
@@ -137,10 +137,10 @@
     {
       "question": "He is drinking water",
       "answers": [
-        "Он пьет воду",
-        "машина",
-        "лес",
-        "еда"
+        "He is drinking water",
+        "car",
+        "forest",
+        "food"
       ],
       "correctIndex": 0,
       "id": 13
@@ -148,10 +148,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "окно",
-        "дом",
-        "кошка",
-        "Он готовит ужин"
+        "window",
+        "house",
+        "cat",
+        "He is cooking dinner"
       ],
       "correctIndex": 3,
       "id": 14
@@ -159,10 +159,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "лес",
-        "кошка",
-        "Я иду в магазин",
-        "книга"
+        "forest",
+        "cat",
+        "I am going to the store",
+        "book"
       ],
       "correctIndex": 2,
       "id": 15
@@ -170,10 +170,10 @@
     {
       "question": "I am going to the store",
       "answers": [
-        "стол",
-        "Я иду в магазин",
-        "дом",
-        "река"
+        "table",
+        "I am going to the store",
+        "house",
+        "river"
       ],
       "correctIndex": 1,
       "id": 16
@@ -181,10 +181,10 @@
     {
       "question": "We live in a big city",
       "answers": [
-        "Мы живем в большом городе",
-        "кошка",
-        "еда",
-        "река"
+        "We live in a big city",
+        "cat",
+        "food",
+        "river"
       ],
       "correctIndex": 0,
       "id": 17
@@ -192,10 +192,10 @@
     {
       "question": "They are playing football",
       "answers": [
-        "Они играют в футбол",
-        "река",
-        "еда",
-        "окно"
+        "They are playing football",
+        "river",
+        "food",
+        "window"
       ],
       "correctIndex": 0,
       "id": 18
@@ -203,10 +203,10 @@
     {
       "question": "He is cooking dinner",
       "answers": [
-        "кошка",
-        "дом",
-        "Он готовит ужин",
-        "собака"
+        "cat",
+        "house",
+        "He is cooking dinner",
+        "dog"
       ],
       "correctIndex": 2,
       "id": 19
@@ -214,10 +214,10 @@
     {
       "question": "We are watching a movie",
       "answers": [
-        "книга",
-        "кошка",
-        "собака",
-        "Мы смотрим фильм"
+        "book",
+        "cat",
+        "dog",
+        "We are watching a movie"
       ],
       "correctIndex": 3,
       "id": 20

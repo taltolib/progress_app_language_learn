@@ -72,20 +72,24 @@ class PushButton extends StatelessWidget {
                   border: border,
                   borderRadius: BorderRadius.circular(borderRadius),
                 ),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     flagAsset,
                     const SizedBox(width: 12),
-                    Material(
-                      color: Colors.transparent,
-                      child: Text(
-                        language,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: colorText,
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.w700,
+                    Flexible(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: Text(
+                          language,
+                          maxLines: 1,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: colorText,
+                            overflow: TextOverflow.ellipsis,
+                            fontSize: fontSize,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                     ),

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:progress/domain/models/card_content_model.dart';
 import 'package:progress/domain/models/word_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
@@ -8,8 +10,8 @@ class DatabaseService {
   static DatabaseService? _instance;
   static Database? _db;
 
-
   DatabaseService._();
+
   static DatabaseService get instance {
     _instance ??= DatabaseService._();
     return _instance!;
@@ -25,14 +27,41 @@ class DatabaseService {
     final path = join(dbPath, 'progress_db.db');
 
     if (!await File(path).exists()) {
-      final data = await rootBundle.load('assets/db/progress_db.db');
-      final bytes = data.buffer.asUint8List();
-      await File(path).writeAsBytes(bytes);
+      try {
+        final data = await rootBundle.load('assets/db/progress_db.db');
+        final bytes = data.buffer.asUint8List();
+        await File(path).writeAsBytes(bytes);
+      } on FlutterError catch (error) {
+        throw StateError(
+          'Database asset is missing: assets/db/progress_db.db. '
+          'Add this file to the project and register assets/db/ in pubspec.yaml. '
+          'Original error: $error',
+        );
+      }
     }
 
     return await openDatabase(path, readOnly: true);
   }
 
+  Future<CardContentModel?> getGrammar(int wordId) async {
+    final d = await db;
+    final rows = await d.rawQuery(
+      '''
+      SELECT g.body, w.word
+      FROM grammar g
+      JOIN word_entity w ON g.word_id = w.id
+      WHERE g.word_id = ?
+      LIMIT 1
+    ''',
+      [wordId],
+    );
+    if (rows.isEmpty) return null;
+    return CardContentModel(
+      title: rows.first['word'] as String,
+      htmlBody: rows.first['body'] as String? ?? '',
+      type: CardContentType.grammar,
+    );
+  }
 
   Future<WordCard?> randomWordWithGrammar() async {
     final d = await db;
@@ -67,7 +96,6 @@ class DatabaseService {
       body: rows.first['body'] as String?,
     );
   }
-
 
   Future<WordCard?> randomWordWithThesaurus() async {
     final d = await db;
@@ -133,15 +161,21 @@ class DatabaseService {
     final phraseId = phrases.first['p_id'] as int;
     final phraseWord = phrases.first['p_word'] as String;
 
-    final translations = await d.rawQuery('''
+    final translations = await d.rawQuery(
+      '''
       SELECT word FROM phrases_translate
       WHERE phrase_id = ?
-    ''', [phraseId]);
+    ''',
+      [phraseId],
+    );
 
-    final examples = await d.rawQuery('''
+    final examples = await d.rawQuery(
+      '''
       SELECT value FROM phrases_example
       WHERE phrase_id = ?
-    ''', [phraseId]);
+    ''',
+      [phraseId],
+    );
 
     return PhraseItem(
       id: phraseId,
@@ -151,13 +185,13 @@ class DatabaseService {
     );
   }
 
-
   Future<List<SearchResult>> searchWord(String query) async {
     if (query.trim().isEmpty) return [];
     final d = await db;
-    final q = '%$query%';
+    final q = '$query%';
 
-    final rows = await d.rawQuery('''
+    final rows = await d.rawQuery(
+      '''
       SELECT DISTINCT we.id, we.word, ru.word as word_ru, we.word_class_body , uz.word as word_uz
       FROM word_entity we
       LEFT JOIN words_ru ru ON we.id = ru.word_id
@@ -166,48 +200,62 @@ class DatabaseService {
          OR ru.word LIKE ?
          OR uz.word LIKE ?
       LIMIT 50
-    ''', [q, q, q]);
+    ''',
+      [q, q, q],
+    );
 
-    return rows.map((r) => SearchResult(
-      id: r['id'] as int,
-      word: r['word'] as String,
-      wordRu: r['word_ru'] as String?,
-      wordUz: r['word_uz'] as String?,
-      pronunciation:  r['word_class_body'] as String?,
-    )).toList();
+    return rows
+        .map(
+          (r) => SearchResult(
+            id: r['id'] as int,
+            word: r['word'] as String,
+            wordRu: r['word_ru'] as String?,
+            wordUz: r['word_uz'] as String?,
+            pronunciation: r['word_class_body'] as String?,
+          ),
+        )
+        .toList();
   }
 
   Future<WordDetail> getWordDetail(int wordId) async {
     final d = await db;
+    final rows = await d.rawQuery(
+      '''
+      SELECT we.id,we.word,
+      g.body AS grammar,
+      d.body AS difference,
+      t.body AS thesaurus,
+      c.body AS collocation,
+      m.body AS metaphor,
 
-    final we = await d.rawQuery(
-      'SELECT id, word FROM word_entity WHERE id = ?', [wordId]);
+      ru.word AS word_ru,
+      uz.word AS word_uz
 
-    final grammar = await d.rawQuery(
-      'SELECT body FROM grammar WHERE word_id = ? LIMIT 1', [wordId]);
-    final difference = await d.rawQuery(
-      'SELECT body FROM difference WHERE word_id = ? LIMIT 1', [wordId]);
-    final thesaurus = await d.rawQuery(
-      'SELECT body FROM thesaurus WHERE word_id = ? LIMIT 1', [wordId]);
-    final collocation = await d.rawQuery(
-      'SELECT body FROM collocation WHERE word_id = ? LIMIT 1', [wordId]);
-    final metaphor = await d.rawQuery(
-      'SELECT body FROM metaphor WHERE word_id = ? LIMIT 1', [wordId]);
-    final ru = await d.rawQuery(
-      'SELECT word FROM words_ru WHERE word_id = ? LIMIT 1', [wordId]);
-    final uz = await d.rawQuery(
-      'SELECT word FROM words_uz WHERE word_id = ? LIMIT 1', [wordId]);
-
+      FROM word_entity we
+      
+      LEFT JOIN grammar g ON g.word_id = we.id
+      LEFT JOIN difference d ON d.word_id = we.id
+      LEFT JOIN thesaurus t ON t.word_id = we.id
+      LEFT JOIN collocation c ON c.word_id = we.id
+      LEFT JOIN metaphor m ON m.word_id = we.id
+      LEFT JOIN words_ru ru ON ru.word_id = we.id
+      LEFT JOIN words_uz uz ON uz.word_id = we.id
+      WHERE we.id = ?
+      LIMIT 1
+      ''',
+      [wordId],
+    );
+    final r = rows.first;
     return WordDetail(
-      id: wordId,
-      word: we.first['word'] as String,
-      grammarBody: grammar.isNotEmpty ? grammar.first['body'] as String? : null,
-      differenceBody: difference.isNotEmpty ? difference.first['body'] as String? : null,
-      thesaurusBody: thesaurus.isNotEmpty ? thesaurus.first['body'] as String? : null,
-      collocationBody: collocation.isNotEmpty ? collocation.first['body'] as String? : null,
-      metaphorBody: metaphor.isNotEmpty ? metaphor.first['body'] as String? : null,
-      wordRu: ru.isNotEmpty ? ru.first['word'] as String? : null,
-      wordUz: uz.isNotEmpty ? uz.first['word'] as String? : null,
+      id: r['id'] as int,
+      word: r['word'] as String,
+      grammarBody: r['grammar'] as String?,
+      differenceBody: r['difference'] as String?,
+      thesaurusBody: r['thesaurus'] as String?,
+      collocationBody: r['collocation'] as String?,
+      metaphorBody: r['metaphor'] as String?,
+      wordRu: r['word_ru'] as String?,
+      wordUz: r['word_uz'] as String?,
     );
   }
 }
