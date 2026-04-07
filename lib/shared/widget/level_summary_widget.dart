@@ -49,7 +49,7 @@ class _LevelSummaryWidgetState extends State<LevelSummaryWidget> {
               image,
               const SizedBox(height: 40),
               Text(
-                compliment,
+                compliment.tr(),
                 style: AppFonts.mulish.s28w700(
                   color: AppColors.green,
                 ),

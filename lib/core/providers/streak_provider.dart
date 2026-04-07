@@ -51,7 +51,6 @@ class StreakProvider extends ChangeNotifier {
     }
   }
 
-  // 🏆 Когда уровень завершен
   void completeLevel(int score) {
     if (score < 75) return; // ❌ не считается
 

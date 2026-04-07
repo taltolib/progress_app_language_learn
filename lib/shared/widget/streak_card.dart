@@ -49,10 +49,12 @@ class StreakCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(7, (index) {
+              int currentWeekday = DateTime.now().weekday;
+              int todayIndex = currentWeekday == 7 ? 0 : currentWeekday;
               return StreakDayCircle(
                 dayName: daysNames[index],
                 status: weekProgress[index],
-                isToday: index == 3,
+                isToday: index == todayIndex,
               );
             }),
           ),
