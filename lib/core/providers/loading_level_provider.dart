@@ -19,7 +19,6 @@ class LoadingLevelProvider extends ChangeNotifier {
     LocaleKeys.compliment2,
     LocaleKeys.streakBody4,
     LocaleKeys.compliment3,
-    LocaleKeys.compliment1,
   ];
 
   final List<Widget> _images = [

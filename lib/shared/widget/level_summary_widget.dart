@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/providers/game_provider.dart';
 import 'package:progress/core/providers/loading_level_provider.dart';
@@ -20,8 +20,8 @@ class LevelSummaryWidget extends StatefulWidget {
 
 class _LevelSummaryWidgetState extends State<LevelSummaryWidget> {
 
-  late final game;
-  late final service;
+  late final GameProvider game;
+  late final LoadingLevelProvider service;
 
   @override
   void initState() {
