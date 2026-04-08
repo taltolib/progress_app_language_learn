@@ -39,8 +39,8 @@ class WordCard extends StatelessWidget {
                 style: AppFonts.mulish.s30w700(color: colors.text),
               ),
             ),
-            const SizedBox(height: 6),
-            Expanded(
+            const SizedBox( height: 5,),
+            Flexible(
               child: Text(
                 "[$pronunciation]",
                 maxLines: 1,
@@ -48,34 +48,38 @@ class WordCard extends StatelessWidget {
                 style: AppFonts.mulish.s18w400(color: Colors.grey),
               ),
             ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(child: Text('🇷🇺', style: TextStyle(fontSize: 30))),
-                Expanded(
-                  flex: 5,
-                  child: Text(
-                    ru,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppFonts.mulish.s22w600(color: colors.text),
+            const SizedBox(height: 5),
+            Flexible(
+              child: Row(
+                children: [
+                  Expanded(child: Text('🇷🇺', style: TextStyle(fontSize: 30))),
+                  Expanded(
+                    flex: 5,
+                    child: Text(
+                      ru,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppFonts.mulish.s22w600(color: colors.text),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            Row(
-              children: [
-                Expanded(child: Text('🇺🇿', style: TextStyle(fontSize: 30))),
-                Expanded(
-                  flex: 5,
-                  child: Text(
-                    uz,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppFonts.mulish.s22w600(color: colors.text),
+            Flexible(
+              child: Row(
+                children: [
+                  Expanded(child: Text('🇺🇿', style: TextStyle(fontSize: 30))),
+                  Expanded(
+                    flex: 5,
+                    child: Text(
+                      uz,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppFonts.mulish.s22w600(color: colors.text),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

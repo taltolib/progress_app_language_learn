@@ -154,6 +154,7 @@ class SettingsPage extends StatelessWidget {
                         context.read<AuthProvider>().deleteAccount();
                          languageProvider.toggleSelect();
                         context.go('/login');
+                        context.pop();
                       },
                       isSelected: languageProvider.isSelect,
                     ),
