@@ -1,0 +1,226 @@
+{
+  "level": 1,
+  "difficulty": "A2",
+  "tasks": [
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "He is drinking water",
+        "forest",
+        "food",
+        "window"
+      ],
+      "correctIndex": 0,
+      "id": 1
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "cat",
+        "I am going to the store",
+        "window",
+        "food"
+      ],
+      "correctIndex": 1,
+      "id": 2
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "forest",
+        "They are playing football",
+        "book",
+        "food"
+      ],
+      "correctIndex": 1,
+      "id": 3
+    },
+    {
+      "question": "She is reading a book",
+      "answers": [
+        "house",
+        "She is reading a book",
+        "table",
+        "cat"
+      ],
+      "correctIndex": 1,
+      "id": 4
+    },
+    {
+      "question": "She is reading a book",
+      "answers": [
+        "river",
+        "She is reading a book",
+        "cat",
+        "car"
+      ],
+      "correctIndex": 1,
+      "id": 5
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "house",
+        "food",
+        "cat",
+        "He is drinking water"
+      ],
+      "correctIndex": 3,
+      "id": 6
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "We live in a big city",
+        "river",
+        "window",
+        "car"
+      ],
+      "correctIndex": 0,
+      "id": 7
+    },
+    {
+      "question": "He is cooking dinner",
+      "answers": [
+        "window",
+        "dog",
+        "table",
+        "He is cooking dinner"
+      ],
+      "correctIndex": 3,
+      "id": 8
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "They are studying together",
+        "forest",
+        "dog",
+        "cat"
+      ],
+      "correctIndex": 0,
+      "id": 9
+    },
+    {
+      "question": "He is cooking dinner",
+      "answers": [
+        "book",
+        "house",
+        "cat",
+        "He is cooking dinner"
+      ],
+      "correctIndex": 3,
+      "id": 10
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "cat",
+        "house",
+        "They are studying together",
+        "food"
+      ],
+      "correctIndex": 2,
+      "id": 11
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "table",
+        "car",
+        "They are playing football",
+        "river"
+      ],
+      "correctIndex": 2,
+      "id": 12
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "food",
+        "They are playing football",
+        "forest",
+        "house"
+      ],
+      "correctIndex": 1,
+      "id": 13
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "cat",
+        "window",
+        "food",
+        "She works in a hospital"
+      ],
+      "correctIndex": 3,
+      "id": 14
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "cat",
+        "I am going to the store",
+        "food",
+        "forest"
+      ],
+      "correctIndex": 1,
+      "id": 15
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "They are studying together",
+        "table",
+        "book",
+        "food"
+      ],
+      "correctIndex": 0,
+      "id": 16
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "window",
+        "table",
+        "river",
+        "They are playing football"
+      ],
+      "correctIndex": 3,
+      "id": 17
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "book",
+        "river",
+        "cat",
+        "She works in a hospital"
+      ],
+      "correctIndex": 3,
+      "id": 18
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "forest",
+        "window",
+        "He is drinking water",
+        "dog"
+      ],
+      "correctIndex": 2,
+      "id": 19
+    },
+    {
+      "question": "She works in a hospital",
+      "answers": [
+        "dog",
+        "car",
+        "She works in a hospital",
+        "table"
+      ],
+      "correctIndex": 2,
+      "id": 20
+    }
+  ]
+}

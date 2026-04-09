@@ -1,0 +1,226 @@
+{
+  "level": 15,
+  "difficulty": "A1",
+  "tasks": [
+    {
+      "question": "phone",
+      "answers": [
+        "phone",
+        "dog",
+        "window",
+        "car"
+      ],
+      "correctIndex": 0,
+      "id": 1
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "window",
+        "table",
+        "book",
+        "chair"
+      ],
+      "correctIndex": 3,
+      "id": 2
+    },
+    {
+      "question": "phone",
+      "answers": [
+        "food",
+        "phone",
+        "table",
+        "window"
+      ],
+      "correctIndex": 1,
+      "id": 3
+    },
+    {
+      "question": "table",
+      "answers": [
+        "table",
+        "forest",
+        "river",
+        "car"
+      ],
+      "correctIndex": 0,
+      "id": 4
+    },
+    {
+      "question": "city",
+      "answers": [
+        "city",
+        "window",
+        "food",
+        "forest"
+      ],
+      "correctIndex": 0,
+      "id": 5
+    },
+    {
+      "question": "sun",
+      "answers": [
+        "house",
+        "sun",
+        "table",
+        "food"
+      ],
+      "correctIndex": 1,
+      "id": 6
+    },
+    {
+      "question": "milk",
+      "answers": [
+        "river",
+        "milk",
+        "table",
+        "cat"
+      ],
+      "correctIndex": 1,
+      "id": 7
+    },
+    {
+      "question": "city",
+      "answers": [
+        "window",
+        "house",
+        "city",
+        "book"
+      ],
+      "correctIndex": 2,
+      "id": 8
+    },
+    {
+      "question": "phone",
+      "answers": [
+        "phone",
+        "river",
+        "dog",
+        "forest"
+      ],
+      "correctIndex": 0,
+      "id": 9
+    },
+    {
+      "question": "pen",
+      "answers": [
+        "table",
+        "dog",
+        "book",
+        "pen"
+      ],
+      "correctIndex": 3,
+      "id": 10
+    },
+    {
+      "question": "city",
+      "answers": [
+        "table",
+        "dog",
+        "book",
+        "city"
+      ],
+      "correctIndex": 3,
+      "id": 11
+    },
+    {
+      "question": "school",
+      "answers": [
+        "food",
+        "school",
+        "table",
+        "house"
+      ],
+      "correctIndex": 1,
+      "id": 12
+    },
+    {
+      "question": "apple",
+      "answers": [
+        "book",
+        "apple",
+        "window",
+        "house"
+      ],
+      "correctIndex": 1,
+      "id": 13
+    },
+    {
+      "question": "city",
+      "answers": [
+        "window",
+        "car",
+        "city",
+        "river"
+      ],
+      "correctIndex": 2,
+      "id": 14
+    },
+    {
+      "question": "apple",
+      "answers": [
+        "car",
+        "house",
+        "apple",
+        "table"
+      ],
+      "correctIndex": 2,
+      "id": 15
+    },
+    {
+      "question": "teacher",
+      "answers": [
+        "teacher",
+        "river",
+        "window",
+        "house"
+      ],
+      "correctIndex": 0,
+      "id": 16
+    },
+    {
+      "question": "table",
+      "answers": [
+        "house",
+        "food",
+        "forest",
+        "table"
+      ],
+      "correctIndex": 3,
+      "id": 17
+    },
+    {
+      "question": "milk",
+      "answers": [
+        "forest",
+        "river",
+        "food",
+        "milk"
+      ],
+      "correctIndex": 3,
+      "id": 18
+    },
+    {
+      "question": "cat",
+      "answers": [
+        "cat",
+        "house",
+        "river",
+        "forest"
+      ],
+      "correctIndex": 0,
+      "id": 19
+    },
+    {
+      "question": "milk",
+      "answers": [
+        "milk",
+        "window",
+        "table",
+        "food"
+      ],
+      "correctIndex": 0,
+      "id": 20
+    }
+  ]
+}

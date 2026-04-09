@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
 import '../colors/app_colors.dart';
 
 class DarkTheme {
@@ -9,36 +10,26 @@ class DarkTheme {
     scaffoldBackgroundColor: AppColors.backgroundDark,
 
     colorScheme: const ColorScheme.dark(
-      background: AppColors.backgroundDark,
-      surface: AppColors.surfaceDark,
-      onSurface: AppColors.textPrimaryDark,
+      surface: AppColors.backgroundAcceptsDark,
+      onSurface: AppColors.textWhite,
       error: AppColors.heartRed,
     ),
 
-    dividerColor: AppColors.borderDark,
+    dividerColor: AppColors.borderGrey,
 
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(
-        color: AppColors.textPrimaryDark,
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-      bodyMedium: TextStyle(
-        color: AppColors.textSecondaryDark,
-        fontSize: 14,
-      ),
-    ),
+    extensions: const [
+      AppThemeColors(
+        backgroundWhiteOrDark: AppColors.backgroundDark,
+        backgroundAcceptsWhiteOrDark: AppColors.backgroundAcceptsDark,
+        whiteForLight: AppColors.textWhite,
+        dividerWhite: AppColors.borderGrey,
+        textGrey: AppColors.textGrey,
+        textBlack: AppColors.textWhite,
+        borderBlack: AppColors.borderGrey,
+        text: AppColors.textWhite,
+        shadow: AppColors.borderGrey,
 
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.backgroundDark,
-      elevation: 0,
-      centerTitle: true,
-      titleTextStyle: TextStyle(
-        color: AppColors.textPrimaryDark,
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
       ),
-      iconTheme: IconThemeData(color: AppColors.textPrimaryDark),
-    ),
+    ],
   );
 }

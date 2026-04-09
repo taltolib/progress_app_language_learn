@@ -1,44 +1,34 @@
 import 'package:flutter/material.dart';
-import '../colors/app_colors.dart';
+import 'package:progress/core/theme/colors/app_colors.dart';
+import 'package:progress/core/theme/colors/theme_custom.dart';
 
 class LightTheme {
   static ThemeData theme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
 
-    scaffoldBackgroundColor: AppColors.backgroundLight,
+    scaffoldBackgroundColor: AppColors.backgroundWhite,
 
     colorScheme: const ColorScheme.light(
-      background: AppColors.backgroundLight,
-      surface: AppColors.surfaceLight,
-      onSurface: AppColors.textPrimaryLight,
+      surface: AppColors.backgroundAcceptsWhite,
+      onSurface: AppColors.textBlack,
       error: AppColors.heartRed,
     ),
 
-    dividerColor: AppColors.borderLight,
+    dividerColor: AppColors.dividerWhite,
 
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(
-        color: AppColors.textPrimaryLight,
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
+    extensions: const [
+      AppThemeColors(
+        backgroundWhiteOrDark: AppColors.backgroundWhite,
+        backgroundAcceptsWhiteOrDark: AppColors.backgroundAcceptsWhite,
+        whiteForLight: AppColors.whiteForLight,
+        dividerWhite: AppColors.dividerWhite,
+        textGrey: AppColors.textGrey,
+        textBlack: AppColors.textBlack,
+        borderBlack: AppColors.borderGrey,
+        text: AppColors.textBlack,
+        shadow: AppColors.borderGrey,
       ),
-      bodyMedium: TextStyle(
-        color: AppColors.textSecondaryLight,
-        fontSize: 14,
-      ),
-    ),
-
-    appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.backgroundLight,
-      elevation: 0,
-      centerTitle: true,
-      titleTextStyle: TextStyle(
-        color: AppColors.textPrimaryLight,
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-      ),
-      iconTheme: IconThemeData(color: AppColors.textPrimaryLight),
-    ),
+    ],
   );
 }

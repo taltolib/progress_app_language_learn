@@ -1,0 +1,226 @@
+{
+  "level": 36,
+  "difficulty": "A2",
+  "tasks": [
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "He is drinking water",
+        "forest",
+        "cat",
+        "car"
+      ],
+      "correctIndex": 0,
+      "id": 1
+    },
+    {
+      "question": "I like learning English",
+      "answers": [
+        "forest",
+        "window",
+        "book",
+        "I like learning English"
+      ],
+      "correctIndex": 3,
+      "id": 2
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "cat",
+        "book",
+        "house",
+        "He is drinking water"
+      ],
+      "correctIndex": 3,
+      "id": 3
+    },
+    {
+      "question": "He is cooking dinner",
+      "answers": [
+        "He is cooking dinner",
+        "house",
+        "cat",
+        "river"
+      ],
+      "correctIndex": 0,
+      "id": 4
+    },
+    {
+      "question": "We are watching a movie",
+      "answers": [
+        "river",
+        "We are watching a movie",
+        "window",
+        "dog"
+      ],
+      "correctIndex": 1,
+      "id": 5
+    },
+    {
+      "question": "He is drinking water",
+      "answers": [
+        "food",
+        "He is drinking water",
+        "window",
+        "cat"
+      ],
+      "correctIndex": 1,
+      "id": 6
+    },
+    {
+      "question": "They are playing football",
+      "answers": [
+        "forest",
+        "They are playing football",
+        "table",
+        "river"
+      ],
+      "correctIndex": 1,
+      "id": 7
+    },
+    {
+      "question": "We are watching a movie",
+      "answers": [
+        "We are watching a movie",
+        "river",
+        "window",
+        "dog"
+      ],
+      "correctIndex": 0,
+      "id": 8
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "river",
+        "We live in a big city",
+        "food",
+        "table"
+      ],
+      "correctIndex": 1,
+      "id": 9
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "dog",
+        "cat",
+        "They are studying together",
+        "house"
+      ],
+      "correctIndex": 2,
+      "id": 10
+    },
+    {
+      "question": "We are watching a movie",
+      "answers": [
+        "house",
+        "table",
+        "food",
+        "We are watching a movie"
+      ],
+      "correctIndex": 3,
+      "id": 11
+    },
+    {
+      "question": "He is cooking dinner",
+      "answers": [
+        "He is cooking dinner",
+        "table",
+        "house",
+        "forest"
+      ],
+      "correctIndex": 0,
+      "id": 12
+    },
+    {
+      "question": "We live in a big city",
+      "answers": [
+        "car",
+        "table",
+        "river",
+        "We live in a big city"
+      ],
+      "correctIndex": 3,
+      "id": 13
+    },
+    {
+      "question": "I like learning English",
+      "answers": [
+        "I like learning English",
+        "dog",
+        "cat",
+        "window"
+      ],
+      "correctIndex": 0,
+      "id": 14
+    },
+    {
+      "question": "I like learning English",
+      "answers": [
+        "food",
+        "I like learning English",
+        "table",
+        "river"
+      ],
+      "correctIndex": 1,
+      "id": 15
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "river",
+        "They are studying together",
+        "house",
+        "cat"
+      ],
+      "correctIndex": 1,
+      "id": 16
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "book",
+        "forest",
+        "I am going to the store",
+        "car"
+      ],
+      "correctIndex": 2,
+      "id": 17
+    },
+    {
+      "question": "They are studying together",
+      "answers": [
+        "house",
+        "book",
+        "They are studying together",
+        "cat"
+      ],
+      "correctIndex": 2,
+      "id": 18
+    },
+    {
+      "question": "I am going to the store",
+      "answers": [
+        "window",
+        "river",
+        "I am going to the store",
+        "food"
+      ],
+      "correctIndex": 2,
+      "id": 19
+    },
+    {
+      "question": "I like learning English",
+      "answers": [
+        "cat",
+        "forest",
+        "I like learning English",
+        "book"
+      ],
+      "correctIndex": 2,
+      "id": 20
+    }
+  ]
+}

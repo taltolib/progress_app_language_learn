@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230533021129",
+    "project_id": "prog-7878",
+    "storage_bucket": "prog-7878.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230533021129:android:4a15ee0307c1ba3dd37c18",
+        "android_client_info": {
+          "package_name": "com.progress.progress"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByOptHujptop3Waw4_B7e9uLHdnGxqixs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

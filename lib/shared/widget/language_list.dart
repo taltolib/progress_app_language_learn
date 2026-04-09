@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 
+// ignore: must_be_immutable
 class LanguageList extends StatelessWidget {
   List<Widget> list = [];
   List<String> title = [];
@@ -23,11 +25,12 @@ class LanguageList extends StatelessWidget {
               height: 50,
               decoration: BoxDecoration(
                 color: isActive
-                    ? AppColors.brandGreen
+                    ? AppColors.green
                     : Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Theme.of(context).dividerColor.withOpacity(0.50),
                     blurRadius: 0,
                   ),
@@ -39,7 +42,7 @@ class LanguageList extends StatelessWidget {
                   list[index],
                   const SizedBox(width: 10),
                   Text(
-                    title[index],
+                    title[index].tr(),
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,

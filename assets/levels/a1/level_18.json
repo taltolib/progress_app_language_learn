@@ -1,0 +1,226 @@
+{
+  "level": 18,
+  "difficulty": "A1",
+  "tasks": [
+    {
+      "question": "table",
+      "answers": [
+        "table",
+        "car",
+        "cat",
+        "house"
+      ],
+      "correctIndex": 0,
+      "id": 1
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "car",
+        "forest",
+        "food",
+        "chair"
+      ],
+      "correctIndex": 3,
+      "id": 2
+    },
+    {
+      "question": "bread",
+      "answers": [
+        "cat",
+        "bread",
+        "house",
+        "dog"
+      ],
+      "correctIndex": 1,
+      "id": 3
+    },
+    {
+      "question": "city",
+      "answers": [
+        "forest",
+        "city",
+        "car",
+        "food"
+      ],
+      "correctIndex": 1,
+      "id": 4
+    },
+    {
+      "question": "apple",
+      "answers": [
+        "window",
+        "table",
+        "food",
+        "apple"
+      ],
+      "correctIndex": 3,
+      "id": 5
+    },
+    {
+      "question": "water",
+      "answers": [
+        "table",
+        "river",
+        "water",
+        "window"
+      ],
+      "correctIndex": 2,
+      "id": 6
+    },
+    {
+      "question": "sun",
+      "answers": [
+        "dog",
+        "sun",
+        "forest",
+        "table"
+      ],
+      "correctIndex": 1,
+      "id": 7
+    },
+    {
+      "question": "car",
+      "answers": [
+        "book",
+        "forest",
+        "house",
+        "car"
+      ],
+      "correctIndex": 3,
+      "id": 8
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "book",
+        "chair",
+        "river",
+        "house"
+      ],
+      "correctIndex": 1,
+      "id": 9
+    },
+    {
+      "question": "table",
+      "answers": [
+        "dog",
+        "car",
+        "cat",
+        "table"
+      ],
+      "correctIndex": 3,
+      "id": 10
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "car",
+        "forest",
+        "chair",
+        "river"
+      ],
+      "correctIndex": 2,
+      "id": 11
+    },
+    {
+      "question": "chair",
+      "answers": [
+        "river",
+        "window",
+        "forest",
+        "chair"
+      ],
+      "correctIndex": 3,
+      "id": 12
+    },
+    {
+      "question": "student",
+      "answers": [
+        "cat",
+        "car",
+        "student",
+        "window"
+      ],
+      "correctIndex": 2,
+      "id": 13
+    },
+    {
+      "question": "school",
+      "answers": [
+        "school",
+        "river",
+        "book",
+        "window"
+      ],
+      "correctIndex": 0,
+      "id": 14
+    },
+    {
+      "question": "bread",
+      "answers": [
+        "dog",
+        "car",
+        "bread",
+        "table"
+      ],
+      "correctIndex": 2,
+      "id": 15
+    },
+    {
+      "question": "car",
+      "answers": [
+        "cat",
+        "book",
+        "house",
+        "car"
+      ],
+      "correctIndex": 3,
+      "id": 16
+    },
+    {
+      "question": "milk",
+      "answers": [
+        "river",
+        "window",
+        "milk",
+        "table"
+      ],
+      "correctIndex": 2,
+      "id": 17
+    },
+    {
+      "question": "sun",
+      "answers": [
+        "car",
+        "sun",
+        "forest",
+        "window"
+      ],
+      "correctIndex": 1,
+      "id": 18
+    },
+    {
+      "question": "pen",
+      "answers": [
+        "food",
+        "pen",
+        "house",
+        "car"
+      ],
+      "correctIndex": 1,
+      "id": 19
+    },
+    {
+      "question": "school",
+      "answers": [
+        "school",
+        "car",
+        "dog",
+        "food"
+      ],
+      "correctIndex": 0,
+      "id": 20
+    }
+  ]
+}
