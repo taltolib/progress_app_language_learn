@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:progress/core/providers/auth_provider.dart';
@@ -12,6 +14,7 @@ import 'package:provider/provider.dart';
 
 class OtpPage extends StatelessWidget {
   final String phone;
+  // isLogin убран — определяем автоматически по наличию профиля в Firestore
   const OtpPage({super.key, required this.phone});
 
   @override
@@ -47,18 +50,18 @@ class OtpPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
-
-            // 6 ячеек для кода
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(6, (i) => _OtpCell(
-                controller: otpProv.controllers[i],
-                focusNode: otpProv.focusNodes[i],
-                onChanged: (v) => otpProv.onChanged(i, v),
-                colors: colors,
-              )),
+              children: List.generate(
+                6,
+                    (i) => _OtpCell(
+                  controller: otpProv.controllers[i],
+                  focusNode: otpProv.focusNodes[i],
+                  onChanged: (v) => otpProv.onChanged(i, v),
+                  colors: colors,
+                ),
+              ),
             ),
-
             const SizedBox(height: 40),
             PushButton(
               height: 70,
@@ -73,15 +76,29 @@ class OtpPage extends StatelessWidget {
                   : 'Подтвердить',
               flagAsset: const SizedBox.shrink(),
               isSelected: false,
-              onTap: authProv.status == AuthStatus.loading ? () {} : () async {
+              onTap: authProv.status == AuthStatus.loading
+                  ? () {}
+                  : () async {
                 final code = otpProv.otpCode;
                 final success = await authProv.verifyOtp(code);
                 if (!context.mounted) return;
 
                 if (success) {
-                  context.go('/create_profile'); // всегда на CreateProfile после OTP
+                  final user = FirebaseAuth.instance.currentUser;
+                  if (user == null) {
+                    TopSnackBar.show(context, 'Ошибка авторизации');
+                    return;
+                  }
+                  // Профиль есть → /main, нет → /create_profile
+                  final doc = await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(user.uid)
+                      .get();
+                  if (!context.mounted) return;
+                  context.go(doc.exists ? '/main' : '/create_profile');
                 } else {
-                  TopSnackBar.show(context, authProv.errorMessage ?? 'Неверный код');
+                  TopSnackBar.show(
+                      context, authProv.errorMessage ?? 'Неверный код');
                   otpProv.clear();
                 }
               },

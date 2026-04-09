@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:progress/core/providers/auth_provider.dart';
 import 'package:progress/core/providers/login_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
@@ -54,7 +55,6 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-
             Transform.translate(
               offset: const Offset(0, -40),
               child: Padding(
@@ -174,13 +174,16 @@ class LoginPage extends StatelessWidget {
                           ),
                         )
                             : const SizedBox.shrink(),
+                        // ← ИСПРАВЛЕНО: передаём authProvider
                         onTap: prov.isLoading
                             ? () {}
-                            : () => prov.handleLogin(context),
+                            : () => prov.handleLogin(
+                          context,
+                          context.read<AuthProvider>(),
+                        ),
                         isSelected: false,
                       ),
                       const SizedBox(height: 16),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

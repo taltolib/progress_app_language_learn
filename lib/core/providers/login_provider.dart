@@ -1,9 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-// ignore: depend_on_referenced_packages
-import 'package:crypto/crypto.dart';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:progress/core/providers/auth_provider.dart';
 import 'package:progress/shared/widget/%20top_snackbar.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -21,13 +17,7 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
-  String _hashPassword(String password) {
-    final bytes = utf8.encode(password);
-    return sha256.convert(bytes).toString();
-  }
-
-  Future<void> handleLogin(BuildContext context) async {
+  Future<void> handleLogin(BuildContext context, AuthProvider authProvider) async {
     final phone = phoneController.text.trim();
     final password = passwordController.text.trim();
 
@@ -47,39 +37,18 @@ class LoginProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    try {
-      final fullPhone = '+998$phone';
-      final doc = await FirebaseFirestore.instance
-          .collection('users')
-          .where('phone', isEqualTo: fullPhone)
-          .limit(1)
-          .get();
+    // ← Теперь делегируем в AuthProvider, который устанавливает isLoggedIn = true
+    final success = await authProvider.signInWithPassword(phone, password);
 
-      if (!context.mounted) return;
+    if (!context.mounted) return;
 
-      if (doc.docs.isEmpty) {
-        TopSnackBar.show(context, 'Аккаунт с таким номером не найден');
-        return;
-      }
-
-      final userData = doc.docs.first.data();
-      final storedHash = userData['passwordHash'] as String?;
-
-      if (storedHash == null || storedHash != _hashPassword(password)) {
-        TopSnackBar.show(context, 'Неверный пароль');
-        return;
-      }
-
-      // Всё верно — входим
-      context.go('/main');
-    } catch (e) {
-      if (context.mounted) {
-        TopSnackBar.show(context, 'Ошибка входа. Попробуйте снова');
-      }
-    } finally {
-      _isLoading = false;
-      notifyListeners();
+    if (!success) {
+      TopSnackBar.show(context, authProvider.errorMessage ?? 'Ошибка входа');
     }
+    // Если success — GoRouter сам редиректнет на /main через refreshListenable
+
+    _isLoading = false;
+    notifyListeners();
   }
 
   @override

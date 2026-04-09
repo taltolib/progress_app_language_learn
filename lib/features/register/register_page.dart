@@ -153,6 +153,14 @@ class RegisterPage extends StatelessWidget {
                             return;
                           }
 
+                          // ← НОВАЯ ПРОВЕРКА
+                          final exists = await authProv.isPhoneAlreadyRegistered(phone);
+                          if (!context.mounted) return;
+                          if (exists) {
+                            TopSnackBar.show(context, 'Аккаунт с этим номером уже существует');
+                            return;
+                          }
+
                           authProv.sendOtp(phone);
 
                           await Future.doWhile(() async {

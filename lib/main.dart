@@ -15,9 +15,11 @@ import 'package:progress/core/providers/login_provider.dart';
 import 'package:progress/core/providers/navigation_provider.dart';
 import 'package:progress/core/providers/search_provider.dart';
 import 'package:progress/core/providers/selected_language_provider.dart';
+import 'package:progress/core/providers/streak_provider.dart';
 import 'package:progress/core/providers/task_image_provider.dart';
 import 'package:progress/core/providers/theme_provider.dart';
 import 'package:progress/core/providers/word_detail_provider.dart';
+import 'package:progress/generated/task/task_generator.dart';
 import 'package:provider/provider.dart';
 
 import 'main/app.dart';
@@ -32,7 +34,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('game_data');
   await AppPrefs.init();
-
+  await TaskGenerator.loadLevels();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ru'), Locale('uz')],
@@ -49,12 +51,12 @@ void main() async {
           ChangeNotifierProvider(create: (_) => LoadingLevelProvider()),
           ChangeNotifierProvider(create: (_) => TaskImageProvider()),
           ChangeNotifierProvider(create: (_) => LoginProvider()),
-
           ChangeNotifierProvider(create: (_) => AuthProvider()),
           ChangeNotifierProvider(create: (_) => CreateProfileProvider()),
           ChangeNotifierProvider(create: (_) => CardsProvider()),
           ChangeNotifierProvider(create: (_) => SearchProvider()),
           ChangeNotifierProvider(create: (_) => WordDetailProvider()),
+          ChangeNotifierProvider(create: (_) => StreakProvider()..init()),
         ],
         child: const App(),
       ),

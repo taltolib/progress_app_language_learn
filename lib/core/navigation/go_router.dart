@@ -22,9 +22,11 @@ GoRouter buildRouter(AuthProvider authProvider) {
     refreshListenable: authProvider,
     initialLocation: '/',
     redirect: (context, state) {
-      final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+      // ← ИСПРАВЛЕНО: используем authProvider.isLoggedIn вместо FirebaseAuth напрямую
+      final isLoggedIn = authProvider.isLoggedIn;
       final introSeen = AppPrefs.introSeen;
       final location = state.matchedLocation;
+
       if (!introSeen) {
         return location == '/introduction' ? null : '/introduction';
       }
@@ -34,7 +36,6 @@ GoRouter buildRouter(AuthProvider authProvider) {
         return guestRoutes.contains(location) ? null : '/login';
       }
       if (location == '/login' || location == '/register') return '/main';
-
       if (location == '/') return '/main';
 
       return null;

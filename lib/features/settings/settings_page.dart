@@ -13,6 +13,7 @@ import 'package:progress/shared/widget/push_button.dart';
 import 'package:progress/shared/widget/section.dart';
 import 'package:progress/shared/widget/settings_switch_tile.dart';
 import 'package:progress/shared/widget/settings_tile.dart';
+import 'package:progress/shared/widget/%20top_snackbar.dart';
 import 'package:provider/provider.dart';
 import 'package:progress/core/providers/theme_provider.dart';
 import 'package:progress/core/providers/language_selection_provider.dart';
@@ -28,29 +29,11 @@ class SettingsPage extends StatelessWidget {
     final cardColor = colors.backgroundAcceptsWhiteOrDark;
     final text = colors.text;
 
-
     return Container(
       color: colors.backgroundWhiteOrDark,
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [
-          // Section(
-          //   cardColor: cardColor,
-          //   children: [
-          //     SettingsTile(
-          //       title: LocaleKeys.getPremium.tr(),
-          //       textPrimary: text,
-          //       showArrow: true,
-          //     ),
-          //     Line(),
-          //     SettingsTile(
-          //       title: LocaleKeys.activateCode.tr(),
-          //       textPrimary: text,
-          //       showArrow: true,
-          //     ),
-          //   ],
-          // ),
-          // const SizedBox(height: 30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
@@ -120,43 +103,71 @@ class SettingsPage extends StatelessWidget {
                     context,
                     0.35,
                     Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                              '',
-                              style:  AppFonts.mulish.s18w600(color: colors.text)
-                          ),
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: const Icon(Icons.close,color: Colors.grey,),
-                          ),
-                        ],
-                      ),
-                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(height: 10,),
-                        Expanded( flex: 2,child: Text(LocaleKeys.titleForDeleteAccount.tr(), style: AppFonts.mulish.s20w500(color: colors.text),textAlign: TextAlign.center,)),
-                        Expanded(child: Text(LocaleKeys.bodyForDeleteAccount.tr(), style: AppFonts.mulish.s15w500(color: Colors.grey), textAlign: TextAlign.center,maxLines: 2,))
+                        Text('', style: AppFonts.mulish.s18w600(color: colors.text)),
+                        GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.close, color: Colors.grey),
+                        ),
                       ],
                     ),
-                    PushButton(
-                      color: AppColors.heartRed,
-                      colorShadow: AppColors.heartRedDark,
-                      borderRadius: 20,
-                      height: 75,
-                      fontSize: 19,
-                      border: Border.all(color:AppColors.heartRedDark,width: 2 ),
-                      colorText: colors.text,
-                      language: LocaleKeys.deleteAccount.tr(),
-                      flagAsset: Container(),
-                      onTap: () {
-                        context.read<AuthProvider>().deleteAccount();
-                         languageProvider.toggleSelect();
-                        context.go('/login');
-                        context.pop();
-                      },
-                      isSelected: languageProvider.isSelect,
+                    Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            LocaleKeys.titleForDeleteAccount.tr(),
+                            style: AppFonts.mulish.s20w500(color: colors.text),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            LocaleKeys.bodyForDeleteAccount.tr(),
+                            style: AppFonts.mulish.s15w500(color: Colors.grey),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ],
+                    ),
+                    // ── ИСПРАВЛЕННАЯ КНОПКА УДАЛЕНИЯ ──────────────
+                    Builder(
+                      builder: (btnContext) => PushButton(
+                        color: AppColors.heartRed,
+                        colorShadow: AppColors.heartRedDark,
+                        borderRadius: 20,
+                        height: 75,
+                        fontSize: 19,
+                        border: Border.all(color: AppColors.heartRedDark, width: 2),
+                        colorText: colors.text,
+                        language: LocaleKeys.deleteAccount.tr(),
+                        flagAsset: Container(),
+                        isSelected: false,
+                        onTap: () async {
+                          // Закрываем диалог сначала
+                          Navigator.pop(btnContext);
+
+                          final authProvider = context.read<AuthProvider>();
+                          final success = await authProvider.deleteAccount();
+
+                          if (!context.mounted) return;
+
+                          if (success) {
+                            // Аккаунт удалён — выходим на логин
+                            context.go('/login');
+                          } else {
+                            // Ошибка — показываем сообщение
+                            // Если requires-recent-login — нужно войти через SMS
+                            TopSnackBar.show(
+                              context,
+                              authProvider.errorMessage ?? 'Ошибка удаления аккаунта',
+                            );
+                          }
+                        },
+                      ),
                     ),
                   );
                 },
