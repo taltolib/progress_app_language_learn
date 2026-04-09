@@ -133,7 +133,6 @@ class SettingsPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // ── ИСПРАВЛЕННАЯ КНОПКА УДАЛЕНИЯ ──────────────
                     Builder(
                       builder: (btnContext) => PushButton(
                         color: AppColors.heartRed,
@@ -147,7 +146,7 @@ class SettingsPage extends StatelessWidget {
                         flagAsset: Container(),
                         isSelected: false,
                         onTap: () async {
-                          // Закрываем диалог сначала
+
                           Navigator.pop(btnContext);
 
                           final authProvider = context.read<AuthProvider>();
@@ -156,11 +155,8 @@ class SettingsPage extends StatelessWidget {
                           if (!context.mounted) return;
 
                           if (success) {
-                            // Аккаунт удалён — выходим на логин
                             context.go('/login');
                           } else {
-                            // Ошибка — показываем сообщение
-                            // Если requires-recent-login — нужно войти через SMS
                             TopSnackBar.show(
                               context,
                               authProvider.errorMessage ?? 'Ошибка удаления аккаунта',
