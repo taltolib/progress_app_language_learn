@@ -40,9 +40,13 @@ An interactive mobile application for learning foreign languages. Built with Flu
 
 ## 📸 Screenshots
 
-> *(Add screenshots here)*
-
----
+| | | |
+|:---:|:---:|:---:|
+| <img src="assets/images/screens/1.jpg" width="200"/> | <img src="assets/images/screens/2.jpg" width="200"/> | <img src="assets/images/screens/3.jpg" width="200"/> |
+| <img src="assets/images/screens/4.jpg" width="200"/> | <img src="assets/images/screens/5.jpg" width="200"/> | <img src="assets/images/screens/6.jpg" width="200"/> |
+| <img src="assets/images/screens/7.jpg" width="200"/> | <img src="assets/images/screens/8.jpg" width="200"/> | <img src="assets/images/screens/9.jpg" width="200"/> |
+| <img src="assets/images/screens/10.jpg" width="200"/> | <img src="assets/images/screens/11.jpg" width="200"/> | <img src="assets/images/screens/12.jpg" width="200"/> |
+| <img src="assets/images/screens/13.jpg" width="200"/> | | |
 
 ## 🚀 Getting Started
 
