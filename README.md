@@ -73,6 +73,10 @@ You can log in with the following test account:
 |-------|-------|
 | Phone | `+998 00 100 01 01` |
 | OTP code | `010101` |
+| Phone_2 | `+998 90 600 98 93` |
+| OTP code | `787878` |
+| Phone_3 | `+998 90 111 11 11` |
+| OTP code | `215130` |
 
 ---
 
