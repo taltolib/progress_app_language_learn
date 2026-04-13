@@ -79,8 +79,8 @@ class LoginPage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 17,
+                              horizontal: 16,
+                              vertical: 16
                             ),
                             decoration: BoxDecoration(
                               color: colors.backgroundWhiteOrDark,
@@ -95,7 +95,7 @@ class LoginPage extends StatelessWidget {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16 ),
                               decoration: BoxDecoration(
                                 color: colors.backgroundWhiteOrDark,
                                 borderRadius: BorderRadius.circular(15),
@@ -112,7 +112,7 @@ class LoginPage extends StatelessWidget {
                                 decoration: const InputDecoration(
                                   counterText: '',
                                   hintText: '901234567',
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(color: Colors.grey,fontSize: 14),
                                   border: InputBorder.none,
                                 ),
                               ),
@@ -122,7 +122,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                         decoration: BoxDecoration(
                           color: colors.backgroundWhiteOrDark,
                           borderRadius: BorderRadius.circular(15),
@@ -139,8 +139,10 @@ class LoginPage extends StatelessWidget {
                           ],
                           decoration: InputDecoration(
                             hintText: 'Пароль',
-                            hintStyle: const TextStyle(color: Colors.grey),
+                            hintStyle: const TextStyle(color: Colors.grey ,fontSize: 14),
                             border: InputBorder.none,
+                            isDense: true,
+                            contentPadding: EdgeInsets.symmetric(vertical: 16),
                             suffixIcon: GestureDetector(
                               onTap: prov.togglePasswordVisibility,
                               child: Icon(
@@ -148,7 +150,7 @@ class LoginPage extends StatelessWidget {
                                     ? Icons.visibility_off
                                     : Icons.visibility,
                                 color: colors.text,
-                                size: 20,
+                                size: 16,
                               ),
                             ),
                           ),
@@ -174,7 +176,6 @@ class LoginPage extends StatelessWidget {
                           ),
                         )
                             : const SizedBox.shrink(),
-                        // ← ИСПРАВЛЕНО: передаём authProvider
                         onTap: prov.isLoading
                             ? () {}
                             : () => prov.handleLogin(

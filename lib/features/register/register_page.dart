@@ -81,8 +81,8 @@ class RegisterPage extends StatelessWidget {
                         children: [
                           Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 17,
+                              horizontal: 16,
+                              vertical: 16
                             ),
                             decoration: BoxDecoration(
                               color: colors.backgroundWhiteOrDark,
@@ -183,7 +183,6 @@ class RegisterPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // ── Назад на логин ─────────────────────────
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

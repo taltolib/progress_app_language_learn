@@ -60,6 +60,7 @@ class _SearchPageState extends State<SearchPage> {
               )
                   : ListView.builder(
                 itemCount: provider.results.length,
+                padding: EdgeInsets.symmetric(vertical: 0),
                 itemBuilder: (context, index) {
                   final l = provider.results[index];
                   return WordCard(

@@ -34,9 +34,14 @@ class WordCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Text(
-                en,
-                style: AppFonts.mulish.s30w700(color: colors.text),
+              child: Row(
+                children: [
+                  Text(
+                    en,
+                    style: AppFonts.mulish.s30w700(color: colors.text),
+                  ),
+                  Icon(Icons.heart_broken, size: 20, color: colors.text)
+                ],
               ),
             ),
             const SizedBox( height: 5,),

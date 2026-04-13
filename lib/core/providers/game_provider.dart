@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:progress/domain/enums/streak_day_status.dart';
@@ -246,7 +248,7 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void finishLevel(int levelId) {
+  void finishLevel(int levelId) async {
     if (isLevelFinished) return;
     
     isLevelFinished = true;
@@ -257,6 +259,16 @@ class GameProvider extends ChangeNotifier {
       levelResults[levelId] = score;
       final mapToSave = levelResults.map((k, v) => MapEntry(k.toString(), v));
       _box.put('levelResults', mapToSave);
+      final uid = FirebaseAuth.instance.currentUser?.uid;
+      if (uid != null) {
+        await FirebaseFirestore.instance.collection('users').doc(uid).update({
+          'nextLevel': nextLevel,
+          'hearts': playerProgress.hearts,
+          'streakCount': playerProgress.streakCount,
+          'levelResults': levelResults.map((k, v) => MapEntry(k.toString(), v)),
+          'lastCompletedDate': playerProgress.lastCompletedDate?.toIso8601String(),
+        });
+      }
     }
 
     double accuracy = accuracyPercentage;
@@ -305,5 +317,30 @@ class GameProvider extends ChangeNotifier {
     savedWeek[currentWeekday] = 'completed';
     _box.put('weekStatus', savedWeek);
     weekProgress = savedWeek.map((e) => StreakDayStatus.values.firstWhere((v) => v.name == e)).toList();
+  }
+
+  Future<void> loadFromFirestore(String uid) async {
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get();
+
+    if (!doc.exists) return;
+    final data = doc.data()!;
+
+    nextLevel = data['nextLevel'] ?? 1;
+    playerProgress.hearts = data['hearts'] ?? 26;
+    playerProgress.streakCount = data['streakCount'] ?? 0;
+
+    final results = Map<String, dynamic>.from(data['levelResults'] ?? {});
+    levelResults = results.map((k, v) => MapEntry(int.parse(k), v as int));
+
+    // Сохранить локально тоже
+    _box.put('nextLevel', nextLevel);
+    _box.put('hearts', playerProgress.hearts);
+    _box.put('streakCount', playerProgress.streakCount);
+    _box.put('levelResults', results);
+
+    notifyListeners();
   }
 }

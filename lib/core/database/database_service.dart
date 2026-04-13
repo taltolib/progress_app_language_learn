@@ -203,7 +203,6 @@ class DatabaseService {
     ''',
       [q, q, q],
     );
-
     return rows
         .map(
           (r) => SearchResult(

@@ -100,10 +100,11 @@ class _MainScaffoldState extends State<MainScaffold> {
           child: CustomHomeAppBar(icon: Icons.notifications_none),
         );
       case 1: // SearchPage
-        return const PreferredSize(
-          preferredSize: Size.fromHeight(100),
-          child: CustomHomeAppBar(icon: Icons.notifications_none),
-        );
+        return null;
+        // return const PreferredSize(
+        //   preferredSize: Size.fromHeight(100),
+        //   child: CustomHomeAppBar(icon: Icons.notifications_none),
+        // );
       case 2: // GamePage
         return PreferredSize(
           preferredSize: const Size.fromHeight(75),
