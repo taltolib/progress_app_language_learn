@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +9,7 @@ import 'package:progress/domain/models/card_content_model.dart';
 import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/card_for_home_page.dart';
 import 'package:provider/provider.dart';
+import 'package:progress/shared/widget/level_progress_banner.dart';
 import 'package:progress/shared/widget/streak_card.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -89,9 +89,10 @@ class _HomePageState extends State<HomePage>
                 body: LocaleKeys.streakBody5.tr(),
                 weekProgress: gameProvider.weekProgress,
               ),
-              const SizedBox(height: 25),
+              const SizedBox(height: 15),
+              const LevelProgressBanner(),
+              const SizedBox(height: 30),
               CardForHomePage(
-                title: 'Grammar',
                 word: cardsProvider.grammarCard?.word ?? '...',
                 onTap: cardsProvider.grammarCard != null
                     ? () => context.push(
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage>
                           'type': CardContentType.grammar,
                         },
                       )
-                    : null,
+                    : null, title: 'Grammer',
               ),
               const SizedBox(height: 25),
               CardForHomePage(

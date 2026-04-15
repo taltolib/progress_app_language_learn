@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/providers/search_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
+import 'package:progress/shared/widget/work_card.dart' show WordCard;
 import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/language_search_field.dart';
-import 'package:progress/shared/widget/work_card.dart';
 import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
@@ -17,9 +17,11 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final TextEditingController _controller = TextEditingController();
 
-  int currentIndex = 1;
-
-
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,42 +39,43 @@ class _SearchPageState extends State<SearchPage> {
               provider.search(value);
             },
           ),
-          const SizedBox(height: 20),
-          if (_controller.text.isEmpty)
-            Expanded(
-              child: Center(
-                child: Text(
-                  LocaleKeys.writeWord.tr(),
-                  style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
-                ),
-              ),
-            )
-          else
-            Expanded(
-              child: provider.isLoading
-                  ?  Center(child: CircularProgressIndicator(color: AppColors.green,))
-                  : provider.results.isEmpty
-                  ? Center(
-                child: Text(
-                  LocaleKeys.dataNotFound.tr(),
-                  style: TextStyle(color: Colors.grey.shade500),
-                ),
-              )
-                  : ListView.builder(
-                itemCount: provider.results.length,
-                itemBuilder: (context, index) {
-                  final l = provider.results[index];
-                  return WordCard(
-                    en: l.word,
-                    pronunciation: l.pronunciation ?? '',
-                    ru: l.wordRu ?? '',
-                    uz: l.wordUz ?? '',
-                  );
-                },
-              ),
-            ),
+          const SizedBox(height: 12),
+         Expanded(child: _buildSearch(provider)),
         ],
       ),
+    );
+  }
+
+
+  Widget _buildSearch(SearchProvider provider) {
+    if (_controller.text.isEmpty) {
+      return Center(
+        child: Text(
+          LocaleKeys.writeWord.tr(),
+          style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
+        ),
+      );
+    }
+    if (provider.isLoading) {
+      return Center(
+        child: CircularProgressIndicator(color: AppColors.green),
+      );
+    }
+    if (provider.results.isEmpty) {
+      return Center(
+        child: Text(
+          LocaleKeys.dataNotFound.tr(),
+          style: TextStyle(color: Colors.grey.shade500),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: provider.results.length,
+      padding: EdgeInsets.zero,
+      itemBuilder: (context, index) {
+        return WordCard(result: provider.results[index],);
+      },
     );
   }
 }

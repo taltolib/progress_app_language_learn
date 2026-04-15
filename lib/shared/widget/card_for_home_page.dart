@@ -26,6 +26,7 @@ class CardForHomePage extends StatelessWidget {
               color: colors.backgroundAcceptsWhiteOrDark,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
+                // ignore: deprecated_member_use
                 color: Colors.grey.shade400.withOpacity(0.08),
                 width: 1,
               ),

@@ -57,7 +57,6 @@ class _CardPageState extends State<CardPage> {
       builder: (context, provider, _) {
         final title = provider.detail?.word ?? '';
         final body = _getBodyForType(provider);
-
         return Scaffold(
           backgroundColor: colors.backgroundWhiteOrDark,
           appBar: appBarCustom(context, widget.type.label),
@@ -72,6 +71,7 @@ class _CardPageState extends State<CardPage> {
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
+                          // ignore: deprecated_member_use
                           color: Colors.grey.withOpacity(0.15),
                           blurRadius: 12,
                           offset: const Offset(0, 4),

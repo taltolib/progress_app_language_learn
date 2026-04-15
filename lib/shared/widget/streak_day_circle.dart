@@ -64,6 +64,7 @@ class StreakDayCircle extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
+                    // ignore: deprecated_member_use
                     color: Colors.lightBlue.withOpacity(0.4),
                     blurRadius: 10,
                     spreadRadius: 2,

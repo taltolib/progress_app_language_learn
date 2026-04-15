@@ -1,12 +1,12 @@
 class CardContentModel {
-  final String title;        // заголовок слова или темы
-  final String htmlBody;     // HTML из БД (grammar, thesaurus, collocation, metaphor, difference)
+  final String title;
+  final String htmlBody;
   final CardContentType type;
 
-  // Только для Differences
+
   final String? differenceWord; // поле `word` из таблицы difference
 
-  // Только для Speaking
+
   final List<SpeakingPhrase>? speakingPhrases;
 
   const CardContentModel({
@@ -40,14 +40,13 @@ extension CardContentTypeLabel on CardContentType {
   }
 }
 
-/// Модель для Speaking — каждая фраза с переводами и примерами
 class SpeakingPhrase {
   final int phraseId;
-  final String phrase;          // e.g. "take sb aback"
-  final String? comment;        // e.g. "[informal]"
-  final String? synonymsHtml;   // HTML synonyms
-  final List<String> translations; // узбекские переводы
-  final List<String> examples;    // примеры предложений
+  final String phrase;
+  final String? comment;
+  final String? synonymsHtml;
+  final List<String> translations;
+  final List<String> examples;
 
   const SpeakingPhrase({
     required this.phraseId,

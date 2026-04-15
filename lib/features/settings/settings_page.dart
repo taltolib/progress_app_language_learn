@@ -2,6 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:progress/core/providers/auth_provider.dart';
+import 'package:progress/core/providers/game_provider.dart';
+import 'package:progress/core/providers/favorites_provider.dart';
+import 'package:progress/core/providers/streak_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
@@ -28,7 +31,6 @@ class SettingsPage extends StatelessWidget {
     final colors = Theme.of(context).extension<AppThemeColors>()!;
     final cardColor = colors.backgroundAcceptsWhiteOrDark;
     final text = colors.text;
-
     return Container(
       color: colors.backgroundWhiteOrDark,
       child: ListView(
@@ -55,9 +57,7 @@ class SettingsPage extends StatelessWidget {
                   style: AppFonts.mulish.s15w500(color: text),
                 ),
                 showArrow: true,
-                onTap: () {
-                  themeProvider.toggleTheme(!themeProvider.isDarkMode);
-                },
+                onTap: () {},
               ),
               Line(),
               SettingsTile(
@@ -83,8 +83,6 @@ class SettingsPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 30),
-
-          /// ACCOUNT
           Section(
             cardColor: cardColor,
             children: [
@@ -92,8 +90,69 @@ class SettingsPage extends StatelessWidget {
                 title: LocaleKeys.logout.tr(),
                 textPrimary: text,
                 onTap: () {
-                  context.read<AuthProvider>().signOut();
-                  context.go('/login');
+                  customShowBottomSheetDialog(
+                    context,
+                    0.35,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '',
+                          style: AppFonts.mulish.s18w600(color: colors.text),
+                        ),
+                        GestureDetector(
+                          onTap: () => Navigator.pop(context),
+                          child: const Icon(Icons.close, color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        Text(
+                          LocaleKeys.titleForLogOut.tr(),
+                          style: AppFonts.mulish.s20w500(color: colors.text),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 10),
+                        Expanded(
+                          child: Text(
+                            LocaleKeys.bodyForLogOut.tr(),
+                            style: AppFonts.mulish.s15w500(color: Colors.grey),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Builder(
+                      builder: (btnContext) => PushButton(
+                        color: AppColors.blue,
+                        colorShadow: AppColors.blueDark,
+                        borderRadius: 20,
+                        height: 75,
+                        fontSize: 19,
+                        border: Border.all(
+                          color: AppColors.blueDark,
+                          width: 1.8,
+                        ),
+                        colorText: colors.text,
+                        language: LocaleKeys.logout.tr(),
+                        flagAsset: Container(),
+                        isSelected: false,
+                        onTap: () async {
+                          Navigator.pop(btnContext);
+                          await context.read<GameProvider>().clearHiveForCurrentUser();
+                          context.read<GameProvider>().resetForLogout();
+                          await context.read<StreakProvider>().clearForCurrentUser();
+                          context.read<FavoritesProvider>().clearMemory();
+                          await context.read<AuthProvider>().signOut();
+                          if (context.mounted) context.go('/login');
+                        },
+                      ),
+                    ),
+                  );
+
                 },
               ),
               Line(),
@@ -105,7 +164,10 @@ class SettingsPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('', style: AppFonts.mulish.s18w600(color: colors.text)),
+                        Text(
+                          '',
+                          style: AppFonts.mulish.s18w600(color: colors.text),
+                        ),
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
                           child: const Icon(Icons.close, color: Colors.grey),
@@ -115,14 +177,12 @@ class SettingsPage extends StatelessWidget {
                     Column(
                       children: [
                         const SizedBox(height: 10),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            LocaleKeys.titleForDeleteAccount.tr(),
-                            style: AppFonts.mulish.s20w500(color: colors.text),
-                            textAlign: TextAlign.center,
-                          ),
+                        Text(
+                          LocaleKeys.titleForDeleteAccount.tr(),
+                          style: AppFonts.mulish.s20w500(color: colors.text),
+                          textAlign: TextAlign.center,
                         ),
+                        const SizedBox(height: 10),
                         Expanded(
                           child: Text(
                             LocaleKeys.bodyForDeleteAccount.tr(),
@@ -140,15 +200,20 @@ class SettingsPage extends StatelessWidget {
                         borderRadius: 20,
                         height: 75,
                         fontSize: 19,
-                        border: Border.all(color: AppColors.heartRedDark, width: 2),
+                        border: Border.all(
+                          color: AppColors.heartRedDark,
+                          width: 2,
+                        ),
                         colorText: colors.text,
                         language: LocaleKeys.deleteAccount.tr(),
                         flagAsset: Container(),
                         isSelected: false,
                         onTap: () async {
-
                           Navigator.pop(btnContext);
-
+                          await context.read<GameProvider>().clearHiveForCurrentUser();
+                          context.read<GameProvider>().resetForLogout();
+                          await context.read<StreakProvider>().clearForCurrentUser();
+                          context.read<FavoritesProvider>().clearMemory();
                           final authProvider = context.read<AuthProvider>();
                           final success = await authProvider.deleteAccount();
 
@@ -159,7 +224,8 @@ class SettingsPage extends StatelessWidget {
                           } else {
                             TopSnackBar.show(
                               context,
-                              authProvider.errorMessage ?? 'Ошибка удаления аккаунта',
+                              authProvider.errorMessage ??
+                                  'Ошибка удаления аккаунта',
                             );
                           }
                         },

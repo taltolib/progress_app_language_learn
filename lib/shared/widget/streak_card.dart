@@ -29,6 +29,7 @@ class StreakCard extends StatelessWidget {
       decoration: BoxDecoration(
         color:  colors.backgroundAcceptsWhiteOrDark,
         borderRadius: BorderRadius.circular(20),
+        // ignore: deprecated_member_use
         border: Border.all(color: Colors.grey.shade400.withOpacity(0.08), width: 1),
       ),
       child: Column(

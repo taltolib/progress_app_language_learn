@@ -4,7 +4,7 @@ import 'package:progress/core/theme/colors/theme_custom.dart';
 
 enum LevelStatus {
   locked,
-  blue,
+  orange,
   green,
   gold
 }
@@ -12,13 +12,13 @@ enum LevelStatus {
 LevelStatus getStatus(int score, {bool isLocked = false}) {
   if (isLocked) return LevelStatus.locked;
   if (score == 100) return LevelStatus.gold;
-  if (score >= 75) return LevelStatus.green;
-  if (score > 0 && score < 75) return LevelStatus.blue;
-  return LevelStatus.green; // По умолчанию зеленый для открытого уровня с 0 баллов
+  if (score >= 75) return LevelStatus.orange;
+  if (score  == 0) return LevelStatus.green;
+  return LevelStatus.green;
 }
 
 extension LevelStatusExtension on LevelStatus {
-  // Возвращает верхний цвет (основной)
+
   Color getTopColor(BuildContext context) {
     final themeColors = Theme.of(context).extension<AppThemeColors>()!;
 
@@ -27,8 +27,8 @@ extension LevelStatusExtension on LevelStatus {
         return themeColors.backgroundWhiteOrDark;
       case LevelStatus.gold:
         return AppColors.gold;
-      case LevelStatus.blue:
-        return AppColors.blue;
+      case LevelStatus.orange:
+        return AppColors.orange;
       case LevelStatus.green:
         return AppColors.green;
     }
@@ -43,8 +43,8 @@ extension LevelStatusExtension on LevelStatus {
         return themeColors.backgroundAcceptsWhiteOrDark;
       case LevelStatus.gold:
         return  AppColors.darkGold;
-      case LevelStatus.blue:
-        return AppColors.blueDark;
+      case LevelStatus.orange:
+        return AppColors.darkOrange;
       case LevelStatus.green:
         return AppColors.blackGreen;
     }
@@ -58,8 +58,8 @@ extension LevelStatusExtension on LevelStatus {
         return themeColors.backgroundAcceptsWhiteOrDark;
       case LevelStatus.gold:
         return  AppColors.darkGold;
-      case LevelStatus.blue:
-        return AppColors.blueDark;
+      case LevelStatus.orange:
+        return AppColors.darkOrange;
       case LevelStatus.green:
         return AppColors.blackGreen;
     }

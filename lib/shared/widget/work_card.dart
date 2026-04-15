@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:progress/core/providers/favorites_provider.dart';
+import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
+import 'package:progress/domain/models/word_model.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
-
+import 'package:provider/provider.dart';
 
 class WordCard extends StatelessWidget {
-  final String en;
-  final String pronunciation;
-  final String ru;
-  final String uz;
+  final SearchResult result;
 
   const WordCard({
     super.key,
-    required this.en,
-    required this.pronunciation,
-    required this.ru,
-    required this.uz,
+    required this.result,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.extension<AppThemeColors>()!;
+    final favProv = context.watch<FavoritesProvider>();
+    final isFav = favProv.isFavorite(result.id);
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Container(
         height: 180,
         padding: const EdgeInsets.all(20),
@@ -33,16 +33,39 @@ class WordCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Text(
-                en,
-                style: AppFonts.mulish.s30w700(color: colors.text),
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Text(
+                    result.word,
+                    style: AppFonts.mulish.s30w700(color: colors.text),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => context.read<FavoritesProvider>().toggle(result),
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    transitionBuilder: (child, anim) => ScaleTransition(
+                      scale: anim,
+                      child: child,
+                    ),
+                    child: Icon(
+                      isFav ? Icons.favorite : Icons.favorite_border,
+                      key: ValueKey(isFav),
+                      color: isFav ? AppColors.green : colors.text,
+                      size: 24,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            const SizedBox( height: 5,),
+            const SizedBox(height: 5),
             Flexible(
               child: Text(
-                "[$pronunciation]",
+                "[${result.pronunciation ?? ''}]",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: AppFonts.mulish.s18w400(color: Colors.grey),
@@ -52,11 +75,11 @@ class WordCard extends StatelessWidget {
             Flexible(
               child: Row(
                 children: [
-                  Expanded(child: Text('🇷🇺', style: TextStyle(fontSize: 30))),
+                  Expanded(child: Text('🇷🇺', style: const TextStyle(fontSize: 30))),
                   Expanded(
                     flex: 5,
                     child: Text(
-                      ru,
+                      result.wordRu ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppFonts.mulish.s22w600(color: colors.text),
@@ -68,11 +91,11 @@ class WordCard extends StatelessWidget {
             Flexible(
               child: Row(
                 children: [
-                  Expanded(child: Text('🇺🇿', style: TextStyle(fontSize: 30))),
+                  Expanded(child: Text('🇺🇿', style: const TextStyle(fontSize: 30))),
                   Expanded(
                     flex: 5,
                     child: Text(
-                      uz,
+                      result.wordUz ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: AppFonts.mulish.s22w600(color: colors.text),
@@ -86,36 +109,4 @@ class WordCard extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _addButton(
-  //   BuildContext context,
-  //   Color color,
-  //   TextEditingController controller,
-  // ) {
-  //   return InkWell(
-  //     key: const ValueKey("add"),
-  //     onTap: () {
-  //       customShowBottomSheetDialog(
-  //         context,
-  //         0.9,
-  //         SizedBox(
-  //           height: 60,
-  //           child: LanguageSearchField(
-  //             controller: controller,
-  //             hintText: "Начните вводить слово",
-  //           ),
-  //         ),
-  //         CountryListWidget(word: en),
-  //         null,
-  //       );
-  //     },
-  //     child: Row(
-  //       children: [
-  //         Icon(Icons.add, size: 18, color: color),
-  //         const SizedBox(width: 6),
-  //         Text("Добавить язык", style: AppFonts.mulish.s16w400(color: color)),
-  //       ],
-  //     ),
-  //   );
-  // }
 }

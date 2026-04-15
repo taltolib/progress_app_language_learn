@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:progress/core/hive/app_prefs.dart';
@@ -9,8 +8,10 @@ import 'package:progress/features/create/create_profile_page.dart';
 import 'package:progress/features/login/login_page.dart';
 import 'package:progress/features/otp/otp_page.dart';
 import 'package:progress/features/register/register_page.dart';
+import 'package:progress/shared/widget/basket_page.dart';
 import 'package:progress/shared/widget/card_page.dart';
 import 'package:progress/shared/widget/main_scaffold.dart';
+import 'package:progress/shared/widget/notifications_page.dart';
 import 'package:progress/shared/widget/task_page.dart';
 import 'package:provider/provider.dart';
 import '../../features/Introduction/introduction_page.dart';
@@ -22,20 +23,33 @@ GoRouter buildRouter(AuthProvider authProvider) {
     refreshListenable: authProvider,
     initialLocation: '/',
     redirect: (context, state) {
-      // ← ИСПРАВЛЕНО: используем authProvider.isLoggedIn вместо FirebaseAuth напрямую
       final isLoggedIn = authProvider.isLoggedIn;
       final introSeen = AppPrefs.introSeen;
+      final loginScreenSeen = AppPrefs.isSeen; // ✅ читает из SharedPreferences
       final location = state.matchedLocation;
 
+      // 1. Если интро ещё не видел — всегда на интро
       if (!introSeen) {
         return location == '/introduction' ? null : '/introduction';
       }
 
+      // 2. Если не авторизован — на логин
+      // ✅ isLoggedIn теперь проверяет и Firebase и SharedPreferences
       if (!isLoggedIn) {
         const guestRoutes = ['/login', '/register', '/otp', '/create_profile'];
         return guestRoutes.contains(location) ? null : '/login';
       }
-      if (location == '/login' || location == '/register') return '/main';
+
+      // 3. Авторизован — если был на логин/регистрации или на стартовом экране, идём на main
+      // ✅ Исправлена логика: если loginScreenSeen == true → уже входил → на /main
+      if (loginScreenSeen) {
+        if (location == '/' ||
+            location == '/login' ||
+            location == '/register') {
+          return '/main';
+        }
+      }
+
       if (location == '/') return '/main';
 
       return null;
@@ -67,7 +81,8 @@ GoRouter buildRouter(AuthProvider authProvider) {
       ),
       GoRoute(
         path: '/login',
-        pageBuilder: (context, state) => const MaterialPage(child: LoginPage()),
+        pageBuilder: (context, state) =>
+        const MaterialPage(child: LoginPage()),
       ),
       GoRoute(
         path: '/register',
@@ -85,11 +100,13 @@ GoRouter buildRouter(AuthProvider authProvider) {
       ),
       GoRoute(
         path: '/create_profile',
-        pageBuilder: (context, state) => MaterialPage(child: CreateProfilePage()),
+        pageBuilder: (context, state) =>
+            MaterialPage(child: CreateProfilePage()),
       ),
       GoRoute(
         path: '/',
-        pageBuilder: (context, state) => const MaterialPage(child: AnimationWelcome()),
+        pageBuilder: (context, state) =>
+        const MaterialPage(child: AnimationWelcome()),
       ),
       GoRoute(
         path: '/card',
@@ -99,6 +116,15 @@ GoRouter buildRouter(AuthProvider authProvider) {
           final type = extra['type'] as CardContentType;
           return CardPage(wordId: wordId, type: type);
         },
+      ),
+      GoRoute(
+        path: '/basket',
+        pageBuilder: (context, state) => MaterialPage(child: BasketPage()),
+      ),
+      GoRoute(
+        path: '/notifications',
+        pageBuilder: (context, state) =>
+        const MaterialPage(child: NotificationsPage()),
       ),
       GoRoute(
         path: '/main',
