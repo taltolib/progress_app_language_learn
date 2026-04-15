@@ -56,6 +56,7 @@ class _BallCounterState extends State<BallCounter> {
                 height: 4,
                 width: progressWidth > 10 ? progressWidth - 10 : 0,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color:  Colors.white.withOpacity(0.3),
                   borderRadius: BorderRadius.circular(10),
                 ),

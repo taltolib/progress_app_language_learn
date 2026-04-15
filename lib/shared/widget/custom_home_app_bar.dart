@@ -7,8 +7,9 @@ import 'package:progress/generated/fonts/app_fonts.dart';
  import 'package:progress/generated/tr/locale_keys.dart';
 
 class CustomHomeAppBar extends StatelessWidget {
+  final Function()? onTap;
   final IconData icon;
-  const CustomHomeAppBar({super.key, required this.icon});
+  const CustomHomeAppBar({super.key, required this.icon, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +44,13 @@ class CustomHomeAppBar extends StatelessWidget {
                 ),
               ],
             ),
-            Icon(
-             icon,
-              color: colors.text ,
-              size: 26,
+            GestureDetector(
+              onTap: onTap,
+              child: Icon(
+               icon,
+                color: colors.text ,
+                size: 26,
+              ),
             ),
           ],
         ),

@@ -14,7 +14,7 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  final totalLevels = 80;
+  final totalLevels = 150;
 
   double snakeX(double t) {
     return sin(t * pi * 2.2) * 0.75;
@@ -37,21 +37,17 @@ class _GamePageState extends State<GamePage> {
         final bool isCompleted = score >= 70;
         final bool isActive = levelId == game.nextLevel;
 
-        return Column(
-          children: [
-            Align(
-              alignment: Alignment(alignmentX, 0),
-              child: LevelPushCustomButton(
-                level: LevelModel(id: levelId, tasks: []),
-                isActive: isActive,
-                isCompleted: isCompleted,
-                isLocked: isLocked,
-                onTap: () {
-                  context.push('/level/$levelId');
-                },
-              ),
-            ),
-          ],
+        return Align(
+          alignment: Alignment(alignmentX, 0),
+          child: LevelPushCustomButton(
+            level: LevelModel(id: levelId, tasks: []),
+            isActive: isActive,
+            isCompleted: isCompleted,
+            isLocked: isLocked,
+            onTap: () {
+              context.push('/level/$levelId');
+            },
+          ),
         );
       },
     );

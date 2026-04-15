@@ -5,6 +5,15 @@ abstract class LocaleKeys {
   static const String authUzbek = 'auth.uzbek';
   static const String authRussian = 'auth.russian';
   static const String authEnglish = 'auth.english';
+  static const String entry = 'auth.entry';
+  static const String password = 'auth.password';
+  static const String noAccount = 'auth.no_account';
+  static const String register = 'auth.register';
+  static const String login = 'auth.login';
+  static const String sendingCode = 'auth.sending_code';
+  static const String giveCode = 'auth.give_code';
+  static const String yesAccount = 'auth.yes_account';
+  static const String codeEnter = 'auth.code_enter';
 
   // Introduction / Onboarding
   static const String discoverTitle = 'discover.title';
@@ -42,6 +51,9 @@ abstract class LocaleKeys {
   static const String deleteAccount = 'delete_account';
   static const String titleForDeleteAccount = 'title_for_delete_account';
   static const String bodyForDeleteAccount = 'body_for_delete_account';
+  static const String bodyForLogOut = 'body_for_log_out';
+  static const String titleForLogOut = 'title_for_log_out';
+
 
   // Selection
   static const String choiceLang = 'choice_lang';
@@ -76,6 +88,16 @@ abstract class LocaleKeys {
   static const String allow = 'allow';
   static const String levelHeader = 'level_header';
   static const String levelTasks = 'level_tasks';
+  static const String searchWord = 'search_word';
+  static const String favoriteWord = 'favorite_word';
+  static const String noFavoriteWords = 'no_favorite_words';
+  static const String pushForLike = 'push_for_like';
+  static const String upToLore = 'up_to_lore';
+  static const String goToLevelUp = 'go_to_level_up';
+  static const String goTo = 'go_to';
+  static const String notificationPage = 'notification_page';
+  static const String notificationPageTitle = 'notification_page_title';
+  static const String notificationPageBody = 'notification_page_body';
 
   // Compliments
   static const String compliment1 = 'compliment_1';
@@ -107,6 +129,11 @@ abstract class LocaleKeys {
   static const String errorPasswordMustOneDigit = 'error.password_must_one_digit';
   static const String errorPasswordNotMatch = 'error.password_not_match';
   static const String errorSafe = 'error.error_safe';
+  static const String errorSendSms = 'error.error_send_sms';
+  static const String errorYesAccount = 'error.error_yes_account';
+  static const String errorCorrect9Length = 'error.error_correct_9_length';
+  static const String errorAuth = 'error.error_auth';
+  static const String errorPasswordNoCorrect = 'error.error_password_no_correct';
 
   // Tips
   static const String tip1 = 'tips.tip_1';

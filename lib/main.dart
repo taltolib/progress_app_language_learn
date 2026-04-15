@@ -7,6 +7,7 @@ import 'package:progress/core/hive/app_prefs.dart';
 import 'package:progress/core/providers/auth_provider.dart';
 import 'package:progress/core/providers/cards_provider.dart';
 import 'package:progress/core/providers/create_profile_provider.dart';
+import 'package:progress/core/providers/favorites_provider.dart';
 import 'package:progress/core/providers/game_provider.dart';
 import 'package:progress/core/providers/introduction_provider.dart';
 import 'package:progress/core/providers/language_selection_provider.dart';
@@ -19,7 +20,6 @@ import 'package:progress/core/providers/streak_provider.dart';
 import 'package:progress/core/providers/task_image_provider.dart';
 import 'package:progress/core/providers/theme_provider.dart';
 import 'package:progress/core/providers/word_detail_provider.dart';
-import 'package:progress/generated/task/task_generator.dart';
 import 'package:provider/provider.dart';
 
 import 'main/app.dart';
@@ -33,8 +33,19 @@ void main() async {
 
   await Hive.initFlutter();
   await Hive.openBox('game_data');
+  await Hive.openBox('streakBox');
+  await Hive.openBox('favorites_box');
   await AppPrefs.init();
-  await TaskGenerator.loadLevels();
+  await AppPrefs.initPrefs();
+
+
+
+  final favoritesProvider = FavoritesProvider();
+  await favoritesProvider.init();
+
+  final streakProvider = StreakProvider();
+  await streakProvider.init();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ru'), Locale('uz')],
@@ -56,7 +67,8 @@ void main() async {
           ChangeNotifierProvider(create: (_) => CardsProvider()),
           ChangeNotifierProvider(create: (_) => SearchProvider()),
           ChangeNotifierProvider(create: (_) => WordDetailProvider()),
-          ChangeNotifierProvider(create: (_) => StreakProvider()..init()),
+          ChangeNotifierProvider.value(value: streakProvider),
+          ChangeNotifierProvider.value(value: favoritesProvider),
         ],
         child: const App(),
       ),

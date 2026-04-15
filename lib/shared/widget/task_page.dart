@@ -1,11 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:progress/core/providers/game_provider.dart';
+import 'package:progress/core/providers/language_selection_provider.dart';
 import 'package:progress/core/providers/task_image_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
 import 'package:progress/domain/models/level_model.dart';
-import 'package:progress/generated/task/task_generator.dart';
+import 'package:progress/generated/task/level_repository.dart';
 import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/ball_counter.dart';
 import 'package:progress/shared/widget/level_summary_widget.dart';
@@ -29,11 +30,27 @@ class _TaskPageState extends State<TaskPage> {
   @override
   void initState() {
     super.initState();
-    _levelFuture = TaskGenerator.loadOneLevel(widget.id);
+
+
+    final langCode = _getLangCode(context);
+    _levelFuture = LevelRepository.instance.generateLevel(widget.id, langCode);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<GameProvider>().startLevel(widget.id);
     });
+  }
+
+
+  String _getLangCode(BuildContext context) {
+    final index = context.read<LanguageSelectionProvider>().selectedIndex;
+    switch (index) {
+      case 1:
+        return 'ru';
+      case 2:
+        return 'en';
+      default:
+        return 'uz';
+    }
   }
 
   @override
@@ -52,7 +69,12 @@ class _TaskPageState extends State<TaskPage> {
           }
 
           if (snapshot.hasError) {
-            return Center(child: Text(LocaleKeys.errorWithText.tr(args: [snapshot.error.toString()])));
+            return Center(
+              child: Text(
+                LocaleKeys.errorWithText
+                    .tr(args: [snapshot.error.toString()]),
+              ),
+            );
           }
 
           if (!snapshot.hasData) {
@@ -62,13 +84,14 @@ class _TaskPageState extends State<TaskPage> {
           final level = snapshot.data!;
           final game = context.watch<GameProvider>();
           final imageProvider = context.watch<TaskImageProvider>();
-          
+
           if (game.nextTask >= level.tasks.length) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               game.finishLevel(widget.id);
             });
-
-            return LevelSummaryWidget(onHomeTap: () => Navigator.pop(context),);
+            return LevelSummaryWidget(
+              onHomeTap: () => Navigator.pop(context),
+            );
           }
 
           final currentTask = level.tasks[game.nextTask];
@@ -78,19 +101,27 @@ class _TaskPageState extends State<TaskPage> {
               SizedBox(
                 height: 150,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  padding:
+                  const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   child: Row(
                     children: [
-                      Expanded(flex: 1, child: iconClose(onTap: () {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          context.read<GameProvider>().startLevel(widget.id);
-                        });
-                        Navigator.pop(context);
-                      } )),
-                      Expanded(flex: 7, child: BallCounter(score: game.increaseInCondition)),
+                      Expanded(
+                        flex: 1,
+                        child: iconClose(onTap: () {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            context.read<GameProvider>().startLevel(widget.id);
+                          });
+                          Navigator.pop(context);
+                        }),
+                      ),
+                      Expanded(
+                          flex: 7,
+                          child:
+                          BallCounter(score: game.increaseInCondition)),
                       Expanded(
                         flex: 2,
-                        child: HeartsForLive(tryS: game.playerProgress.hearts)
+                        child: HeartsForLive(
+                            tryS: game.playerProgress.hearts),
                       ),
                     ],
                   ),
@@ -108,10 +139,12 @@ class _TaskPageState extends State<TaskPage> {
                         Expanded(
                           flex: 5,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20),
                             child: Row(
                               children: [
-                                imageProvider.getRandomImage(taskIndex, widget.id),
+                                imageProvider.getRandomImage(
+                                    taskIndex, widget.id),
                                 const SizedBox(width: 20),
                                 Flexible(
                                   child: Center(
@@ -119,7 +152,8 @@ class _TaskPageState extends State<TaskPage> {
                                       padding: const EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         color: backG,
-                                        borderRadius: BorderRadius.circular(15),
+                                        borderRadius:
+                                        BorderRadius.circular(15),
                                         border: Border.all(
                                           color: shadowColor,
                                           width: 1.2,
@@ -128,7 +162,9 @@ class _TaskPageState extends State<TaskPage> {
                                       child: Text(
                                         task.question,
                                         textAlign: TextAlign.center,
-                                        style: Theme.of(context).textTheme.bodyLarge,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
                                       ),
                                     ),
                                   ),
@@ -140,21 +176,28 @@ class _TaskPageState extends State<TaskPage> {
                         Flexible(
                           flex: 6,
                           child: GridView.builder(
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2, crossAxisSpacing: 0,
-                              mainAxisSpacing: 2, childAspectRatio: 1.7,
+                            gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 0,
+                              mainAxisSpacing: 2,
+                              childAspectRatio: 1.7,
                             ),
-                            physics: const NeverScrollableScrollPhysics(),
+                            physics:
+                            const NeverScrollableScrollPhysics(),
                             itemCount: task.answers.length,
                             itemBuilder: (context, answerIndex) {
-                              final String answerKey = task.answers[answerIndex];
+                              final String answerText = task.answers[answerIndex];
+
                               return Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12),
                                 child: PushButton(
-                                  language: LocaleKeys.word(answerKey).tr(),
+                                  language: answerText,
                                   flagAsset: const SizedBox.shrink(),
                                   border: Border.all(
                                     color: game.selectedIndex == answerIndex
+                                    // ignore: deprecated_member_use
                                         ? AppColors.blue.withOpacity(0.50)
                                         : shadowColor,
                                     width: 2,
@@ -162,13 +205,14 @@ class _TaskPageState extends State<TaskPage> {
                                   onTap: () {
                                     game.selectIndex(answerIndex);
                                   },
-                                  isSelected: game.selectedIndex == answerIndex,
+                                  isSelected:
+                                  game.selectedIndex == answerIndex,
                                   height: 120,
                                   fontSize: 22,
                                   borderRadius: 15,
                                   color: backG,
                                   colorShadow: shadowColor,
-                                  colorText:themeColors.text,
+                                  colorText: themeColors.text,
                                 ),
                               );
                             },
@@ -182,7 +226,8 @@ class _TaskPageState extends State<TaskPage> {
               SizedBox(
                 height: 100,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, bottom: 20),
                   child: PushButton(
                     language: LocaleKeys.confirm.tr(),
                     flagAsset: Container(),
@@ -192,7 +237,7 @@ class _TaskPageState extends State<TaskPage> {
                         game.confirmAnswer(game.selectedIndex!);
 
                         if (game.nextTask < level.tasks.length) {
-                           _pageController.animateToPage(
+                          _pageController.animateToPage(
                             game.nextTask,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn,
@@ -203,8 +248,12 @@ class _TaskPageState extends State<TaskPage> {
                     height: 75,
                     borderRadius: 10,
                     fontSize: 18,
-                    color: game.selectedIndex != null ? AppColors.green : AppColors.borderGrey,
-                    colorShadow: game.selectedIndex != null ? AppColors.blackGreen : AppColors.borderGrey,
+                    color: game.selectedIndex != null
+                        ? AppColors.green
+                        : AppColors.borderGrey,
+                    colorShadow: game.selectedIndex != null
+                        ? AppColors.blackGreen
+                        : AppColors.borderGrey,
                     colorText: Colors.white,
                     isSelected: false,
                   ),

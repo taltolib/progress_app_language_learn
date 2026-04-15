@@ -3,6 +3,8 @@ import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:progress/core/hive/app_prefs.dart';
 import 'package:progress/domain/enums/auth_status.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -17,9 +19,11 @@ class AuthProvider extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-  bool _isLoggedIn = false;
-  String? _loggedInUid; // uid сохраняем при входе через пароль
-  bool get isLoggedIn => _auth.currentUser != null || _isLoggedIn;
+  String? _loggedInUid;
+
+  // ✅ Проверяем И Firebase сессию И сохранённый флаг в SharedPreferences
+  bool get isLoggedIn =>
+      _auth.currentUser != null || AppPrefs.isLoggedIn;
 
   User? get currentUser => _auth.currentUser;
 
@@ -29,7 +33,6 @@ class AuthProvider extends ChangeNotifier {
     });
   }
 
-  // ── Вход по номеру + паролю ───────────────────────────────────────────
   Future<bool> signInWithPassword(String phone, String password) async {
     _status = AuthStatus.loading;
     _errorMessage = null;
@@ -61,10 +64,14 @@ class AuthProvider extends ChangeNotifier {
         return false;
       }
 
-      // Пароль верный — сохраняем uid и ставим флаг входа
-      _loggedInUid = doc.docs.first.id; // id документа = uid пользователя
-      _isLoggedIn = true;
+      _loggedInUid = doc.docs.first.id;
       _status = AuthStatus.verified;
+
+      // ✅ Сохраняем факт входа в SharedPreferences
+      await AppPrefs.saveLoggedIn(true);
+      // ✅ Помечаем что пользователь прошёл логин экран
+      await AppPrefs.setSeen();
+
       notifyListeners();
       return true;
     } catch (e) {
@@ -75,7 +82,6 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  // ── Проверка: существует ли аккаунт с этим номером ───────────────────
   Future<bool> isPhoneAlreadyRegistered(String phone) async {
     final fullPhone = '+998$phone';
     final doc = await FirebaseFirestore.instance
@@ -86,7 +92,6 @@ class AuthProvider extends ChangeNotifier {
     return doc.docs.isNotEmpty;
   }
 
-  // ─────────────────────────────────────────────────────────────────────
   Future<void> sendOtp(String phoneNumber) async {
     _status = AuthStatus.loading;
     _errorMessage = null;
@@ -154,25 +159,58 @@ class AuthProvider extends ChangeNotifier {
 
   Future<void> _signInWithCredential(PhoneAuthCredential credential) async {
     await _auth.signInWithCredential(credential);
-    _isLoggedIn = true;
     _loggedInUid = _auth.currentUser?.uid;
     _status = AuthStatus.verified;
+
+    // ✅ Сохраняем сессию в SharedPreferences
+    await AppPrefs.saveLoggedIn(true);
+    await AppPrefs.setSeen();
+
     notifyListeners();
   }
 
   Future<void> signOut() async {
+    final uid = _auth.currentUser?.uid ?? _loggedInUid;
+
     await _auth.signOut();
+
+    if (uid != null) {
+      await _clearHiveForUser(uid);
+    }
+
+    // ✅ Сбрасываем флаги при выходе
+    await AppPrefs.saveLoggedIn(false);
+    await AppPrefs.setSeen(); // loginScreen остаётся true — инструкция показана
+
     phoneController.clear();
-    _isLoggedIn = false;
     _loggedInUid = null;
     _status = AuthStatus.initial;
     notifyListeners();
   }
 
-  // ── Удаление аккаунта ─────────────────────────────────────────────────
+  Future<void> _clearHiveForUser(String uid) async {
+    if (Hive.isBoxOpen('game_data')) {
+      final box = Hive.box('game_data');
+      final keysToDelete = box.keys
+          .where((k) =>
+      k.toString().endsWith('_$uid') ||
+          k.toString().contains('_${uid}_'))
+          .toList();
+      for (final key in keysToDelete) {
+        await box.delete(key);
+      }
+    }
+
+    if (Hive.isBoxOpen('streakBox')) {
+      final box = Hive.box('streakBox');
+      await box.delete('streak_$uid');
+      await box.delete('todayCompleted_$uid');
+      await box.delete('lastVisit_$uid');
+    }
+  }
+
   Future<bool> deleteAccount() async {
     try {
-      // uid берём из Firebase Auth если есть, иначе из сохранённого при входе через пароль
       final uid = _auth.currentUser?.uid ?? _loggedInUid;
 
       if (uid == null) {
@@ -182,17 +220,18 @@ class AuthProvider extends ChangeNotifier {
         return false;
       }
 
-      // Удаляем данные из Firestore
       await FirebaseFirestore.instance.collection('users').doc(uid).delete();
+      await _clearHiveForUser(uid);
 
-      // Удаляем Firebase Auth аккаунт (только если есть активная сессия)
       final firebaseUser = _auth.currentUser;
       if (firebaseUser != null) {
         await firebaseUser.delete();
       }
 
+      // ✅ Сбрасываем сохранённую сессию
+      await AppPrefs.saveLoggedIn(false);
+
       phoneController.clear();
-      _isLoggedIn = false;
       _loggedInUid = null;
       _status = AuthStatus.initial;
       notifyListeners();

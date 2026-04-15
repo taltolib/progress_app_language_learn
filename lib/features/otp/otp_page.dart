@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:progress/core/theme/colors/app_colors.dart';
 import 'package:progress/core/theme/colors/theme_custom.dart';
 import 'package:progress/domain/enums/auth_status.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/%20top_snackbar.dart';
 import 'package:progress/shared/widget/push_button.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +42,7 @@ class OtpPage extends StatelessWidget {
           children: [
             const SizedBox(height: 40),
             Text(
-              'Введите код',
+              LocaleKeys.codeEnter.tr(),
               style: AppFonts.mulish.s24w700(color: colors.text),
             ),
             const SizedBox(height: 8),
@@ -72,8 +74,8 @@ class OtpPage extends StatelessWidget {
               colorText: AppColors.whiteForLight,
               borderRadius: 15,
               language: authProv.status == AuthStatus.loading
-                  ? 'Загрузка...'
-                  : 'Подтвердить',
+                  ? LocaleKeys.loading.tr()
+                  : LocaleKeys.confirm.tr(),
               flagAsset: const SizedBox.shrink(),
               isSelected: false,
               onTap: authProv.status == AuthStatus.loading
@@ -86,7 +88,7 @@ class OtpPage extends StatelessWidget {
                 if (success) {
                   final user = FirebaseAuth.instance.currentUser;
                   if (user == null) {
-                    TopSnackBar.show(context, 'Ошибка авторизации');
+                    TopSnackBar.show(context, LocaleKeys.errorAuth.tr());
                     return;
                   }
                   // Профиль есть → /main, нет → /create_profile
@@ -98,7 +100,7 @@ class OtpPage extends StatelessWidget {
                   context.go(doc.exists ? '/main' : '/create_profile');
                 } else {
                   TopSnackBar.show(
-                      context, authProv.errorMessage ?? 'Неверный код');
+                      context, authProv.errorMessage ?? LocaleKeys.errorPasswordNoCorrect.tr());
                   otpProv.clear();
                 }
               },

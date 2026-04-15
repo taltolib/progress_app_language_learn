@@ -117,6 +117,7 @@ class _LevelSummaryWidgetState extends State<LevelSummaryWidget> {
       decoration: BoxDecoration(
         color: colors.backgroundWhiteOrDark,
         borderRadius: BorderRadius.circular(15),
+        // ignore: deprecated_member_use
         border: Border.all(color: color.withOpacity(0.5), width: 2),
       ),
       child: Column(

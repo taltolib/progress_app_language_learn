@@ -34,7 +34,6 @@ class LevelPushCustomButton extends StatelessWidget {
 
     final int score = game.levelResults[level.id] ?? 0;
 
-    // 1. Получаем статус уровня через функцию из level_status.dart
     final status = getStatus(score, isLocked: isLocked);
 
     return GestureDetector(
@@ -65,11 +64,12 @@ class LevelPushCustomButton extends StatelessWidget {
           width: 120,
           height: 120,
           child: Center(
-            child: score == 100
-                ? const Icon(Icons.star, color: Colors.white, size: 45)
+            child: score == 100 || score >= 75
+                ? Text('$score%', style: AppFonts.mulish.s40w700(color: Colors.white,))
                 : Text(
               "${level.id}",
               style:  AppFonts.mulish.s32w700(color: isLocked
+                  // ignore: deprecated_member_use
                   ? themeColors.borderBlack.withOpacity(0.4)
                   : Colors.white,),
             ),

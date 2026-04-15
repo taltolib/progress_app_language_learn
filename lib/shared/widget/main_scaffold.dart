@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:progress/core/providers/game_provider.dart';
 import 'package:progress/core/providers/navigation_provider.dart';
 import 'package:progress/core/theme/colors/app_colors.dart';
@@ -10,6 +11,7 @@ import 'package:progress/features/settings/settings_page.dart';
 import 'package:progress/features/task/game_page.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
 import 'package:progress/generated/tr/locale_keys.dart';
+import 'package:progress/shared/widget/app_bar_for_search_page.dart';
 import 'package:progress/shared/widget/app_bar_game_page.dart';
 import 'package:progress/shared/widget/custom_home_app_bar.dart';
 import 'package:progress/shared/widget/glass_navigation_bar.dart';
@@ -95,16 +97,15 @@ class _MainScaffoldState extends State<MainScaffold> {
     final p = context.watch<GameProvider>();
     switch (index) {
       case 0: // HomePage
-        return const PreferredSize(
+        return  PreferredSize(
           preferredSize: Size.fromHeight(100),
-          child: CustomHomeAppBar(icon: Icons.notifications_none),
+          child: CustomHomeAppBar(icon: Icons.notifications_none,onTap: ()=> context.push('/notifications'),),
         );
       case 1: // SearchPage
-        return null;
-        // return const PreferredSize(
-        //   preferredSize: Size.fromHeight(100),
-        //   child: CustomHomeAppBar(icon: Icons.notifications_none),
-        // );
+        return  PreferredSize(
+          preferredSize: Size.fromHeight(100),
+          child: AppBarForSearchPage(onTap: ()=> context.push('/basket'),),
+        );
       case 2: // GamePage
         return PreferredSize(
           preferredSize: const Size.fromHeight(75),
@@ -117,9 +118,9 @@ class _MainScaffoldState extends State<MainScaffold> {
           ),
         );
       case 3: // SettingsPage
-        return const PreferredSize(
+        return  PreferredSize(
           preferredSize: Size.fromHeight(100),
-          child: CustomHomeAppBar(icon: Icons.notifications_none),
+          child: CustomHomeAppBar(icon: Icons.notifications_none,onTap: ()=> context.push('/notifications'),),
         );
       default:
         return null;

@@ -44,6 +44,7 @@ class DayCounterCoin extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: Colors.black.withOpacity(0.25),
             offset: const Offset(0, 6),
             blurRadius: 8,
@@ -51,8 +52,8 @@ class DayCounterCoin extends StatelessWidget {
         ],
         border: Border.all(
           color: isActive
-              ? Colors.orange.shade800
-              : Colors.grey.shade600,
+              ? activeColor
+              : inactiveColor,
           width: borderThickness,
         ),
       ),

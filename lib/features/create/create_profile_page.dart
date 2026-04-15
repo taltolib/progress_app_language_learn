@@ -64,6 +64,7 @@ class CreateProfilePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(30),
                     boxShadow: [
                       BoxShadow(
+                        // ignore: deprecated_member_use
                         color: colors.shadow.withOpacity(0.3),
                         blurRadius: 20,
                         offset: const Offset(0, 10),
@@ -72,16 +73,14 @@ class CreateProfilePage extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      // ── Имя ───────────────────────────────────
-                      _buildField(
+                       _buildField(
                         controller: prov.nameController,
                         hint: 'Ваше имя',
                         colors: colors,
                       ),
                       const SizedBox(height: 16),
 
-                      // ── Пароль ────────────────────────────────
-                      _buildField(
+                       _buildField(
                         controller: prov.passwordController,
                         hint: 'Придумайте пароль',
                         colors: colors,
@@ -91,7 +90,7 @@ class CreateProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
 
-                      // ── Повторный пароль ──────────────────────
+
                       _buildField(
                         controller: prov.confirmPasswordController,
                         hint: 'Повторите пароль',
@@ -102,7 +101,7 @@ class CreateProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 28),
 
-                      // ── Кнопка ────────────────────────────────
+
                       PushButton(
                         height: 70,
                         color: AppColors.green,
@@ -128,7 +127,7 @@ class CreateProfilePage extends StatelessWidget {
                         onTap: prov.isLoading
                             ? () {}
                             : () async {
-                          // Валидация
+
                           final error = prov.validate();
                           if (error != null) {
                             TopSnackBar.show(context, error);

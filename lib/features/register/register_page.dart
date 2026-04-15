@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import 'package:progress/core/theme/colors/theme_custom.dart';
 import 'package:progress/domain/enums/auth_status.dart';
 import 'package:progress/generated/fonts/app_fonts.dart';
 import 'package:progress/generated/image/app_image.dart';
+import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/%20top_snackbar.dart';
 import 'package:progress/shared/widget/push_button.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +49,7 @@ class RegisterPage extends StatelessWidget {
                         AppImage().character.happy(height: 120),
                         const SizedBox(height: 16),
                         Text(
-                          'Регистрация',
+                          LocaleKeys.register.tr(),
                           style: AppFonts.mulish.s24w700(color: Colors.white),
                         ),
                         const SizedBox(height: 10),
@@ -132,8 +134,8 @@ class RegisterPage extends StatelessWidget {
                         colorText: AppColors.whiteForLight,
                         borderRadius: 15,
                         language: authProv.status == AuthStatus.loading
-                            ? 'Отправка...'
-                            : 'Получить код',
+                            ? LocaleKeys.sendingCode.tr()
+                            : LocaleKeys.giveCode.tr(),
                         flagAsset: authProv.status == AuthStatus.loading
                             ? const SizedBox(
                           width: 20,
@@ -149,7 +151,7 @@ class RegisterPage extends StatelessWidget {
                             : () async {
                           final phone = authProv.phoneController.text.trim();
                           if (phone.isEmpty || phone.length < 9) {
-                            TopSnackBar.show(context, 'Введите корректный номер (9 цифр)');
+                            TopSnackBar.show(context, LocaleKeys.errorCorrect9Length.tr());
                             return;
                           }
 
@@ -157,7 +159,7 @@ class RegisterPage extends StatelessWidget {
                           final exists = await authProv.isPhoneAlreadyRegistered(phone);
                           if (!context.mounted) return;
                           if (exists) {
-                            TopSnackBar.show(context, 'Аккаунт с этим номером уже существует');
+                            TopSnackBar.show(context, LocaleKeys.errorYesAccount.tr());
                             return;
                           }
 
@@ -175,7 +177,7 @@ class RegisterPage extends StatelessWidget {
                           } else if (authProv.status == AuthStatus.error) {
                             TopSnackBar.show(
                               context,
-                              authProv.errorMessage ?? 'Ошибка отправки SMS',
+                              authProv.errorMessage ?? LocaleKeys.errorSendSms.tr(),
                             );
                           }
                         },
@@ -187,13 +189,14 @@ class RegisterPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Уже есть аккаунт? ',
+                            LocaleKeys.yesAccount.tr(),
                             style: AppFonts.mulish.s14w400(color: Colors.grey),
                           ),
+                          SizedBox(width: 10),
                           GestureDetector(
                             onTap: () => context.go('/login'),
                             child: Text(
-                              'Войти',
+                              LocaleKeys.login.tr(),
                               style: AppFonts.mulish.s14w700(
                                 color: AppColors.green,
                               ),
