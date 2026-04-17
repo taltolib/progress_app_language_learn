@@ -48,19 +48,6 @@ class SettingsPage extends StatelessWidget {
             cardColor: cardColor,
             children: [
               SettingsTile(
-                title: LocaleKeys.theme.tr(),
-                textPrimary: text,
-                trailing: Text(
-                  themeProvider.isDarkMode
-                      ? LocaleKeys.darkTheme.tr()
-                      : LocaleKeys.lightTheme.tr(),
-                  style: AppFonts.mulish.s15w500(color: text),
-                ),
-                showArrow: true,
-                onTap: () {},
-              ),
-              Line(),
-              SettingsTile(
                 onTap: () {
                   customShowBottomSheetDialog(
                     context,

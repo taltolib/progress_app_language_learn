@@ -149,7 +149,7 @@ class _TaskPageState extends State<TaskPage> {
                                 Flexible(
                                   child: Center(
                                     child: Container(
-                                      padding: const EdgeInsets.all(10),
+                                      padding: const EdgeInsets.all(30),
                                       decoration: BoxDecoration(
                                         color: backG,
                                         borderRadius:

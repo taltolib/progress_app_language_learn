@@ -42,7 +42,6 @@ void main() async {
 
   final favoritesProvider = FavoritesProvider();
   await favoritesProvider.init();
-
   final streakProvider = StreakProvider();
   await streakProvider.init();
 

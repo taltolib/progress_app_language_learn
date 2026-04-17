@@ -18,14 +18,14 @@ class AppBarGamePage extends StatelessWidget {
           padding: EdgeInsets.only(right: 20,top: 25,left: 20,bottom: 10,),
           child: Row(
             children: [
-              Expanded(child: GestureDetector(
-                onTap: onTapForLanguage,
-                child: CountryFlag.fromCountryCode(
-                  'US',
-                  theme: const ImageTheme( width: 20,height: 30,shape: RoundedRectangle(5)),
-                ),
-              ),),
-              Expanded( flex: 7,child: GestureDetector( onTap: onTapForDay,child: Center(child: DayCounterCoin(value: daysCompleted,size: 30,)))),
+              // Expanded(child: GestureDetector(
+              //   onTap: onTapForLanguage,
+              //   child: CountryFlag.fromCountryCode(
+              //     'US',
+              //     theme: const ImageTheme( width: 20,height: 30,shape: RoundedRectangle(5)),
+              //   ),
+              // ),),
+              // Expanded( flex: 7,child: GestureDetector( onTap: onTapForDay,child: Center(child: DayCounterCoin(value: daysCompleted,size: 30,)))),
               Expanded( flex: 1,child: GestureDetector(onTap: onTapForLive ,child: HeartsForLive(tryS: tryS,))),
               SizedBox(width: 10,),
             ],
