@@ -33,6 +33,7 @@ An interactive mobile application for learning foreign languages. Built with Flu
 | Navigation | GoRouter |
 | Local Database | SQLite (sqflite) |
 | Local Storage | Hive |
+| Local Storage | Shared_preferences |
 | Cloud & Auth | Firebase Auth + Cloud Firestore |
 | Localization | easy_localization |
 
