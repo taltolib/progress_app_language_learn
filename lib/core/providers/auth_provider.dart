@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:google_sign_in/google_sign_in.dart' show GoogleSignIn, GoogleSignInAccount, GoogleSignInAuthentication;
+ import 'package:hive/hive.dart';
 import 'package:progress/core/hive/app_prefs.dart';
 import 'package:progress/domain/enums/auth_status.dart';
 
@@ -13,17 +16,17 @@ class AuthProvider extends ChangeNotifier {
   final TextEditingController phoneController = TextEditingController();
 
   AuthStatus _status = AuthStatus.initial;
+
   AuthStatus get status => _status;
 
   String? _verificationId;
   String? _errorMessage;
+
   String? get errorMessage => _errorMessage;
 
   String? _loggedInUid;
 
-  // ✅ Проверяем И Firebase сессию И сохранённый флаг в SharedPreferences
-  bool get isLoggedIn =>
-      _auth.currentUser != null || AppPrefs.isLoggedIn;
+  bool get isLoggedIn => _auth.currentUser != null || AppPrefs.isLoggedIn;
 
   User? get currentUser => _auth.currentUser;
 
@@ -67,9 +70,7 @@ class AuthProvider extends ChangeNotifier {
       _loggedInUid = doc.docs.first.id;
       _status = AuthStatus.verified;
 
-      // ✅ Сохраняем факт входа в SharedPreferences
       await AppPrefs.saveLoggedIn(true);
-      // ✅ Помечаем что пользователь прошёл логин экран
       await AppPrefs.setSeen();
 
       notifyListeners();
@@ -162,7 +163,6 @@ class AuthProvider extends ChangeNotifier {
     _loggedInUid = _auth.currentUser?.uid;
     _status = AuthStatus.verified;
 
-    // ✅ Сохраняем сессию в SharedPreferences
     await AppPrefs.saveLoggedIn(true);
     await AppPrefs.setSeen();
 
@@ -172,15 +172,16 @@ class AuthProvider extends ChangeNotifier {
   Future<void> signOut() async {
     final uid = _auth.currentUser?.uid ?? _loggedInUid;
 
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
     await _auth.signOut();
 
     if (uid != null) {
       await _clearHiveForUser(uid);
     }
 
-    // ✅ Сбрасываем флаги при выходе
     await AppPrefs.saveLoggedIn(false);
-    await AppPrefs.setSeen(); // loginScreen остаётся true — инструкция показана
+    await AppPrefs.setSeen();
 
     phoneController.clear();
     _loggedInUid = null;
@@ -188,13 +189,84 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<bool> signInWithGoogle() async {
+    _status = AuthStatus.loading;
+    _errorMessage = null;
+    notifyListeners();
+
+    try {
+       final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) {
+        _status = AuthStatus.initial;
+        notifyListeners();
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+      await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      if (user == null) {
+        _errorMessage = 'Ошибка входа через Google';
+        _status = AuthStatus.error;
+        notifyListeners();
+        return false;
+      }
+      final docRef =
+      FirebaseFirestore.instance.collection('users').doc(user.uid);
+      final doc = await docRef.get();
+      if (!doc.exists) {
+        await docRef.set({
+          'uid': user.uid,
+          'email': user.email,
+          'displayName': user.displayName,
+          'photoUrl': user.photoURL,
+          'createdAt': FieldValue.serverTimestamp(),
+          'provider': 'google',
+        });
+      }
+
+      _loggedInUid = user.uid;
+      _status = AuthStatus.verified;
+
+      await AppPrefs.saveLoggedIn(true);
+      await AppPrefs.setSeen();
+
+      notifyListeners();
+      return true;
+    } on FirebaseAuthException catch (e) {
+      _errorMessage = e.message ?? 'Ошибка Firebase';
+      _status = AuthStatus.error;
+      notifyListeners();
+      return false;
+    } catch (e) {
+      _errorMessage = 'Ошибка входа через Google. Попробуйте снова';
+      _status = AuthStatus.error;
+      notifyListeners();
+      return false;
+    }
+  }
+
+
+
   Future<void> _clearHiveForUser(String uid) async {
     if (Hive.isBoxOpen('game_data')) {
       final box = Hive.box('game_data');
       final keysToDelete = box.keys
-          .where((k) =>
-      k.toString().endsWith('_$uid') ||
-          k.toString().contains('_${uid}_'))
+          .where(
+            (k) =>
+        k.toString().endsWith('_$uid') ||
+            k.toString().contains('_${uid}_'),
+      )
           .toList();
       for (final key in keysToDelete) {
         await box.delete(key);
@@ -220,6 +292,10 @@ class AuthProvider extends ChangeNotifier {
         return false;
       }
 
+
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      await googleSignIn.disconnect();
+
       await FirebaseFirestore.instance.collection('users').doc(uid).delete();
       await _clearHiveForUser(uid);
 
@@ -228,7 +304,6 @@ class AuthProvider extends ChangeNotifier {
         await firebaseUser.delete();
       }
 
-      // ✅ Сбрасываем сохранённую сессию
       await AppPrefs.saveLoggedIn(false);
 
       phoneController.clear();

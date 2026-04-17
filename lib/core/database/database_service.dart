@@ -34,8 +34,8 @@ class DatabaseService {
       } on FlutterError catch (error) {
         throw StateError(
           'Database asset is missing: assets/db/progress_db.db. '
-          'Add this file to the project and register assets/db/ in pubspec.yaml. '
-          'Original error: $error',
+              'Add this file to the project and register assets/db/ in pubspec.yaml. '
+              'Original error: $error',
         );
       }
     }
@@ -185,6 +185,88 @@ class DatabaseService {
     );
   }
 
+  /// Берёт слова из середины таблицы, чтобы избежать "хреновых" слов с начала.
+  /// totalWords — общее кол-во слов в БД (подбирается один раз).
+  /// Для каждого уровня сдвигаемся от середины: middleOffset + (levelId-1)*limit.
+  Future<List<Map<String, String>>> fetchWordsForLevel({
+    required int levelId,
+    required String langCode,
+    int limit = 20,
+    int distractorCount = 200,
+  }) async {
+    final d = await db;
+
+    // Узнаём сколько всего слов в таблице
+    final countResult = await d.rawQuery(
+      "SELECT COUNT(*) as cnt FROM word_entity WHERE word GLOB '[a-zA-Z]*' AND length(word) < 30",
+    );
+    final totalWords = Sqflite.firstIntValue(countResult) ?? 1000;
+
+    // Начинаем с четверти таблицы — там уже нормальные слова
+    final middleStart = totalWords ~/ 4;
+    final offset = middleStart + (levelId - 1) * limit;
+
+    return _fetchWords(d, langCode, limit, offset);
+  }
+
+  /// Берёт пул слов-дистракторов из следующего блока после основных слов уровня.
+  Future<List<Map<String, String>>> fetchDistractorsForLevel({
+    required int levelId,
+    required String langCode,
+    int mainLimit = 20,
+    int distractorCount = 200,
+  }) async {
+    final d = await db;
+
+    final countResult = await d.rawQuery(
+      "SELECT COUNT(*) as cnt FROM word_entity WHERE word GLOB '[a-zA-Z]*' AND length(word) < 30",
+    );
+    final totalWords = Sqflite.firstIntValue(countResult) ?? 1000;
+    final middleStart = totalWords ~/ 4;
+    final mainOffset = middleStart + (levelId - 1) * mainLimit;
+    final distractorOffset = mainOffset + mainLimit;
+
+    return _fetchWords(d, langCode, distractorCount, distractorOffset);
+  }
+
+  Future<List<Map<String, String>>> _fetchWords(
+      Database d,
+      String langCode,
+      int limit,
+      int offset,
+      ) async {
+    late List<Map<String, Object?>> rows;
+
+    if (langCode == 'en') {
+      rows = await d.rawQuery('''
+        SELECT we.id, we.word AS wordEn, we.word AS translation
+        FROM word_entity we
+        WHERE we.word GLOB '[a-zA-Z]*'
+          AND length(we.word) < 10
+        LIMIT ? OFFSET ?
+      ''', [limit, offset]);
+    } else {
+      final joinTable = langCode == 'ru' ? 'words_ru' : 'words_uz';
+      rows = await d.rawQuery('''
+        SELECT we.id, we.word AS wordEn, t.word AS translation
+        FROM word_entity we
+        JOIN $joinTable t ON we.id = t.word_id
+        WHERE we.word GLOB '[a-zA-Z]*'
+          AND length(we.word) < 30
+          AND t.word IS NOT NULL
+          AND length(t.word) > 0
+        LIMIT ? OFFSET ?
+      ''', [limit, offset]);
+    }
+
+    return rows
+        .map((r) => {
+      'wordEn': r['wordEn'] as String,
+      'translation': r['translation'] as String,
+    })
+        .toList();
+  }
+
   Future<List<SearchResult>> searchWord(String query) async {
     if (query.trim().isEmpty) return [];
     final d = await db;
@@ -206,13 +288,13 @@ class DatabaseService {
     return rows
         .map(
           (r) => SearchResult(
-            id: r['id'] as int,
-            word: r['word'] as String,
-            wordRu: r['word_ru'] as String?,
-            wordUz: r['word_uz'] as String?,
-            pronunciation: r['word_class_body'] as String?,
-          ),
-        )
+        id: r['id'] as int,
+        word: r['word'] as String,
+        wordRu: r['word_ru'] as String?,
+        wordUz: r['word_uz'] as String?,
+        pronunciation: r['word_class_body'] as String?,
+      ),
+    )
         .toList();
   }
 

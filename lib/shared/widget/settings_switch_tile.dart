@@ -26,7 +26,7 @@ class SettingsSwitchTile extends StatelessWidget {
         children: [
            Expanded(
             child: Text(
-              LocaleKeys.darkTheme.tr(),
+              LocaleKeys.theme.tr(),
               style: AppFonts.mulish.s16w500(color:colors.text ),
             ),
           ),

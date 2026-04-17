@@ -25,7 +25,7 @@ GoRouter buildRouter(AuthProvider authProvider) {
     redirect: (context, state) {
       final isLoggedIn = authProvider.isLoggedIn;
       final introSeen = AppPrefs.introSeen;
-      final loginScreenSeen = AppPrefs.isSeen; // ✅ читает из SharedPreferences
+      final loginScreenSeen = AppPrefs.isSeen; //  читает из SharedPreferences
       final location = state.matchedLocation;
 
       // 1. Если интро ещё не видел — всегда на интро
@@ -33,15 +33,12 @@ GoRouter buildRouter(AuthProvider authProvider) {
         return location == '/introduction' ? null : '/introduction';
       }
 
-      // 2. Если не авторизован — на логин
-      // ✅ isLoggedIn теперь проверяет и Firebase и SharedPreferences
+
       if (!isLoggedIn) {
         const guestRoutes = ['/login', '/register', '/otp', '/create_profile'];
         return guestRoutes.contains(location) ? null : '/login';
       }
 
-      // 3. Авторизован — если был на логин/регистрации или на стартовом экране, идём на main
-      // ✅ Исправлена логика: если loginScreenSeen == true → уже входил → на /main
       if (loginScreenSeen) {
         if (location == '/' ||
             location == '/login' ||

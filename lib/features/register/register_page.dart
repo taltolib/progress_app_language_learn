@@ -10,6 +10,7 @@ import 'package:progress/generated/fonts/app_fonts.dart';
 import 'package:progress/generated/image/app_image.dart';
 import 'package:progress/generated/tr/locale_keys.dart';
 import 'package:progress/shared/widget/%20top_snackbar.dart';
+import 'package:progress/shared/widget/google_sign_in_button.dart';
 import 'package:progress/shared/widget/push_button.dart';
 import 'package:provider/provider.dart';
 
@@ -183,6 +184,7 @@ class RegisterPage extends StatelessWidget {
                         },
                         isSelected: false,
                       ),
+                      GoogleSignInButton(redirectRoute: '/main'),
                       const SizedBox(height: 16),
 
                       Row(
