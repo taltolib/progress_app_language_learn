@@ -69,7 +69,7 @@ flutter run
 
 You can log in with the following test account:
 
-| Field | Value |
+| Field | Value | 
 |-------|-------|
 | Phone | `+998 00 100 01 01` |
 | OTP code | `010101` |
