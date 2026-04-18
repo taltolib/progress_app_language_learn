@@ -42,7 +42,7 @@ class TaskGenerator {
     if (allLevels.isEmpty) {
       await loadLevels();
     }
-    
+
     // Ищем уровень по ID. Если не нашли, можно вернуть первый или кинуть ошибку.
     return allLevels.firstWhere(
       (level) => level.id == levelId,
